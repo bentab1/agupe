@@ -1,0 +1,95 @@
+.NavBar{
+display:flex;
+justify-content: space-around;
+background-color: rgba(245, 245, 245, 1);
+
+
+}
+.logo{
+    display: flex;
+    margin-left: 6px;
+}
+
+
+.grid{
+    flex: 1;
+   
+    text-align: center;
+    padding-top: 30;
+    padding: 10px;
+    margin: 5px;
+    
+
+}
+
+.bank{
+ text-decoration-color: aqua;
+ background-color:rgba(35, 233, 102, 0.55);
+ margin-top: 0;
+ margin-bottom: 40px;
+ padding-top: 5px;
+ padding-left: 5px;
+ padding-right: 15px;
+ vertical-align: top;
+
+}
+
+.login{
+    margin-left: 5px;
+    
+    
+}
+
+.pay-agu{
+    color: rgba(231, 37, 37, 1);
+    padding-top: 10px;
+}
+
+.person-tag{
+    padding-top: 10px;
+}
+
+.con{
+    padding-top: 10px;
+}
+
+.buz{
+    padding-top: 10px;
+}
+  .a1{
+
+    color: rgba(231, 37, 37, 1);
+  }
+
+  .g1{
+
+    color: rgba(0, 0, 0, 1);
+  }
+
+  .u1{
+    color: rgba(252, 233, 67, 1);
+  }
+
+  .p1{
+    color: rgba(228, 165, 165, 1);
+  }
+
+  .e1{
+
+    color: rgba(35, 233, 102, 1);
+  }
+
+  .logo.png{
+    background-color: brown;
+    display: grid;
+    justify-content: space-evenly;
+  }
+
+
+  .image{
+    display: block;
+    padding-left: 12px;
+    margin-bottom: 0;
+    margin-top: 5px;
+    margin-left: 4px;
+  }

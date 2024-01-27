@@ -1,16 +1,13 @@
 import React from 'react'
-import { About, AddCard, NavBar, PayBill, Theme, TransactionCategory } from './components'
-import { AgupePay } from './container'
+import { Header, NavBar } from './components'
+
 function App() {
   return (
     <div>
-      <About/>
+     <Header/>
       <NavBar/>
-      <PayBill/>
-      <AddCard/>
-      <AgupePay/>
-      <Theme/>
-      <TransactionCategory/>
+      
+      
     </div>
   )
 }

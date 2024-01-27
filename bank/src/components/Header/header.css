@@ -1,0 +1,39 @@
+.grid-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.grid-item {
+  flex: 1;
+  
+  text-align: center;
+  padding: 10px;
+  margin: 5px;
+}
+ .live-g{
+  margin-top: 20px;
+  
+  font-size: 12px;
+ }
+.chat{
+  display: flex;
+  flex-direction: row;
+  
+}
+
+
+.about,
+.help{
+  font-size:12px ;
+}
+.image-chat{
+  display: flex;
+margin-top: 12px;
+margin-left: 5px;
+image-rendering: optimizeQuality;
+opacity: 10;
+border: none;
+
+
+
+}
