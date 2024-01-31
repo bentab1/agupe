@@ -1,9 +1,10 @@
 import React from 'react'
 import './personal.css'
-function Personal() {
+function Personal({ isVisible }) {
   return (
-    <div>
-      <h1>Personal</h1>
+    <div style={{ display: isVisible ? 'block' : 'none' }} id="personal">
+      
+      <h2>Personal Component</h2>
     </div>
   )
 }

@@ -1,10 +1,16 @@
 .NavBar{
 display:flex;
-justify-content: space-around;
+justify-content: space-evenly;
 background-color: rgba(245, 245, 245, 1);
+
+}
+.nav_link{
+  width: 1230px;
 
 
 }
+
+
 .logo{
     display: flex;
     margin-left: 6px;
@@ -83,6 +89,7 @@ background-color: rgba(245, 245, 245, 1);
     background-color: brown;
     display: grid;
     justify-content: space-evenly;
+    
   }
 
 

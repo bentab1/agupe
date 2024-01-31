@@ -1,9 +1,10 @@
 import React from 'react'
 import './agupePay.css'
-function AgupePay() {
+function AgupePay({ isVisible }) {
   return (
-    <div>
-      <h1>AgupePay</h1>
+    <div style={{ display: isVisible ? 'block' : 'none' }} id="agupepay">
+    
+      <h2>Agupepay Component</h2>
     </div>
   )
 }

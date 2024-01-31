@@ -1,0 +1,42 @@
+
+.com_1{
+  margin-top: 240px;
+  display: flex;
+   margin-bottom: 20px;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.call_us{
+  margin-bottom: 10px;
+}
+
+.call{
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+.number{
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+.social{
+
+  margin-bottom: 10px;
+}
+
+.socialize{
+  font-size: 13px;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.ap{
+  margin-bottom: 10px;
+}
+
+.mobile{
+  font-size: 13px;
+  margin-left: 10px;
+}

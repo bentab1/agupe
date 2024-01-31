@@ -16,4 +16,8 @@ export { default as Theme2 } from './Theme2/Theme2'
 export { default as TransactionCategory2 } from './TransactionCategory2/TransactionCategory2'
 export { default as Transactions2 } from './Transactions2/Transactions2'
 export { default as Withdraw2 } from './Withdraw2/Withdraw2'
+export { default as Personal2 } from './Personal2/Personal2'
+export { default as Business2 } from './Business2/Business2'
+
+
 

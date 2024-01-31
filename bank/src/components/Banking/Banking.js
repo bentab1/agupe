@@ -1,10 +1,11 @@
 import React from 'react'
 import './banking.css'
-function Banking() {
+function Banking({ isVisible }) {
   return (
-    <div>
-      <h1>Banking</h1>
-    </div>
+    <div style={{ display: isVisible ? 'block' : 'none' }} id="banking">
+    
+    <h2>Banking Component</h2>
+  </div>
   )
 }
 

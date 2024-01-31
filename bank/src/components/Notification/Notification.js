@@ -1,9 +1,61 @@
-import React from 'react'
-import './notification.css'
+import React from 'react';
+import appstore from '../Assets/appstore.png';
+import callUs from '../Assets/callUs.png';
+import facebook from '../Assets/facebook.png';
+import instagram from '../Assets/instagram.png';
+import playstore from '../Assets/playstore.png';
+import twitter from '../Assets/twitter.png';
+import './notification.css';
 function Notification() {
   return (
-    <div>
-      <h1>Notification</h1>
+    <div  style={{width:'100%', height:'350px', backgroundColor:'rgba(46, 42, 229, 0.74)',
+              display:'grip'}}>
+      
+      
+      
+
+
+
+     <div className="com_1" style={{backgroundColor:'rgba(100, 251, 171, 1)'}}>
+
+        <div style={{display:'grid',height:'68px', marginLeft:'20px'
+           }} className='call_us'
+        
+        >
+        <div style={{display:'flex',justifyContent:'center'}}>
+            <h className='call'>Call us</h>
+        <img src={callUs} alt="call us" style={{marginLeft:'10px'}}/>
+        </div>
+         <h className='number'>+1-27024000/ 0915700025</h>
+
+        </div>
+
+        <div style={{display:'grid', marginLeft:'280px',
+            width:'180px',}}>
+     <h className='socialize'>socialize with us </h>
+       
+        <div style={{display:'flex', justifyContent:'space-around'}}>
+        <img src={facebook} alt ="facebook" className='social'/>
+       <img src={twitter} alt ="twitter" className='social'/>
+       <img src={instagram} alt ="instagram" className='social'/>
+        </div>
+        </div>
+
+
+        <div style={{display:'grid', marginLeft:'400px', with:'180px',
+                            }}>
+        <h className='mobile'>Agupe / AgupePay mobile,</h>
+         <h className='mobile'>download our app</h>
+          <div style={{display:'flex'}}>
+      <img src={appstore} alt ="twitter" style={{marginRight:'8px'}} className='ap'/> 
+      <img src={playstore} alt ="twitter" style={{marginRight:'5px'}} className='ap'/> 
+          </div>
+        </div>
+
+     </div>
+
+
+
     </div>
   )
 }
