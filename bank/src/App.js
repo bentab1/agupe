@@ -8,7 +8,6 @@ import Business from './components/Business/Business';
 import ContactUs from './components/ContactUs/ContactUs';
 import Contents from './components/Contents/Contents';
 import Features from './components/Features/Features';
-import HeaderLinkRoute from './components/HeaderLinkRoute/HeaderLinkRoute';
 import Help from './components/Help/Help';
 import LiveChat from './components/LiveChat/LiveChat';
 import Personal from './components/Personal/Personal';
@@ -19,10 +18,9 @@ const App = () => (
   <div className="app">
     <Router>
       <Header />
-      <HeaderLinkRoute />
-
       <div className="content-container">
         <NavBar />
+
         <Routes>
           <Route path="/aboutUs" component={AboutUs} />
           <Route path="/liveChat" component={LiveChat} />
