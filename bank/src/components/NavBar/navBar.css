@@ -19,27 +19,12 @@ justify-content: space-between;
 .logo{
     display: flex;
     margin-left: 15px;
-    margin-top: 3px;
+    height: 40px;
     
     
 }
 
-.login{
-    margin-left: 5px;
-}
 
-.pay-agu{
-    color: rgba(231, 37, 37, 1);
-    padding-top: 10px;
-}
-
-.con{
-    padding-top: 10px;
-}
-
-.buz{
-    padding-top: 10px;
-}
   .a1{
 
     color: rgba(231, 37, 37, 1);
@@ -75,11 +60,11 @@ justify-content: space-between;
 
   .image{
     display: block;
-  
+     width: 50px;
     padding-left: 12px;
-    margin-bottom: 3px;
-    margin-top: 3px;
-    margin-left: 15px;
+    margin-bottom: 0px;
+    margin-top: 10px;
+    margin-left: 25px;
   }
 
   .grid{
@@ -96,6 +81,4 @@ justify-content: space-between;
     padding-top: 5px;
   }
 
-  .bnk{
-    background-color: brown;
-  }
+  

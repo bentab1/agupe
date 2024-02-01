@@ -22,13 +22,10 @@
 }
 
 
-.about,
-.help{
-  font-size:12px ;
-}
 .image-chat{
   display: flex;
-margin-top: 12px;
+  width: 20px;
+margin-top: 18px;
 margin-left: 5px;
 image-rendering: optimizeQuality;
 opacity: 10;
