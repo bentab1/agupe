@@ -13,7 +13,7 @@ function Notification() {
     
      <div className="com_1" style={{marginTop:'240px'}}>
 
-        <div style={{display:'grid',height:'68px', marginLeft:'20px',
+        <div style={{display:'grid',height:'68px', marginLeft:'100px',
           }} className='call_us'
         
         >
@@ -37,7 +37,7 @@ function Notification() {
         </div>
 
 
-        <div style={{display:'grid', marginLeft:'465px', with:'300px',
+        <div style={{display:'grid', marginLeft:'280px',
                            }}>
         <h className='mobile'>Agupe / AgupePay mobile,</h>
          <h className='mobile'>download our app</h>

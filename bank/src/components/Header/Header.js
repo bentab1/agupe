@@ -9,7 +9,7 @@ function Header() {
     <div style={{width:'1370px',height:'50px'}}>
       <nav className="grid-container">
         <NavLink to="/AboutUs" activeClassName="active">
-          <p style={{marginLeft:'140px', marginTop:'15px',fontSize:'12px'}}>About Us</p>
+          <p style={{marginLeft:'130px', marginTop:'15px',fontSize:'12px'}}>About Us</p>
         </NavLink>
         <div className='chat'>
           <NavLink to="/liveChat"  activeClassName="active" >
