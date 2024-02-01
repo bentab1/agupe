@@ -1,8 +1,8 @@
 import React from 'react'
 import './agupePay.css'
-function AgupePay({ isVisible }) {
+function AgupePay() {
   return (
-    <div style={{ display: isVisible ? 'block' : 'none' }} id="agupepay">
+    <div style={{width:'100%', height:'600px', backgroundColor:'goldenrod'}}>
     
       <h2>Agupepay Component</h2>
     </div>

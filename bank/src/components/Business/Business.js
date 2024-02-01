@@ -1,8 +1,8 @@
 import React from 'react'
 import './business.css'
-function Business({ isVisible }) {
+function Business() {
   return (
-    <div style={{ display: isVisible ? 'block' : 'none' }} id="business">
+    <div style={{width:'100%', height:'600px'}}>
       
       <h2>Business Component</h2>
     </div>

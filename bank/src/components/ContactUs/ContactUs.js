@@ -1,9 +1,9 @@
 
 import React from 'react'
 import './contactUs.css'
-function ContactUs({ isVisible }) {
+function ContactUs() {
   return (
-    <div style={{ display: isVisible ? 'block' : 'none' }} id="contacts">
+    <div style={{width:'100%', height:'600px', backgroundColor:'rgba(122, 227, 223, 0.51)'}}>
       
       <h2>Contacts Component</h2>
     </div>
