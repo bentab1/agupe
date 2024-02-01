@@ -2,8 +2,8 @@ import React from 'react'
 import './footer.css'
 function Footer() {
   return (
-    <div className='foot'>
-     <div style={{width:'100%'}}>
+    <div style={{backgroundColor:'black', height:'50px'}}>
+     <div >
 
      </div>
     </div>

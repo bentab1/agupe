@@ -5,7 +5,7 @@ function Review() {
 
   return (
     <div   style={{display: 'flex' }}>
-      <div  className='com' style={{ width: '50%', backgroundColor: 'rgba(228, 165, 165, 1)' }}>
+      <div  className='com' style={{ width: '50%', backgroundColor: 'red' }}>
 
         
       </div>
@@ -15,13 +15,6 @@ function Review() {
 
         
       </div>
-
-
-      <div className='border'>
-
-
-      </div>
-
 
     </div>
   )

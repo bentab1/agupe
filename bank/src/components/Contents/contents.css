@@ -36,7 +36,8 @@ body {
   margin: 0 5px;
 }
 .content{
-  height: 39px;
+  height: 47px;
   margin-bottom: 5px;
-  margin-top: 7px;
+  margin-top: 5px;
+  background-color: brown;
 }

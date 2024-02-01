@@ -8,21 +8,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.App {
+.app {
+  height: 100%;
   display: grid;
-  grid-template-rows: auto 1fr auto;
-  height: 85vh;
-  overflow-y: auto; /* Enable vertical scrolling */
-  overflow-x: hidden;
+  flex-direction: column;
+  
+  
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.content-container {
+  display: grid;
+  overflow-x: hidden; 
+  max-height: calc(85vh);
+  width: 1380px;
+  
+
+ 
 }
 
-
-
-.App-link {
-  color: #61dafb;
-}

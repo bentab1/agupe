@@ -8,18 +8,13 @@ import twitter from '../Assets/twitter.png';
 import './notification.css';
 function Notification() {
   return (
-    <div  style={{width:'100%', height:'350px', backgroundColor:'rgba(46, 42, 229, 0.74)',
-              display:'grip'}}>
-      
-      
-      
+    <div  style={{width:'1380px', height:'350px', backgroundColor:'green',
+              marginTop:'0'}}>
+    
+     <div className="com_1" style={{marginTop:'240px'}}>
 
-
-
-     <div className="com_1" style={{backgroundColor:'rgba(100, 251, 171, 1)'}}>
-
-        <div style={{display:'grid',height:'68px', marginLeft:'20px'
-           }} className='call_us'
+        <div style={{display:'grid',height:'68px', marginLeft:'20px',
+          }} className='call_us'
         
         >
         <div style={{display:'flex',justifyContent:'center'}}>
@@ -31,7 +26,7 @@ function Notification() {
         </div>
 
         <div style={{display:'grid', marginLeft:'280px',
-            width:'180px',}}>
+            width:'180px'}}>
      <h className='socialize'>socialize with us </h>
        
         <div style={{display:'flex', justifyContent:'space-around'}}>
@@ -42,8 +37,8 @@ function Notification() {
         </div>
 
 
-        <div style={{display:'grid', marginLeft:'400px', with:'180px',
-                            }}>
+        <div style={{display:'grid', marginLeft:'465px', with:'300px',
+                           }}>
         <h className='mobile'>Agupe / AgupePay mobile,</h>
          <h className='mobile'>download our app</h>
           <div style={{display:'flex'}}>

@@ -1,11 +1,12 @@
 .features{
   display: flex;
+  min-height: 250px;
 }
 
 
 .feat{
-  height: 320px;
-  width: 25%;
+  height: 330px;
+  width: 330px;
   background-color: rgba(217, 217, 217, 1);
   margin: 5px;
 }
@@ -57,7 +58,7 @@
  .text{
   font-size: 14px;
   color: rgba(46, 42, 229, 1);
-  padding-left: 10px;
+  padding-left: 15px;
  }
 
  .seeAll{
