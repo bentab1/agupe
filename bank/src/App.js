@@ -19,8 +19,8 @@ const App = () => (
     <Router>
       <Header />
       <div className="content-container">
+        
         <NavBar />
-
         <Routes>
           <Route path="/aboutUs" component={AboutUs} />
           <Route path="/liveChat" component={LiveChat} />
