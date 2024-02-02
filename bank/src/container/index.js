@@ -1,6 +1,6 @@
 export { default as AddDevice } from './AddDevice/AddDevice'
 export { default as AddPaymentMethod2 } from './AddPaymentMethod2/AddPaymentMethod2'
-export { default as AgupePay } from './AgupePay/AgupePay'
+
 export { default as Analytics2 } from './Analytics2/Analytics2'
 export { default as Authentication2 } from './Authentication2/Authentication2'
 export { default as Calculator } from './Calculator/Calculator'

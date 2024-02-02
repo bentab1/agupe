@@ -35,7 +35,7 @@ function Navbar() {
     <NavLink to="/contactus" activeClassName="active" className=' grid'>
       Contact Us
     </NavLink>
-    <NavLink to="/banking" activeClassName="active" >
+    <NavLink to="/banking" activeClassName="active" className='bnk' >
       <p className='bank'>Banking</p>
     </NavLink>
 

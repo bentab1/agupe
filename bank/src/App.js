@@ -19,18 +19,19 @@ const App = () => (
     <Router>
       <Header />
       <div className="content-container">
-        
+
         <NavBar />
         <Routes>
-          <Route path="/aboutUs" component={AboutUs} />
-          <Route path="/liveChat" component={LiveChat} />
-          <Route path="/help" component={Help} />
+          
           <Route index element={<div></div>} />
           <Route path="/business" element={<Business />} />
           <Route path="/agupepay" element={<AgupePay />} />
           <Route path="/personal" element={<Personal />} />
           <Route path="/contactus" element={<ContactUs />} />
           <Route path="/banking" element={<Banking />} />
+          <Route path="/aboutUs" component={AboutUs} />
+          <Route path="/liveChat" component={LiveChat} />
+          <Route path="/help" component={Help} />
         </Routes>
         <Contents />
         <Features />
