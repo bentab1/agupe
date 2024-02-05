@@ -6,7 +6,7 @@ import './header.css';
 function Header() {
 
   return (
-    <div style={{width:'1390px',height:'80px'}}>
+    <div style={{width:'1390px',height:'50px'}}>
       <nav className="grid-container">
 <NavLink to="/aboutUs" activeClassName="active">
   <p style={{marginLeft:'130px', marginTop:'15px',fontSize:'12px', }}>About Us</p>
@@ -14,10 +14,11 @@ function Header() {
 
 <div className='chat'>
   <NavLink to="/liveChat"  activeClassName="active"  >
-    <p style={{marginTop:'20px', fontSize:'12px', marginLeft:'70px',with:'20px', backgroundColor:'aqua'}}>Live Chat</p>
-    <button>
+    <div style={{display:'flex'}}>
+    <p style={{marginTop:'20px', fontSize:'12px', marginLeft:'70px',with:'20px'}}>Live Chat</p>
+    
     <i className="fas fa-comment" style={{marginLeft:'5px', marginTop:'18px'}}></i>
-    </button>
+    </div>
   </NavLink >
 </div>
 

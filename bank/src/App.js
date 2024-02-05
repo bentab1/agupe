@@ -21,7 +21,7 @@ const App = () => (
       <div className="content-container">
         <NavBar />
         <Routes>
-        <Route path="/aboutUs" element={<AboutUs/>} />
+         <Route path="/aboutUs" element={<AboutUs/>} />
           <Route path="/liveChat" element={<LiveChat/>} />
           <Route path="/help" element={<Help/>} />
           <Route index element={<div></div>} />

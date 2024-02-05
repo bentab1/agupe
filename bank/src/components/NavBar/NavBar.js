@@ -24,7 +24,7 @@ function Navbar() {
     <NavLink to="/" activeClassName="active"  className=' grid'>
         <spanc style={{color:'black'}}>Home</spanc></NavLink>
 
-    <NavLink to="/business" activeClassName="active" className=' grid'>
+    <NavLink to="/business" activeClassName="active" className=' grid' >
       Business
     </NavLink>
     <NavLink to="/agupepay" activeClassName="active" className=' grid'> 
