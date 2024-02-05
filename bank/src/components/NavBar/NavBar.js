@@ -36,7 +36,7 @@ function Navbar() {
       Contact Us
     </NavLink>
     <NavLink to="/banking" activeClassName="active" className='bnk' >
-      <p className='bank'>Banking</p>
+      <p className='bank' style={{marginRight:'50px'}}>Banking</p>
     </NavLink>
 
   </nav>

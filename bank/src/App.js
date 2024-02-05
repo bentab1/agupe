@@ -19,25 +19,25 @@ const App = () => (
     <Router>
       <Header />
       <div className="content-container">
-
         <NavBar />
         <Routes>
-          
+
           <Route index element={<div></div>} />
           <Route path="/business" element={<Business />} />
           <Route path="/agupepay" element={<AgupePay />} />
+          <Route path="/banking" element={<Banking />} />
+          <Route path="/aboutUs" element={<AboutUs/>} />
+          <Route path="/liveChat" element={<LiveChat/>} />
+          <Route path="/help" element={<Help/>} />
           <Route path="/personal" element={<Personal />} />
           <Route path="/contactus" element={<ContactUs />} />
-          <Route path="/banking" element={<Banking />} />
-          <Route path="/aboutUs" component={AboutUs} />
-          <Route path="/liveChat" component={LiveChat} />
-          <Route path="/help" component={Help} />
+         
         </Routes>
+
         <Contents />
         <Features />
         <Review />
         <Notification />
-
       </div>
       <Footer />
     </Router>
