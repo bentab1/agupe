@@ -21,14 +21,13 @@ const App = () => (
       <div className="content-container">
         <NavBar />
         <Routes>
-
+        <Route path="/aboutUs" element={<AboutUs/>} />
+          <Route path="/liveChat" element={<LiveChat/>} />
+          <Route path="/help" element={<Help/>} />
           <Route index element={<div></div>} />
           <Route path="/business" element={<Business />} />
           <Route path="/agupepay" element={<AgupePay />} />
           <Route path="/banking" element={<Banking />} />
-          <Route path="/aboutUs" element={<AboutUs/>} />
-          <Route path="/liveChat" element={<LiveChat/>} />
-          <Route path="/help" element={<Help/>} />
           <Route path="/personal" element={<Personal />} />
           <Route path="/contactus" element={<ContactUs />} />
          

@@ -30,7 +30,8 @@ margin-left: 5px;
 image-rendering: optimizeQuality;
 opacity: 10;
 border: none;
-
-
-
+}
+.active{
+  display: flex;
+  width: 180px;
 }
