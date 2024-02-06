@@ -1,10 +1,12 @@
-import React from 'react';
-import { FaAngleDown } from 'react-icons/fa';
+import { React } from 'react';
 import { NavLink } from 'react-router-dom';
 import Myimage from '../Assets/Myimage.png';
+
 import './navBar.css';
 
 function Navbar() {      
+
+ 
   return (
       <div className='navbar'>
       <div className='logo-png' >
@@ -36,16 +38,18 @@ function Navbar() {
     <NavLink to="/contactus" activeClassName="active" className=' grid' >
       Contact Us
     </NavLink>
+
+    
     <div style={{display:'flex', marginRight:'60px'}}>
     <NavLink to="/banking" activeClassName="active" className='bnk' >
-      <p className='bank' style={{marginRight:'10px'}}>Banking</p>
+      <p className='bank' style={{marginRight:'0px'}}>Banking</p>
     </NavLink>
-    < FaAngleDown className='banking-menu-icon' style={{ marginTop:'20px'}}/>
+
+
     </div>
+  
   </nav>
   </div>
   );
 };
 export default Navbar
-
-

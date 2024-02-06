@@ -1,0 +1,20 @@
+
+
+
+.login_personal{
+  background-color: rgb(255, 240, 218);
+  width: 900px;
+  justify-content: center;
+  height: 500px;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.register_personal{
+  width: 900px;
+  justify-content: center;
+  background-color:rgb(255, 240, 218);
+  height: 500px;
+  margin: 5px;
+  border-radius: 5px;
+}

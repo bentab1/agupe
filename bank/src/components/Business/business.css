@@ -1,0 +1,24 @@
+.buz{
+  margin-right:50px ;
+  background-color: blue;
+}
+
+
+.login_business{
+  background-color: white;
+  width: 900px;
+  justify-content: center;
+  height: 500px;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.register_business{
+  width: 900px;
+  justify-content: center;
+  background-color: white;
+  height: 500px;
+  margin: 5px;
+  border-radius: 5px;
+
+}

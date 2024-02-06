@@ -5,13 +5,14 @@ function Review() {
 
   return (
     <div   style={{display: 'flex' }}>
-      <div  className='com' style={{ width: '50%', backgroundColor: 'red' }}>
+      <div  className='com' style={{ width: '50%', backgroundColor: 'rgb(204, 243, 230)' }}>
 
-        
+      
+  
       </div>
 
 
-      <div className='com' style={{ width: '50%', backgroundColor: 'rgba(228, 165, 165, 1)' }}>
+      <div className='com' style={{ width: '50%', backgroundColor: 'rgb(204, 243, 230)' }}>
 
         
       </div>
