@@ -14,6 +14,7 @@ import Personal from './components/Personal/Personal';
 import Review from './components/Review/Review';
 import AgupePay from './container/AgupePay/AgupePay';
 
+
 const App = () => (
   <div className="app">
     <Router>
@@ -30,9 +31,7 @@ const App = () => (
           <Route path="/banking" element={<Banking />} />
           <Route path="/personal" element={<Personal />} />
           <Route path="/contactus" element={<ContactUs />} />
-         
         </Routes>
-
         <Contents />
         <Features />
         <Review />

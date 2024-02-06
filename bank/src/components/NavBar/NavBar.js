@@ -1,12 +1,12 @@
 import { React } from 'react';
 import { NavLink } from 'react-router-dom';
 import Myimage from '../Assets/Myimage.png';
+import Bankingredirect from '../Bankingredirect/Bankingredirect';
 
 import './navBar.css';
 
-function Navbar() {      
+function Navbar() {    
 
- 
   return (
       <div className='navbar'>
       <div className='logo-png' >
@@ -35,19 +35,20 @@ function Navbar() {
     <NavLink to="/personal" activeClassName="active" className=' grid'>
       Personal
     </NavLink>
-    <NavLink to="/contactus" activeClassName="active" className=' grid' >
+    <NavLink to="/contactus" activeClassName="active" className=' grid' style={{}}>
       Contact Us
     </NavLink>
 
-    
-    <div style={{display:'flex', marginRight:'60px'}}>
-    <NavLink to="/banking" activeClassName="active" className='bnk' >
-      <p className='bank' style={{marginRight:'0px'}}>Banking</p>
+
+    <div style={{ width:'200px',
+       display:'flex'}}>
+    <NavLink to="/banking" activeClassName="active" style={{backgroundColor:'rgba(35, 233, 102, 0.92)', width:'80px', 
+     height:'49.6px', paddingLeft:'14px', paddingTop:'12px'}}>
+      <span style={{color:'black'}}>Banking</span>
     </NavLink>
-
-
+    <Bankingredirect/>
     </div>
-  
+    
   </nav>
   </div>
   );

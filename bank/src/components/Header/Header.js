@@ -1,15 +1,16 @@
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import React from 'react';
+import { React } from 'react';
 import { NavLink } from 'react-router-dom';
 import './header.css';
 
 function Header() {
+  
 
   return (
     <div style={{width:'1390px',height:'55px'}}>
       <nav className="grid-container">
 <NavLink to="/aboutUs" activeClassName="active">
-  <p style={{marginLeft:'200px', marginTop:'25px',fontSize:'12px', }}>About Us</p>
+  <p style={{marginLeft:'120px', marginTop:'25px',fontSize:'12px', }}>About Us</p>
 </NavLink>
 
 <div className='chat'>
