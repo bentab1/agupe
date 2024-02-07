@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import validator from 'validator';
+import Footer from '../Footer/Footer';
+import Notification from '../Notification/Notification';
 import './JointAccountReg.css';
 
 function JointAccountReg() {
@@ -66,7 +68,7 @@ function JointAccountReg() {
   };
  
   return (
-    <div style={{display:'grid'}}>
+    <div style={{display:'grid', backgroundColor:'white'}} className='jointaccount_headpage'>
 
                 <h3 style={{marginLeft:'470px',marginTop:'20px', color:"royalblue"}}>
              Joint Account Registeration:</h3>
@@ -79,7 +81,7 @@ function JointAccountReg() {
       <input type="BVN" name="BVN" onChange={handleChange} />
 
       </div>
-        <form style={{display:'grid', width:'40%', marginLeft:'350px'}}>
+        <form style={{display:'grid', width:'40%', marginLeft:'350px', backgroundColor:'white'}}>
       <label>First Name:</label>
       <input type="text" name="firstName" onChange={handleChange} />
 
@@ -117,6 +119,8 @@ function JointAccountReg() {
       <input type="phoneNumber" name="phoneNumber" onChange={handleChange} />
       <button onClick={handleRegistration}>Register</button>
       </form>
+  <Notification/>
+      <Footer/>
     </div>
   );
 };

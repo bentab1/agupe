@@ -20,3 +20,16 @@
 .countrymenu{
   margin-top: 20px;
 }
+
+
+
+
+.banking_headpage{
+  display: grid;
+  overflow-x: hidden; 
+  max-height: calc(85vh);
+  width: 1380px;
+  top: 110px;
+  z-index: 1;
+  position: absolute;
+}

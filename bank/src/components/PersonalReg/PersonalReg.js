@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import validator from 'validator';
+import Footer from '../Footer/Footer';
+import Notification from '../Notification/Notification';
 import './PersonalReg.css';
 
 function PersonalReg() {
@@ -66,7 +68,7 @@ function PersonalReg() {
   };
  
   return (
-    <div style={{display:'grid'}}>
+    <div style={{display:'grid', backgroundColor:'white'}} className='personalreg_headpage'>
 
                 <h3 style={{marginLeft:'430px',marginTop:'20px', color:"royalblue"}}>
                   Individual account Registeration:</h3>
@@ -116,6 +118,8 @@ function PersonalReg() {
       <input type="phoneNumber" name="phoneNumber" onChange={handleChange} />
       <button onClick={handleRegistration}>Register</button>
       </form>
+     <Notification/>
+      <Footer/>
     </div>
   );
 };

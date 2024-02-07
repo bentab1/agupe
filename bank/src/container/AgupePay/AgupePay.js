@@ -1,5 +1,6 @@
 import { React, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { Footer, Notification, } from '../../components';
 import CountryMenu from '../../components/CountryMenu/CountryMenu';
 import './agupePay.css';
 function AgupePay() {
@@ -10,7 +11,7 @@ function AgupePay() {
     // Implement your login logic here
   };
   return (
-    <div style={{ width: '1370px', backgroundColor: 'white', height: '750px', display: 'grid' }}>
+    <div style={{ backgroundColor: 'white',}} className='agupepay_headpage'> 
 
       <div style={{display:'flex'}}>
       <p style={{ marginTop: '20px', padding: '40px' }}>
@@ -116,7 +117,8 @@ function AgupePay() {
           </div>
         </div>
       </div>
-
+      <Notification/>
+     <Footer/>
     </div>
   )
 }

@@ -1,6 +1,8 @@
 import { React, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import CountryMenu from '../CountryMenu/CountryMenu';
+import Footer from '../Footer/Footer';
+import Notification from '../Notification/Notification';
 
 import './banking.css';
 function Banking() {
@@ -12,10 +14,8 @@ function Banking() {
     // Implement your login logic here
   };
   return (
-    <div style={{
-      width: '1370px', height: '750px'
-      , display: 'grid', justifyContent: 'space-evenly', backgroundColor: 'white'
-    }}>
+    <div style={{ justifyContent: 'space-evenly', backgroundColor: 'white'
+    }} className='banking_headpage'>
       <div style={{ display: 'flex' }}>
         <div>
           <p style={{ marginTop: '5px', padding: '50px' }}>
@@ -135,6 +135,8 @@ function Banking() {
           </div>
         </div>
       </div>
+      <Notification />
+      <Footer/>
     </div>
   )
 }

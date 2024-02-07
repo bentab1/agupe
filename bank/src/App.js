@@ -22,8 +22,8 @@ const App = () => (
   <div className="app">
     <Router>
       <Header />
+      <NavBar />
       <div className="content-container">
-        <NavBar />
         <Routes>
          <Route path="/aboutUs" element={<AboutUs/>} />
           <Route path="/liveChat" element={<LiveChat/>} />

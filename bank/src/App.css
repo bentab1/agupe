@@ -19,7 +19,7 @@ body {
 .content-container {
   display: grid;
   overflow-x: hidden; 
-  max-height: calc(85vh);
+  max-height: calc(75vh);
   width: 1360px;
   margin: 5px;
   

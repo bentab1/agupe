@@ -15,3 +15,16 @@
   margin: 5px;
   border-radius: 5px;
 }
+
+
+.agupepay_headpage{
+  display: grid;
+  overflow-x: hidden; 
+  max-height: calc(85vh);
+  width: 1380px;
+  top: 110px;
+  z-index: 1;
+  position: absolute;
+
+}
+

@@ -1,6 +1,8 @@
 import { React, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import CountryMenu from '../CountryMenu/CountryMenu';
+import Footer from '../Footer/Footer';
+import Notification from '../Notification/Notification';
 import './personal.css';
 function Personal() {
 
@@ -10,9 +12,9 @@ function Personal() {
   const handleLogin = () => {
   };
   return (
-    <div style={{
-      width: '1370px', height: '650px', display: 'grid', justifyContent: 'space-evenly',
-      backgroundColor: 'rgb(235, 230, 240)'
+    <div className='personal_headpage' style={{
+       justifyContent: 'space-evenly',
+      backgroundColor: 'white'
     }}>
       <div style={{display:'flex'}}>
       <p style={{ padding: '40px', fontWeight: 'initial', height: '80px' }}>
@@ -90,6 +92,8 @@ function Personal() {
         </div>
 
       </div>
+      <Notification />
+      <Footer />
     </div>
   )
 

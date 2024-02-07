@@ -1,10 +1,17 @@
 import React from 'react'
+import Footer from '../Footer/Footer'
+import Notification from '../Notification/Notification'
 import './aboutUs.css'
 function About() {
   return (
-    <div style={{width:'1300px', height:'100px', backgroundColor:'rgba(207, 232, 231, 1)'}}>
-        
-      <h1>About</h1>
+    <div style={{ backgroundColor:'white' }} className='about_headpage'>
+        <div style={{height:'600px'}}>
+           <h4 style={{color:'royalblue', marginTop:'30px', marginLeft:'440px'}}>  WHY CHOSE AGUPE DIGITAL FINANCE TECHNOLOGY?</h4 >
+           <h4 style={{color:'royalblue', marginTop:'4px', marginLeft:'550px'}}>   WE ARE THE ALTIMATE.  </h4>
+       
+        </div>
+        <Notification />
+      <Footer/>
     </div>
   )
 }

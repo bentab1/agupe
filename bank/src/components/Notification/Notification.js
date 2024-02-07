@@ -8,7 +8,7 @@ import twitter from '../Assets/twitter.png';
 import './notification.css';
 function Notification() {
   return (
-    <div  style={{width:'1380px', height:'350px', backgroundColor:'green',
+    <div  style={{width:'1380px', height:'350px', backgroundColor:'royalblue',
               marginTop:'0'}}>
     
      <div className="com_1" style={{marginTop:'240px'}}>

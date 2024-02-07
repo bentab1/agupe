@@ -1,6 +1,8 @@
 import { React, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import CountryMenu from '../CountryMenu/CountryMenu';
+import Footer from '../Footer/Footer';
+import Notification from '../Notification/Notification';
 import './business.css';
 function Business() {
 
@@ -11,9 +13,9 @@ function Business() {
     
   };
   return (
-    <div style={{
-      width: '1350px', height: '650px', display: 'grid',
-      backgroundColor: 'rgb(235, 230, 240)'
+    <div  className='business_headpage' style={{
+       display: 'grid',
+      backgroundColor: 'white',
     }}>
 
       <div>
@@ -22,7 +24,7 @@ function Business() {
         <p style={{ marginTop: '20px', padding: '40px' }}>
 
           <h2 style={{
-            paddingLeft: '140px', marginBottom: '20px',
+            paddingLeft: '50px', marginBottom: '20px',
             color: 'royalblue'
           }}> We make Business seamlessly easy with our payment services</h2>
 
@@ -76,7 +78,7 @@ function Business() {
             display: 'grid', justifyContent: 'center', backgroundColor: 'hsl(200, 33%, 98%)',
             width: '200px', marginLeft: '230px', height: '150px', marginTop: '20px'
           }}>
-            <p style={{ marginTop: '40px' }}>Open Business Account</p>
+            <p style={{ marginTop: '40px', marginLeft:'20px'}}>New? Open Business Account</p>
             <NavLink to="/register/business" activeClassName="active" style={{
               marginTop: '50px', marginLeft: '25px', borderRadius: '5px', width: '130px'
             }} >
@@ -85,6 +87,8 @@ function Business() {
           </div>
         </div>
       </div>
+      <Notification />
+      <Footer />
     </div>
   )
 }

@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import validator from 'validator';
+import Footer from '../Footer/Footer';
+import Notification from '../Notification/Notification';
+import './businessReg.css';
 
 
 function BusinessReg() {
@@ -66,7 +69,7 @@ function BusinessReg() {
   };
  
   return (
-    <div style={{display:'grid'}}>
+    <div style={{display:'grid', backgroundColor:'white',}} className='businessreg_headpage'>
 
                 <h3 style={{marginLeft:'430px',marginTop:'20px', color:"royalblue"}}>
                   Business account Registeration:</h3>
@@ -116,6 +119,8 @@ function BusinessReg() {
       <input type="phoneNumber" name="phoneNumber" onChange={handleChange} />
       <button onClick={handleRegistration}>Register</button>
       </form>
+  <Notification/>
+      <Footer/>
     </div>
   );
 };

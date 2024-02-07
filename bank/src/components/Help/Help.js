@@ -1,11 +1,18 @@
 import React from 'react'
+import Footer from '../Footer/Footer'
+import Notification from '../Notification/Notification'
 import './help.css'
+
 function Help() {
   return (
-    <div style={{width:'1300px', height:'200px', backgroundColor:'white'}}>
+    <div style={{backgroundColor:'white'}} className='help_headpage'>
+         <div style={{height:'600px'}}>
 
-<h2> help Component</h2>
-      
+
+
+         </div>
+      <Notification/>
+      <Footer/>
     </div>
   )
 }
