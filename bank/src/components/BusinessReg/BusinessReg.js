@@ -71,7 +71,7 @@ function BusinessReg() {
   return (
     <div style={{display:'grid', backgroundColor:'white',}} className='businessreg_headpage'>
 
-                <h3 style={{marginLeft:'430px',marginTop:'20px', color:"royalblue"}}>
+                <h3 style={{marginLeft:'430px',marginTop:'20px', color:"rgb(10, 10, 100)"}}>
                   Business account Registeration:</h3>
       <div style={{display:'flex', marginLeft:'350px', marginTop:'30px', marginBottom:'30px'}}>
      <label style={{marginLeft:'40px'}}>Fill the form below:</label>

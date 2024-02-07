@@ -31,8 +31,9 @@ function CountryMenu() {
   };
 
   return (
-    <div style={{marginRight:"50px"}}>
-      <p htmlFor="countrySelect" style={{fontSize:'15px', marginBottom:'13px', color:'royalblue', paddingLeft:'8px'}}>New?  Select your Country:</p>
+    <div style={{marginRight:"50px", width:'80px'}}>
+      <p htmlFor="countrySelect" style={{fontSize:'13px', marginBottom:'13px', 
+      color:'royalblue',fontWeight:'bold', paddingLeft:'8px'}}> New?Select your Country:</p>
       <select
         id="countrySelect"
         onChange={(e) => handleCountrySelect(e.target.value)}

@@ -70,7 +70,7 @@ function JointAccountReg() {
   return (
     <div style={{display:'grid', backgroundColor:'white'}} className='jointaccount_headpage'>
 
-                <h3 style={{marginLeft:'470px',marginTop:'20px', color:"royalblue"}}>
+                <h3 style={{marginLeft:'470px',marginTop:'20px', color:"rgb(10, 10, 100)"}}>
              Joint Account Registeration:</h3>
       <div style={{display:'flex', marginLeft:'110px', marginTop:'30px', marginBottom:'30px'}}>
      <label style={{marginLeft:'40px'}}>Fill the form below:</label>

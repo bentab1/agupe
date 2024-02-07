@@ -17,7 +17,7 @@ function AgupePay() {
       <p style={{ marginTop: '20px', padding: '40px' }}>
         <h2 style={{
           paddingLeft: '420px', marginBottom: '20px',
-          color: 'royalblue'
+          color: 'rgb(10, 10, 100)'
         }}> Welcome to AgupePay
         </h2>
         Create AgupePay account  to start making and receiving seamless payment as a merchant or private

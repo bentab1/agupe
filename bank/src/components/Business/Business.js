@@ -25,7 +25,7 @@ function Business() {
 
           <h2 style={{
             paddingLeft: '50px', marginBottom: '20px',
-            color: 'royalblue'
+            color: 'rgb(10, 10, 100)'
           }}> We make Business seamlessly easy with our payment services</h2>
 
 

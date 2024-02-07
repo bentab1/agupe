@@ -21,7 +21,7 @@ function Personal() {
 
         <h2 style={{
           paddingLeft: '300px', marginBottom: '20px',
-          color: 'royalblue'
+          color: 'rgb(10, 10, 100)'
         }}>Hey!, No need to carry your card around!</h2>
 
         Go with the best !!  Our individual or joint account gives you opportunity to make and receive seamless

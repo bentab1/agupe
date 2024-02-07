@@ -21,8 +21,8 @@ function Banking() {
           <p style={{ marginTop: '5px', padding: '50px' }}>
 
             <h2 style={{
-              paddingLeft: '100px', marginBottom: '20px',
-              color: 'royalblue', padding: '20px', fontSize: '30px'
+              paddingLeft: '110px', marginBottom: '20px',
+              color: 'rgb(10, 10, 100)', padding: '20px', fontSize: '30px'
             }}>
               Welcome to Agupe digital banking, the best so far in the system. </h2>
 
@@ -59,7 +59,7 @@ function Banking() {
               />
 
               <button onClick={handleLogin} style={{
-                fontSize: '12px', marginTop: '10px', backgroundColor: 'aqua',
+                fontSize: '12px', marginTop: '10px', backgroundColor: 'white',
                 color: "black"
               }}>Login</button>
 
@@ -74,7 +74,7 @@ function Banking() {
               <NavLink to="/register/personal" activeClassName="active" style={{
                 marginTop: '30px', borderRadius: '5px', width: '120px'
               }} >
-                <button style={{ fontSize: '12px', backgroundColor: 'aqua', color: "black" }}>
+                <button style={{ fontSize: '12px', backgroundColor: 'white', color: "black" }}>
                   Click Open</button></NavLink>
             </div>
 
@@ -86,7 +86,7 @@ function Banking() {
               <NavLink to="/register/personal/joint" activeClassName="active" style={{
                 marginTop: '30px', borderRadius: '5px', width: '120px'
               }} >
-                <button style={{ fontSize: '12px', backgroundColor: 'aqua', color: "black" }}>
+                <button style={{ fontSize: '12px', backgroundColor: 'white', color: "black" }}>
                   Click Open</button></NavLink>
             </div>
           </div>
@@ -115,7 +115,7 @@ function Banking() {
               />
 
               <button onClick={handleLogin} style={{
-                fontSize: '12px', marginTop: '10px', backgroundColor: 'aqua',
+                fontSize: '12px', marginTop: '10px', backgroundColor: 'white',
                 color: "black"
               }}>Login</button>
 
@@ -130,7 +130,7 @@ function Banking() {
             <NavLink to="/register/Business" activeClassName="active" style={{
               marginTop: '30px', marginLeft: '25px', borderRadius: '5px', width: '130px'
             }} >
-              <button style={{ fontSize: '12px', backgroundColor: 'aqua', color: "black" }}>
+              <button style={{ fontSize: '12px', backgroundColor: 'white', color: "black" }}>
                 Click Open</button></NavLink>
           </div>
         </div>
