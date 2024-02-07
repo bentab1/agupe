@@ -3,18 +3,28 @@
 
 .login_personal{
   background-color: rgb(255, 240, 218);
-  width: 900px;
+  width: 50%;
   justify-content: center;
-  height: 500px;
-  border-radius: 5px;
-  margin: 5px;
+  height: 400px;
+  border-radius: 1px;
+  margin: 2px;
 }
 
 .register_personal{
-  width: 900px;
+  width: 50%;
   justify-content: center;
   background-color:rgb(255, 240, 218);
-  height: 500px;
+  height: 400px;
   margin: 5px;
+  border-radius: 1px;
+}
+
+
+.register_joint{
+  width: 50%;
+  justify-content: center;
+  background-color:rgb(255, 240, 218);
+  height: 400px;
+  margin: 2px;
   border-radius: 5px;
 }

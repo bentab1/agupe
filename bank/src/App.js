@@ -5,12 +5,15 @@ import { Footer, Header, NavBar, Notification } from "./components";
 import AboutUs from './components/AboutUs/AboutUs';
 import Banking from './components/Banking/Banking';
 import Business from './components/Business/Business';
+import BusinessReg from './components/BusinessReg/BusinessReg';
 import ContactUs from './components/ContactUs/ContactUs';
 import Contents from './components/Contents/Contents';
 import Features from './components/Features/Features';
 import Help from './components/Help/Help';
+import JointAccountReg from './components/JointAccountReg/JointAccountReg';
 import LiveChat from './components/LiveChat/LiveChat';
 import Personal from './components/Personal/Personal';
+import PersonalReg from './components/PersonalReg/PersonalReg';
 import Review from './components/Review/Review';
 import AgupePay from './container/AgupePay/AgupePay';
 
@@ -31,6 +34,9 @@ const App = () => (
           <Route path="/banking" element={<Banking />} />
           <Route path="/personal" element={<Personal />} />
           <Route path="/contactus" element={<ContactUs />} />
+          <Route path="/register/personal/joint" element={<JointAccountReg />} />
+          <Route path="/register/personal" element={<PersonalReg/>} />
+          <Route path="/register/Business" element={<BusinessReg/>} />
         </Routes>
         <Contents />
         <Features />

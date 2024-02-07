@@ -1,0 +1,22 @@
+/* Country.module.css */
+.country {
+  border: 2px solid #ddd;
+  
+  cursor: pointer;
+}
+
+.selectedCountry {
+  
+  padding-left: 22px;
+  cursor: pointer;
+  
+  width: 106px;
+  height: 80px;
+
+}
+
+.flag {
+  width: 50px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}

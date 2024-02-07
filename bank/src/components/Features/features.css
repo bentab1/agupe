@@ -1,12 +1,11 @@
 .features{
   display: flex;
   min-height: 250px;
+  width: 1370px;
 }
 
 
 .feat{
-  height: 330px;
-  width: 330px;
   background-color: rgba(217, 217, 217, 1);
   margin: 5px;
 }

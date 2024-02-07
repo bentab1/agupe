@@ -20,8 +20,8 @@ body {
   display: grid;
   overflow-x: hidden; 
   max-height: calc(85vh);
-  width: 1290px;
-  margin-left: 0px;
+  width: 1360px;
+  margin: 5px;
   
   
   

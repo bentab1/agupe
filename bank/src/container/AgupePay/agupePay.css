@@ -1,17 +1,17 @@
 .personal{
-  background-color:rgb(236, 221, 79);
-  width: 850px;
+  width: 50%;
   justify-content: center;
-  height: 510px;
+  background-color: aqua;
+  height: 450px;
   border-radius: 5px;
   
 }
 
 .business{
-  width: 850px;
+  width: 50%;
   justify-content: center;
-  background-color:rgb(241, 224, 68);
-  height: 500px;
+  background-color: aqua;
+  height: 450px;
   margin: 5px;
   border-radius: 5px;
 }

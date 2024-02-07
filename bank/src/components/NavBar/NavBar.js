@@ -40,7 +40,7 @@ function Navbar() {
     </NavLink>
 
 
-    <div style={{ width:'200px',
+    <div style={{ width:'100px',
        display:'flex'}}>
     <NavLink to="/banking" activeClassName="active" style={{backgroundColor:'rgba(35, 233, 102, 0.92)', width:'80px', 
      height:'49.6px', paddingLeft:'14px', paddingTop:'12px'}}>

@@ -4,12 +4,12 @@ import POS from '../Assets/POS.jpg';
 import bankWithUs from '../Assets/bankWithUs.jpg';
 import card from '../Assets/card.jpg';
 import './features.css';
-function Features({ data }) {
+function Features() {
 
   return (
-    <div className='feature'>
+    <div className='feature' style={{}}>
       <div className='features' style={{ display: 'flex' }}>
-        <div className='feat' style={{ display: 'grid' }}>
+        <div className='feat' style={{ display: 'grid' , with:'45%'}}>
           <div>
             <img className='open' src={Open} alt="Open account" style={{ with: '80px', height: '150px' }} />
           </div>
@@ -19,7 +19,7 @@ function Features({ data }) {
             <button className='button'>Start now</button>
           </div>
         </div>
-        <div className='feat' style={{ display: 'grid' }}>
+        <div className='feat' style={{ display: 'grid', width:'45%' }}>
           <div>
             <img className='open_card' src={card} alt='Activate your card today' style={{ with: '100px', height: '150px' }} />
           </div >
@@ -29,7 +29,7 @@ function Features({ data }) {
             <button className='button'>start now</button>
           </div>
         </div>
-        <div className='feat' style={{ display: 'grid' }}>
+        <div className='feat' style={{ display: 'grid', width:'45%' }}>
           <div>
             <img className='open_bankwithus' src={bankWithUs} alt='Bank with us and be happy' style={{ with: '100px', height: '160px' }} />
           </div>
@@ -39,7 +39,7 @@ function Features({ data }) {
             <button className='button'>Start now</button>
           </div>
         </div>
-        <div className='feat' style={{ display: 'grid' }}>
+        <div className='feat' style={{ display: 'grid' ,with:'50%', marginRight:'35px' }}>
           <div>
             <img className='open_pos' src={POS} alt='Agupe pos' style={{ with: '100px', height: '165px' }} />
           </div>
