@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
-import { Footer, Header, NavBar, Notification } from "./components";
+import { Footer, Header, NavBar, Notification, Welcome } from "./components";
 import AboutUs from './components/AboutUs/AboutUs';
 import Banking from './components/Banking/Banking';
 import Business from './components/Business/Business';
@@ -22,6 +22,7 @@ const App = () => (
   <div className="app">
     <Router>
       <Header />
+      <Welcome/>
       <NavBar />
       <div className="content-container">
         <Routes>

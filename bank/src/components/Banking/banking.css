@@ -1,20 +1,19 @@
 .personal_1{
-  background-color: rgb(208, 238, 236);
+  background-color: rgba(246, 216, 216, 0.92);
   width: 50%;
   justify-content: center;
   height: 400px;
   border-radius: 5px;
-  margin: 5px;
+  margin: 1px;
 }
 
 .business_1{
   width: 50%;
   justify-content: center;
-  
+  border-left:solid #f8f2f2;
   height: 400px;
-  margin: 5px;
-  border-radius: 5px;
-  background-color: rgb(208, 238, 236);
+  margin: 1px;
+  background-color:rgba(246, 216, 216, 0.92);
 }
 
 .countrymenu{

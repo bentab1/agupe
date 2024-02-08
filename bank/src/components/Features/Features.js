@@ -7,7 +7,7 @@ import './features.css';
 function Features() {
 
   return (
-    <div className='feature' style={{}}>
+    <div className='feature' style={{marginTop:'20px'}}>
       <div className='features' style={{ display: 'flex' }}>
         <div className='feat' style={{ display: 'grid' , with:'45%'}}>
           <div>
@@ -50,7 +50,7 @@ function Features() {
           </div>
         </div>
       </div>
-      <div className='seeAll' style={{ with: '100%', height: '38px', backgroundColor: 'rgba(217, 217, 217, 1)', marginTop: '0' }}>
+      <div className='seeAll' style={{ with: '100%', height: '38px', backgroundColor: 'rgba(246, 216, 216, 0.92)', marginTop: '0' }}>
         <p className='seeAll'>See all</p>
       </div>
     </div>

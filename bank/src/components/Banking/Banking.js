@@ -41,7 +41,7 @@ function Banking() {
         <div style={{ display: 'grid' }} className='personal_1'>
           <div style={{
             display: 'grid', width: '250px',
-            backgroundColor: 'rgba(207, 232, 231, 1)', height: '110px', marginTop: '20px', marginLeft: '35px'
+            backgroundColor: 'white', height: '110px', marginTop: '20px', marginLeft: '35px'
           }}>
             <form style={{ marginTop: '30px', marginLeft: '35px' }}>
               <label>Email/Username:</label>
@@ -97,7 +97,7 @@ function Banking() {
         <div style={{ display: 'grid' }} className='business_1'>
           <div style={{
             display: 'grid', justifyContent: 'center', width: '250px',
-            backgroundColor: 'rgba(207, 232, 231, 1)', height: '150px', marginTop: '20px'
+            backgroundColor: 'white', height: '150px', marginTop: '20px'
           }}>
             <form style={{ marginTop: '30px', marginLeft: '35px' }}>
               <label>Email/Username:</label>

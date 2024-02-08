@@ -1,7 +1,7 @@
 .personal{
   width: 50%;
   justify-content: center;
-  background-color: aqua;
+  background-color:rgba(246, 216, 216, 0.92);
   height: 450px;
   border-radius: 5px;
   
@@ -10,10 +10,8 @@
 .business{
   width: 50%;
   justify-content: center;
-  background-color: aqua;
+  background-color: rgba(246, 216, 216, 0.92);
   height: 450px;
-  margin: 5px;
-  border-radius: 5px;
 }
 
 

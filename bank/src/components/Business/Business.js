@@ -45,20 +45,20 @@ function Business() {
         <div className='login_business'>
           <div style={{
             display: 'grid', justifyContent: 'center', backgroundColor: 'hsl(200, 33%, 98%)'
-            , width: '200px', marginLeft: '230px', height: '150px', marginTop: '20px'
+            , width: '600px', marginLeft: '20px', height: '150px', marginTop: '20px'
           }}>
 
 
             <form style={{ marginTop: '30px', marginLeft: '10px' }}>
-              <label>Email/Username:</label>
-              <input
+              <label >Email/Username:</label>
+              <input style={{display:'block'}}
                 type="text"
                 value={emailOrUsername}
                 onChange={(e) => setEmailOrUsername(e.target.value)}
               />
 
               <label>Password:</label>
-              <input
+              <input style={{display:'block'}}
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -76,9 +76,9 @@ function Business() {
         <div className='register_business' >
           <div style={{
             display: 'grid', justifyContent: 'center', backgroundColor: 'hsl(200, 33%, 98%)',
-            width: '200px', marginLeft: '230px', height: '150px', marginTop: '20px'
+            width: '600px', marginLeft: '20px', height: '150px', marginTop: '20px'
           }}>
-            <p style={{ marginTop: '40px', marginLeft:'20px'}}>New? Open Business Account</p>
+            <p style={{ marginTop: '40px', marginLeft:'0px'}}>New? Open Business Account</p>
             <NavLink to="/register/business" activeClassName="active" style={{
               marginTop: '50px', marginLeft: '25px', borderRadius: '5px', width: '130px'
             }} >

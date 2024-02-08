@@ -13,7 +13,7 @@ function Contents() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % 6);
-    }, 4000);
+    }, 5000);
     return () => clearInterval(interval);
   }, []);
 
@@ -42,11 +42,7 @@ function Contents() {
         </div>
       </div>
 
-      <div className="content" style={{ backgroundColor: "rgba(217, 217, 217, 1)" }}>
-
-      </div>
-
-      <div className='ind' style={{ height: "20px", backgroundColor: "rgba(217, 217, 217, 1)" }}>
+      <div className='ind' style={{ height: "20px", backgroundColor: "rgba(246, 216, 216, 0.92)" }}>
         <div className="indicator">
           {[...Array(6)].map((_, i) => (
             <div
