@@ -37,7 +37,7 @@ function CountryMenu() {
       <select
         id="countrySelect"
         onChange={(e) => handleCountrySelect(e.target.value)}
-        value={selectedCountry} style={{width:'60px'}}
+        value={selectedCountry} style={{width:'58px'}}
       >
         <option value="">Select...</option>
         {countries.map((country) => (
