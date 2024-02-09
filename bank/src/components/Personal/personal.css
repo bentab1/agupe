@@ -3,21 +3,12 @@
 
 .login_personal{
   background-color: rgba(246, 216, 216, 0.92);
-  width: 50%;
+  width: 1360;
   justify-content: center;
   height: 400px;
   margin: 1px;
   
 }
-
-.register_personal{
-  width: 50%;
-  justify-content: center;
-  background-color:rgba(246, 216, 216, 0.92);
-  height: 400px;
-  
-}
-
 
 .register_joint{
   width: 50%;

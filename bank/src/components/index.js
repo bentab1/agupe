@@ -14,12 +14,11 @@ export { default as FAQ } from './FAQ/FAQ'
 
 export { default as Feedback } from './Feedback/Feedback'
 export { default as Footer } from './Footer/Footer'
-export { default as Form } from './Form/Form'
+
 export { default as Header } from './Header/Header'
 
 export { default as Invest } from './Invest/Invest'
 
-export { default as Login } from './Login/Login'
 export { default as NavBar } from './NavBar/NavBar'
 export { default as Notification } from './Notification/Notification'
 export { default as PayBill } from './PayBill/PayBill'

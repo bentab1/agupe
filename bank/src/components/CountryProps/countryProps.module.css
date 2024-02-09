@@ -7,11 +7,12 @@
 
 .selectedCountry {
   
-  padding-left: 22px;
+  padding-left: 1px;
   cursor: pointer;
+  border-radius: 9px;
+  width: 59px;
+  height: 70px;
   
-  width: 106px;
-  height: 80px;
 
 }
 
@@ -19,4 +20,5 @@
   width: 50px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
 }

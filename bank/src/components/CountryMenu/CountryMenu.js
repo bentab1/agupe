@@ -31,13 +31,13 @@ function CountryMenu() {
   };
 
   return (
-    <div style={{marginRight:"50px", width:'80px'}}>
-      <p htmlFor="countrySelect" style={{fontSize:'13px', marginBottom:'13px', 
-      color:'royalblue',fontWeight:'bold', paddingLeft:'8px'}}> New?Select your Country:</p>
+    <div style={{marginRight:"10px", width:'60px', height:'130px'}}>
+      <p htmlFor="countrySelect" style={{fontSize:'11px', marginBottom:'13px', 
+      color:'royalblue',fontWeight:'bold', paddingLeft:'10px'}}>Select Country:</p>
       <select
         id="countrySelect"
         onChange={(e) => handleCountrySelect(e.target.value)}
-        value={selectedCountry}
+        value={selectedCountry} style={{width:'60px'}}
       >
         <option value="">Select...</option>
         {countries.map((country) => (

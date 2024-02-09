@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 
 
-const Login = () => {
+const Register = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
 
   const toggleMenuHandler = () => {
@@ -13,13 +13,12 @@ const Login = () => {
   };
 
   return (
-    <div className='containerStyle' style={{backgroundColor:'rgba(231, 37, 37, 1)', borderRadius:'20px',
-     width:'68px', paddingLeft:'3px'}} >
+    <div style={{borderRadius:'20px', width:'63px', backgroundColor:'rgba(252, 233, 67, 1)', height:'50px'}}>
        
-      <button onClick={toggleMenuHandler} style={{width:'50px'
-         , marginright:'40px', height:'40px',fontSize:'12px', backgroundColor:'rgb(10, 10, 100)', 
-            paddingLeft:'5px', paddingTop:'10px', borderRadius:'120px'}}>
-        Login
+      <button  onClick={toggleMenuHandler} style={{width:'50px'
+         , marginright:'1px', height:'40px',fontSize:'12px', backgroundColor:'rgb(10, 10, 100)', 
+            paddingLeft:'5px', paddingTop:'10px', borderRadius:'120px', }}>
+        SingUp
       </button>
 
       {toggleMenu && (
@@ -47,4 +46,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

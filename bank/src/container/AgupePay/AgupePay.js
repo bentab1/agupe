@@ -1,15 +1,9 @@
-import { React, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { React } from 'react';
 import { Footer, Notification, } from '../../components';
 import CountryMenu from '../../components/CountryMenu/CountryMenu';
 import './agupePay.css';
 function AgupePay() {
-  const [emailOrUsername, setEmailOrUsername] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleLogin = () => {
-    // Implement your login logic here
-  };
+ 
   return (
     <div style={{ backgroundColor: 'white',}} className='agupepay_headpage'> 
 
@@ -31,92 +25,10 @@ function AgupePay() {
         </div>
         </div>
 
-      <div style={{ display: 'flex' }}>
+      
         <div style={{ display: 'grid', margin: '5px' }} className='personal'>
-          <div style={{
-            display: 'grid', justifyContent: 'center', width: '200px',
-            backgroundColor: 'hsl(200, 33%, 98%)', height: '130px', marginTop: '10px'
-          }}>
-            <form style={{ marginTop: '10px', marginLeft: '10px' }}>
-              <label>Email/Username:</label>
-              <input
-                type="text"
-                value={emailOrUsername}
-                onChange={(e) => setEmailOrUsername(e.target.value)}
-              />
-
-              <label>Password:</label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-
-              <button onClick={handleLogin} style={{
-                fontSize: '12px', marginTop: '10px', backgroundColor: 'aqua',
-                color: "black"
-              }}>Login</button>
-
-            </form>
-          </div>
-
-          <div style={{
-            display: 'grid', justifyContent: 'center', width: '200px',
-            backgroundColor: 'hsl(200, 33%, 98%)', height: '125px'
-          }}>
-            <p style={{ marginTop: '30px' }}>OPen Personal Account</p>
-            <NavLink to="/register/personal" activeClassName="active" style={{
-              marginTop: '30px', marginLeft: '25px', borderRadius: '5px', width: '125px'
-            }} >
-              <button style={{ fontSize: '12px', backgroundColor: 'aqua', color: "black" }}>
-                Click Open</button></NavLink>
-          </div>
-
-
+         
         </div>
-
-
-        <div style={{ display: 'grid' }} className='business'>
-          <div style={{
-            display: 'grid', justifyContent: 'center', width: '200px',
-            backgroundColor: 'hsl(200, 33%, 98%)', height: '130px', marginTop: '20px'
-          }}>
-            <form style={{ marginTop: '10px', marginLeft: '10px' }}>
-              <label>Email/Username:</label>
-              <input
-                type="text"
-                value={emailOrUsername}
-                onChange={(e) => setEmailOrUsername(e.target.value)}
-              />
-
-              <label>Password:</label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-
-              <button onClick={handleLogin} style={{
-                fontSize: '12px', marginTop: '10px', backgroundColor: 'aqua',
-                color: "black"
-              }}>Login</button>
-
-            </form>
-          </div>
-
-          <div style={{
-            display: 'grid', justifyContent: 'center', width: '200px', height: '130px'
-            , backgroundColor: 'hsl(200, 33%, 98%)'
-          }}>
-            <p style={{ marginTop: '30px' , marginLeft:'10px'}}>Open Merchant/Business owner Account</p>
-            <NavLink to="/register/merchant" activeClassName="active" style={{
-              marginTop: '30px', marginLeft: '25px', borderRadius: '5px', width: '130px'
-            }} >
-              <button style={{ fontSize: '12px', backgroundColor: 'aqua', color: "black" }}>
-                Click Open</button></NavLink>
-          </div>
-        </div>
-      </div>
       <Notification/>
      <Footer/>
     </div>

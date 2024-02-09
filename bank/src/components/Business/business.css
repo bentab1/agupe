@@ -6,21 +6,11 @@
 
 .login_business{
   background-color: rgba(246, 216, 216, 0.92);
-  width: 50%;
+  width: 1360px;
   justify-content: center;
   height: 400px;
   border-radius: 5px;
   margin: 1px;
-}
-
-.register_business{
-  width: 50%;
-  justify-content: center;
-  background-color: rgba(246, 216, 216, 0.92);
-  height: 400px;
-  margin: 1px;
-  border-radius: 5px;
-
 }
 
 .business_headpage{
@@ -33,3 +23,4 @@
   position: absolute;
 
 }
+
