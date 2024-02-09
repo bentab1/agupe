@@ -9,14 +9,17 @@ import BusinessReg from './components/BusinessReg/BusinessReg';
 import ContactUs from './components/ContactUs/ContactUs';
 import Contents from './components/Contents/Contents';
 import Features from './components/Features/Features';
+import LoginForm from './components/Form/LoginForm';
 import Help from './components/Help/Help';
 import JointAccountReg from './components/JointAccountReg/JointAccountReg';
 import LiveChat from './components/LiveChat/LiveChat';
 import Personal from './components/Personal/Personal';
 import PersonalReg from './components/PersonalReg/PersonalReg';
 import Review from './components/Review/Review';
+import BusinessSignUp from './components/SignUp/BusinessSignUp';
+import PersonalSignUp from './components/SignUp/PersonSignUp';
+import BusinessSignUpRedirect from './components/SignUpRedirect/BusinessSignUpRedirect';
 import AgupePay from './container/AgupePay/AgupePay';
-
 
 const App = () => (
   <div className="app">
@@ -38,6 +41,14 @@ const App = () => (
           <Route path="/register/personal/joint" element={<JointAccountReg />} />
           <Route path="/register/personal" element={<PersonalReg/>} />
           <Route path="/register/Business" element={<BusinessReg/>} />
+          <Route path="/business/signup/redirect" element={<BusinessSignUp/>} />
+
+
+
+          <Route path="/personal/signup" element={<PersonalSignUp/>} />
+          <Route path="/agupepay/signup" element={<PersonalSignUp/>} />
+          <Route path="/business/signup" element={<BusinessSignUpRedirect/>} />
+          <Route path="/account/login" element={<LoginForm/>} />
         </Routes>
         <Contents />
         <Features />

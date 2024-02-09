@@ -1,6 +1,10 @@
 import { React, useState } from 'react';
-import './form.css';
-function Form() {
+import Footer from '../Footer/Footer';
+import './LoginForm.css';
+
+
+
+function LoginForm() {
 
         
         const [emailOrUsername, setEmailOrUsername] = useState('');
@@ -11,8 +15,11 @@ function Form() {
         };
 
   return (
-    <div>
-     <form style={{ marginTop: '30px', marginLeft: '30px' }}>
+    <div className=' login_form' style={{backgroundColor:'white'}}>
+
+      <h3 style={{color:'royalblue', marginLeft:'500px', marginTop:'30px'}}> Hey!, you are almost there</h3>
+        
+     <form style={{ marginTop: '30px', marginLeft: '520px', display:'grid', width:'200px' }}>
               <label>Email/Username:</label>
               <input
                 type="text"
@@ -33,9 +40,12 @@ function Form() {
               }}>Login</button>
 
             </form>
+          <div style={{height:'500px', width:'100%'}}></div>
+          
+      <Footer />  
     </div>
   )
 }
 
-export default Form
+export default LoginForm
  
