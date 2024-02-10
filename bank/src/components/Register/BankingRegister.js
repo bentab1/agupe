@@ -37,7 +37,7 @@ const BankingRegister = () => {
        </div>
                <div className='signup'>
             <span>Personal Account </span>
-            <NavLink to="/business/signup" activeClassName="active" 
+            <NavLink to="/personal/signup" activeClassName="active" 
        style={{backgroundColor:'rgba(231, 37, 37, 1)' , height:'50px', borderRadius:'25px', width:'86px'}}>
        <button  style={{ width:'70px', paddingLeft:'5px', borderRadius:'25px', backgroundColor:'black'}}>
         SingUp
@@ -47,7 +47,7 @@ const BankingRegister = () => {
 
               <div className='signup'>
               <span>Joint Account</span>
-              <NavLink to="/business/signup" activeClassName="active" 
+              <NavLink to="/joint/signup"  activeClassName="active" 
        style={{backgroundColor:'rgba(231, 37, 37, 1)' , height:'50px', borderRadius:'25px', width:'86px'}}>
        <button  style={{ width:'70px', paddingLeft:'5px', borderRadius:'25px', backgroundColor:'black'}}>
         SingUp
@@ -67,7 +67,7 @@ const BankingRegister = () => {
 
           <div className='signup'>
              <span>AgupePay Account </span>
-             <NavLink to="/business/signup" activeClassName="active" 
+             <NavLink to="/agupepay/signup" activeClassName="active" 
        style={{backgroundColor:'rgba(231, 37, 37, 1)' , height:'50px', borderRadius:'25px', width:'86px'}}>
        <button  style={{ width:'70px', paddingLeft:'5px', borderRadius:'25px', backgroundColor:'black'}}>
         SingUp
@@ -77,7 +77,7 @@ const BankingRegister = () => {
 
           <div className='signup'>
              <span>Enterprise</span>
-             <NavLink to="/business/signup" activeClassName="active" 
+             <NavLink to="/enterprise/signup"activeClassName="active" 
        style={{backgroundColor:'rgba(231, 37, 37, 1)' , height:'50px', borderRadius:'25px', width:'86px'}}>
        <button  style={{ width:'70px', paddingLeft:'5px', borderRadius:'25px', backgroundColor:'black'}}>
         SingUp

@@ -3,9 +3,9 @@ import { NavLink } from 'react-router-dom';
 import Footer from '../Footer/Footer';
 import Login from '../Login/Login';
 import Notification from '../Notification/Notification';
-import PersonalRegister from '../Register/PersonalRegister';
-import './personal.css';
-function Personal() {
+import EnterpriseRegister from '../Register/EnterpriseRegister';
+import './enterprise.css';
+function Enterprise() {
 
 
   return (
@@ -18,7 +18,7 @@ function Personal() {
       <div style={{display:'flex', justifyContent:'space-evenly',
             width:'160px', height:'70px', paddingRight:'2px', marginLeft:'775px'}}>
               <span style={{marginRight:'10px'}}> <Login /></span>
-              <PersonalRegister/>
+              <EnterpriseRegister/>
               </div>
      
 
@@ -36,7 +36,7 @@ function Personal() {
       </p>
       <div style={{marginLeft:'300px'}}>
               <span>Joint Account</span>
-              <NavLink to="/personal/signup" activeClassName="active" 
+              <NavLink to="/enterprise/signup" activeClassName="active" 
        style={{backgroundColor:'rgba(231, 37, 37, 1)' , height:'50px', borderRadius:'25px', width:'86px'}}>
        <button  style={{ width:'70px', paddingLeft:'5px', borderRadius:'25px', backgroundColor:'black'}}>
         SingUp
@@ -59,4 +59,4 @@ function Personal() {
   )
 
 }
-export default Personal
+export default Enterprise

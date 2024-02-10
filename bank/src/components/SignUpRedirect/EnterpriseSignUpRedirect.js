@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import CountryMenu from '../CountryMenu/CountryMenu';
 import Footer from '../Footer/Footer';
 import SignUpContinueButton from '../SignUpContinueButton/SignUpContinueButton';
-import './agupePaySignUpRedirect.css';
-function AgupePaySignUpRedirect(props) {
+import './enterpriseSignUpRedirect.css';
+function EnterpriseSignUpRedirect(props) {
   const [selectedCountry, setSelectedCountry] = useState('');
 
   const handleCountrySelect = (name) => {
@@ -21,7 +21,7 @@ function AgupePaySignUpRedirect(props) {
   };
 
   return (
-    <div  className='businesssignupredirect' style={{backgroundColor:'white'}}>
+    <div  className='entertprisesignupredirect' style={{backgroundColor:'white'}}>
       <div className=' ' style={{backgroundColor:'white', }}>
         <h4 style={{marginLeft:'420px', marginTop:'40px'}}> Please select your country to continue SignUp</h4>
        
@@ -30,7 +30,7 @@ function AgupePaySignUpRedirect(props) {
           <CountryMenu onSelect={handleCountrySelect} />
         </span>
         <SignUpContinueButton 
-          signupType='agupepaysignup'
+          signupType='enterprisesignup'
           onClick={handleContinue}
           disabled={!selectedCountry}
         />
@@ -49,4 +49,4 @@ function AgupePaySignUpRedirect(props) {
   );
 }
 
-export default AgupePaySignUpRedirect;
+export default EnterpriseSignUpRedirect;

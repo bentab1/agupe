@@ -4,11 +4,11 @@ import { NavLink } from 'react-router-dom';
 
 const SignUpContinueButton = ({ signupType }) => {
   const signupLinks = {
-    'personal': '/personal',
-    'joint': '/joint/signup',
+    'personsignup': "/person/signup/redirect",
+    'jointsignup': "/joint/signup/redirect",
     'bussignup':"/business/signup/redirect",
-    'agupepay': '/agupepay',
-    'enterprises': '/business',
+    'agupepaysignup': "/agupepay/signup/redirect",
+    'enterprisesignup': "/enterprise/signup/redirect",
   };
 
   const to = signupLinks[signupType] || '#'; // If signupType is not found, set to '#'

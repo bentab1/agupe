@@ -1,0 +1,12 @@
+.jointsignupredirect{
+  display: grid;
+  overflow-x: scroll; 
+  max-height: calc(85vh);
+  width: 1360px;
+  top: 110px;
+  z-index: 1;
+  position: absolute;
+
+
+
+}

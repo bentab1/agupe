@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import CountryMenu from '../CountryMenu/CountryMenu';
+import Footer from '../Footer/Footer';
 import SignUpContinueButton from '../SignUpContinueButton/SignUpContinueButton';
-
 function JointSignUpRedirect() {
 
   const [selectedCountry, setSelectedCountry] = useState('');
@@ -20,20 +20,31 @@ function JointSignUpRedirect() {
     }
   };
   return (
-    <div>
-       <h4> Please select your country to continue SignUp</h4>
-      <div style={{display:'grid'}}>
-        <span style={{ marginLeft: '10px' }}>
-          <CountryMenu onSelect={handleCountrySelect} />
-        </span>
-        <SignUpContinueButton
-       signupType="personal" // replace "/selected-route" with your actual route
+    <div  className='jointsignupredirect' style={{backgroundColor:'white'}}>
+    <div className=' ' style={{backgroundColor:'white', }}>
+      <h4 style={{marginLeft:'420px', marginTop:'40px'}}> Please select your country to continue SignUp</h4>
+     
+      <div style={{marginLeft:'550px', marginTop:'40px'}}>
+      <span style={{ marginLeft: '10px' }}>
+        <CountryMenu onSelect={handleCountrySelect} />
+      </span>
+      <SignUpContinueButton 
+        signupType='jointsignup'
         onClick={handleContinue}
         disabled={!selectedCountry}
       />
-        </div>
-      
+      </div>
     </div>
+
+
+<div style={{width:'100%', height:'600px'}}>
+
+
+
+</div>
+
+<Footer/>
+  </div>
   )
 }
 

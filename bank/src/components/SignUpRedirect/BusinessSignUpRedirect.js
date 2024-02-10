@@ -22,16 +22,19 @@ function BusinessSignUpRedirect(props) {
 
   return (
     <div  className='businesssignupredirect' style={{backgroundColor:'white'}}>
-      <div className=' ' style={{backgroundColor:'white'}}>
-        <h4> Please select your country to continue SignUp</h4>
+      <div className=' ' style={{backgroundColor:'white', }}>
+        <h4 style={{marginLeft:'420px', marginTop:'40px'}}> Please select your country to continue SignUp</h4>
+       
+        <div style={{marginLeft:'550px', marginTop:'40px'}}>
         <span style={{ marginLeft: '10px' }}>
           <CountryMenu onSelect={handleCountrySelect} />
         </span>
-        <SignUpContinueButton
+        <SignUpContinueButton 
           signupType='bussignup'
           onClick={handleContinue}
           disabled={!selectedCountry}
         />
+        </div>
       </div>
 
 

@@ -5,20 +5,25 @@ import { Footer, Header, NavBar, Notification, Welcome } from "./components";
 import AboutUs from './components/AboutUs/AboutUs';
 import Banking from './components/Banking/Banking';
 import Business from './components/Business/Business';
-import BusinessReg from './components/BusinessReg/BusinessReg';
 import ContactUs from './components/ContactUs/ContactUs';
 import Contents from './components/Contents/Contents';
+import Enterprise from './components/Enterprise/Enterprise';
 import Features from './components/Features/Features';
 import LoginForm from './components/Form/LoginForm';
 import Help from './components/Help/Help';
-import JointAccountReg from './components/JointAccountReg/JointAccountReg';
 import LiveChat from './components/LiveChat/LiveChat';
 import Personal from './components/Personal/Personal';
-import PersonalReg from './components/PersonalReg/PersonalReg';
 import Review from './components/Review/Review';
+import AgupePaySignUp from './components/SignUp/AgupePaySignUp';
 import BusinessSignUp from './components/SignUp/BusinessSignUp';
-import PersonalSignUp from './components/SignUp/PersonSignUp';
+import EnterpriseSignUp from './components/SignUp/EnterpriseSignUp';
+import JointSignUp from './components/SignUp/JointSignUp';
+import PersonSignUp from './components/SignUp/PersonSignUp';
+import AgupePaySignUpRedirect from './components/SignUpRedirect/AgupePaySignUpRedirect';
 import BusinessSignUpRedirect from './components/SignUpRedirect/BusinessSignUpRedirect';
+import EnterpriseSignUpRedirect from './components/SignUpRedirect/EnterpriseSignUpRedirect';
+import JointSignUpRedirect from './components/SignUpRedirect/JointSignUpRedirect';
+import PersonSignUpRedirect from './components/SignUpRedirect/PersonSignUpRedirect';
 import AgupePay from './container/AgupePay/AgupePay';
 
 const App = () => (
@@ -29,26 +34,31 @@ const App = () => (
       <NavBar />
       <div className="content-container">
         <Routes>
+        <Route index element={<div></div>} />
          <Route path="/aboutUs" element={<AboutUs/>} />
           <Route path="/liveChat" element={<LiveChat/>} />
           <Route path="/help" element={<Help/>} />
-          <Route index element={<div></div>} />
+          
           <Route path="/business" element={<Business />} />
           <Route path="/agupepay" element={<AgupePay />} />
           <Route path="/banking" element={<Banking />} />
           <Route path="/personal" element={<Personal />} />
+          <Route path="/enterprise" element={<Enterprise />} />
           <Route path="/contactus" element={<ContactUs />} />
-          <Route path="/register/personal/joint" element={<JointAccountReg />} />
-          <Route path="/register/personal" element={<PersonalReg/>} />
-          <Route path="/register/Business" element={<BusinessReg/>} />
-          <Route path="/business/signup/redirect" element={<BusinessSignUp/>} />
-
-
-
-          <Route path="/personal/signup" element={<PersonalSignUp/>} />
-          <Route path="/agupepay/signup" element={<PersonalSignUp/>} />
-          <Route path="/business/signup" element={<BusinessSignUpRedirect/>} />
           <Route path="/account/login" element={<LoginForm/>} />
+
+          <Route path="/personal/signup" element={<PersonSignUpRedirect/>} />
+          <Route path="/agupepay/signup" element={<AgupePaySignUpRedirect/>} />
+          <Route path="/business/signup" element={<BusinessSignUpRedirect/>} />
+          <Route path="/joint/signup" element={<JointSignUpRedirect/>} />
+          <Route path="/enterprise/signup" element={<EnterpriseSignUpRedirect/>} />
+
+          <Route path="/business/signup/redirect" element={<BusinessSignUp/>} />
+          <Route path="/person/signup/redirect" element={<PersonSignUp/>} />
+          <Route path="/joint/signup/redirect" element={<JointSignUp/>} />
+          <Route path="/agupepay/signup/redirect" element={<AgupePaySignUp/>} />
+          <Route path="/enterprise/signup/redirect" element={<EnterpriseSignUp/>} />
+
         </Routes>
         <Contents />
         <Features />

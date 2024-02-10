@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import validator from 'validator';
 import Footer from '../Footer/Footer';
 import Notification from '../Notification/Notification';
-import './businessSignUp.css';
+import './enterpriseSignUp.css';
 
 
-function BusinessSignUp() {
+function EnterpriseSignUp() {
   const [formData, setFormData] = useState({
     firstName: '',
     middleName: '',
@@ -69,10 +69,10 @@ function BusinessSignUp() {
   };
  
   return (
-    <div style={{display:'grid', backgroundColor:'white'}} className='businesssignup_headpage'>
+    <div style={{display:'grid', backgroundColor:'white'}} className='enterprisesignup_headpage'>
 
                 <h3 style={{marginLeft:'430px',marginTop:'20px', color:"rgb(10, 10, 100)"}}>
-                Business account Registeration:</h3>
+                  Enterprise account Registeration:</h3>
       <div style={{display:'flex', marginLeft:'350px', marginTop:'30px', marginBottom:'30px'}}>
      <label style={{marginLeft:'40px'}}>Fill the form below:</label>
      
@@ -124,4 +124,4 @@ function BusinessSignUp() {
     </div>
   );
 };
-export default BusinessSignUp;
+export default EnterpriseSignUp;
