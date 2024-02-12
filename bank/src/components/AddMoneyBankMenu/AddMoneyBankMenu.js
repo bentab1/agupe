@@ -53,26 +53,28 @@ const AddMoneyBankMenu = () => {
   };
 
   return (
-    <div style={{ width: '300px', height: '600px' }}>
+    <div style={{ width: '180px', height: '600px', marginLeft:'300px', marginTop:"40px" }}>
       <AddMoneyBankSearchBar options={bankOptions} onChange={handleBankChange} />
 
       {/* Display the default currency symbol (Naira) next to the input field */}
-      <div style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', marginTop: '10px' , width:'300px'}}>
         <span>{defaultCurrency}</span>
         <input
+            
           type="text"
           placeholder="Enter amount"
           value={amount}
           onChange={handleAmountChange}
-          style={{ marginLeft: '5px' }}
+          style={{ marginLeft: '5px' , height:'30px'}}
         />
       </div>
 
-      <button onClick={handleBankClick} disabled={!selectedBank || !amount}>
+      <button onClick={handleBankClick} disabled={!selectedBank || !amount}
+      style={{marginTop:'20px'}}>
         Proceed
       </button>
 
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      <p style={{display:'flow-root',zIndex:'20', color: 'red' }}>{error}</p>
     </div>
   );
 };

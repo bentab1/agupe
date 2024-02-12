@@ -65,18 +65,17 @@ const App = () => (
           <Route path="/agupepay/signup/redirect" element={<AgupePaySignUp/>} />
           <Route path="/enterprise/signup/redirect" element={<EnterpriseSignUp/>} />
         </Routes>
-
-       <Routes>
+        <Contents />
+        <Features />
+        <Review />
+        <Notification />
+        <Routes>
        <Route path="/" element={<PersonalProfile/>} />
        <Route path="/addmoney" element={<AdMoneyMethod/>} />
        <Route path="/addthrough/bank" element={<AddMoneyBankMenu/>} />
        <Route path='/activatetransfer' element={<AddMoney/>} />
        </Routes>
 
-        <Contents />
-        <Features />
-        <Review />
-        <Notification />
       </div>
       <Footer />
       <Welcome/>
