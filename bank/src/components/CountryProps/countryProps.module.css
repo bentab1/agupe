@@ -1,23 +1,25 @@
 /* Country.module.css */
 .country {
   border: 2px solid #ddd;
-  
+  justify-content: center;
   cursor: pointer;
+  background-color: aqua;
+
 }
 
 .selectedCountry {
-
+   
   padding-left: 1px;
   cursor: pointer;
   border-radius: 9px;
-  width: 59px;
-  height: 70px;
+  width: 100;
+  height: 100%;
   
 
 }
 
 .flag {
-  width: 50px;
+  width: 100%;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 

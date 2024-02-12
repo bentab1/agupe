@@ -2,10 +2,13 @@
 
   .about_headpage{
     display: grid;
-  overflow-x: scroll; 
-  max-height: calc(85vh);
-  width: 1360px;
-  top: 110px;
-  z-index: 1;
-  position: absolute;
+    overflow-x: hidden; 
+    max-height: calc(85vh);
+    overflow-y: scroll;
+    width: 1360px;
+    top: 110px;
+    z-index: 1;
+    position: absolute;
+  
+  
   }

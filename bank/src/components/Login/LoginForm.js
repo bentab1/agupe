@@ -17,7 +17,7 @@ function LoginForm() {
   return (
     <div className=' login_form' style={{backgroundColor:'white'}}>
 
-      <h3 style={{color:'royalblue', marginLeft:'500px', marginTop:'30px'}}> Hey!, you are almost there</h3>
+      <h3 style={{color:'rgb(10, 10, 100)', marginLeft:'500px', marginTop:'30px'}}> Hey!, you are almost there</h3>
         
      <form style={{ marginTop: '30px', marginLeft: '520px', display:'grid', width:'200px' }}>
               <label>Email/Username:</label>

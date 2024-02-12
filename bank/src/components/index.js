@@ -25,7 +25,6 @@ export { default as PayBill } from './PayBill/PayBill'
 export { default as Profile } from './Profile/Profile'
 
 export { default as Savings } from './Savings/Savings'
-export { default as ScrollIcon } from './ScrollIcon/ScrollIcon'
 export { default as Settings } from './Settings/Settings'
 export { default as Statement } from './Statement/Statement'
 export { default as Subscription } from './Subscription/Subscription'

@@ -12,17 +12,19 @@ const Welcome = () => {
   };
 
   useEffect(() => {
-    const showTimer = setTimeout(() => {
+    const hasWelcomeBeenShown = localStorage.getItem('hasWelcomeBeenShown');
+    
+    if (!hasWelcomeBeenShown) {
       setShowWelcome(true);
-    }, 1000); // Show the screen for 5 seconds (5000 milliseconds)
+      localStorage.setItem('hasWelcomeBeenShown', 'true');
+    }
 
     const hideTimer = setTimeout(() => {
       setShowWelcome(false);
       // Add additional logic if needed when the screen is automatically hidden
-    }, 30000); // Hide the screen after 10 seconds (10000 milliseconds)
+    }, 30000); // Hide the screen after 30 seconds (30000 milliseconds)
 
     return () => {
-      clearTimeout(showTimer);
       clearTimeout(hideTimer);
     };
   }, []);

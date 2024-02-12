@@ -1,5 +1,4 @@
 import { React } from 'react';
-import { NavLink } from 'react-router-dom';
 import Footer from '../Footer/Footer';
 import Login from '../Login/Login';
 import Notification from '../Notification/Notification';
@@ -34,15 +33,7 @@ function Enterprise() {
         payment with our virtual and physical contactless card you make alltime payment with just your mobile phone.
         No need to carry your card around. Signup above? for  joint  account click the button below to signUp.
       </p>
-      <div style={{marginLeft:'300px'}}>
-              <span>Joint Account</span>
-              <NavLink to="/enterprise/signup" activeClassName="active" 
-       style={{backgroundColor:'rgba(231, 37, 37, 1)' , height:'50px', borderRadius:'25px', width:'86px'}}>
-       <button  style={{ width:'70px', paddingLeft:'5px', borderRadius:'25px', backgroundColor:'black'}}>
-        SingUp
-      </button>
-         </NavLink>
-            </div>
+     
         </div>
 
 

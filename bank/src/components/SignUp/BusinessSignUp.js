@@ -310,7 +310,7 @@ const BusinessSignUp = () => {
 
   return (
     <div style={{ display: 'grid', backgroundColor: 'white', justifyContent: 'center', marginLeft: '0', marginRight: '0' }} className='businesssignup_headpage'>
-      <h3 style={{ marginLeft: '430px', marginTop: '20px', color: "rgb(10, 10, 100)" }}>
+      <h3 style={{ marginLeft: '530px', marginTop: '50px', color: "rgb(10, 10, 100)" }}>
         Business account Registration:
       </h3>
       {registrationSuccess ? (
@@ -320,7 +320,7 @@ const BusinessSignUp = () => {
       ) : (
         <div>
         <div style={{ display: 'flex', marginLeft: '250px', marginTop: '30px', marginBottom: '30px' }}>
-  <label style={{ marginLeft: '40px' }}>Fill the form below:</label>
+  <label style={{ marginLeft: '120px' }}>Fill the form below:</label>
   <label style={{ marginLeft: '30px' }}> Or enter your BVN:</label>
   <input type="text" name="BVN" onChange={handleChange} />
   {bvnError && <div style={{ color: 'red' }}>{bvnError}</div>}
@@ -329,9 +329,9 @@ const BusinessSignUp = () => {
 
 
       
-          <div style={{ marginBottom: '40px', marginLeft: '250px', width: '100%', backgroundColor: 'white' }}>
-            <form style={{ display: 'grid', width: '900px', height: '1300px', backgroundColor: 'rgba(246, 216, 216, 0.92)', marginTop: '50px', paddingTop: '80px', paddingLeft: '80px' }}>
-              <h3 style={{ display: 'block', marginLeft: '90px', marginBottom: '30px' }}> Business Account Registration Form:</h3>
+          <div style={{ marginBottom: '40px', marginLeft: '320px', width: '100%', backgroundColor: 'white' }}>
+            <form style={{ display: 'grid', width: '750px', height: '1300px', backgroundColor: 'rgba(246, 216, 216, 0.92)', marginTop: '50px', paddingTop: '80px', paddingLeft: '80px' }}>
+              <h3 style={{ display: 'block', marginLeft: '110px', marginBottom: '30px' }}> Business Account Registration Form:</h3>
 
               <div className='form_business'>
                 <label>First Name*:</label>
