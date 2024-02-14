@@ -1,6 +1,6 @@
 import { React } from 'react';
 import Footer from '../Footer/Footer';
-import Login from '../Login/Login';
+import Login from '../Login/LoginRedirectButton';
 import Notification from '../Notification/Notification';
 import EnterpriseRegister from '../Register/EnterpriseRegister';
 import './enterprise.css';

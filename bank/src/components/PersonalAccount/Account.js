@@ -1,6 +1,6 @@
 import React from 'react'
 
-function AddMoneyThroughBank() {
+function Account() {
   return (
     <div>
       
@@ -8,4 +8,4 @@ function AddMoneyThroughBank() {
   )
 }
 
-export default AddMoneyThroughBank
+export default Account

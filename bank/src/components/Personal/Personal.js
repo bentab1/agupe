@@ -1,7 +1,7 @@
 import { React } from 'react';
 import { NavLink } from 'react-router-dom';
 import Footer from '../Footer/Footer';
-import Login from '../Login/Login';
+import Login from '../Login/LoginRedirectButton';
 import Notification from '../Notification/Notification';
 import PersonalRegister from '../Register/PersonalRegister';
 import './personal.css';

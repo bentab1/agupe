@@ -1,6 +1,6 @@
 import { React } from 'react';
 import { Footer, Notification, } from '../../components';
-import Login from '../../components/Login/Login';
+import Login from '../../components/Login/LoginRedirectButton';
 import AgupePayRegister from '../../components/Register/AgupePayRegister';
 import './agupePay.css';
 function AgupePay() {

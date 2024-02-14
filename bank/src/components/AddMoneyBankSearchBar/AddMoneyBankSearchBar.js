@@ -22,3 +22,9 @@ function AddMoneyBankSearchBar ({ options, onChange }) {
 };
 
 export default AddMoneyBankSearchBar;
+
+
+
+
+
+

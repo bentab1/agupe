@@ -1,7 +1,4 @@
 
-export { default as AddAccount } from './AddAccount/AddAccount'
-export { default as AddCard } from './AddCard/AddCard'
-export { default as AddMoney } from './AddMoney/AddMoney'
 export { default as Analytics } from './Analytics/Analytics'
 export { default as Authentication } from './Authentication/Authentication'
 
@@ -22,10 +19,8 @@ export { default as Invest } from './Invest/Invest'
 export { default as NavBar } from './NavBar/NavBar'
 export { default as Notification } from './Notification/Notification'
 export { default as PayBill } from './PayBill/PayBill'
-export { default as Profile } from './Profile/Profile'
 
 export { default as Savings } from './Savings/Savings'
-export { default as Settings } from './Settings/Settings'
 export { default as Statement } from './Statement/Statement'
 export { default as Subscription } from './Subscription/Subscription'
 export { default as TermsAndConditions } from './TermsAndConditions/TermsAndConditions'
@@ -35,5 +30,5 @@ export { default as TransactionLimit } from './TransactionLimit/TransactionLimit
 export { default as Transactions } from './Transactions/Transactions'
 export { default as Transfer } from './Transfer/Transfer'
 export { default as Welcome } from './Welcome/Welcome'
-export { default as Withdraw } from './Withdraw/Withdraw'
+
 
