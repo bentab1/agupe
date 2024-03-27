@@ -1,42 +1,41 @@
-
-.com_1{
-  background-color: aqua;
+.com_1 {
+  background-color: rgb(215, 247, 236);
   display: flex;
   margin-left: 20px;
   margin-right: 15px;
   width: 1300px;
+  border-radius: 25px;
 }
 
-.call_us{
+.call_us {
   margin-bottom: 10px;
 }
 
-.call{
+.call {
   font-size: 13px;
   margin-top: 5px;
 }
 
-.number{
+.number {
   font-size: 13px;
   margin-top: 10px;
 }
 
-.social{
-
+.social {
   margin-bottom: 10px;
 }
 
-.socialize{
+.socialize {
   font-size: 13px;
   margin-top: 10px;
   margin-left: 20px;
 }
 
-.ap{
+.ap {
   margin-bottom: 10px;
 }
 
-.mobile{
+.mobile {
   font-size: 13px;
   margin-left: 10px;
 }

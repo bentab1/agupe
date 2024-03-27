@@ -1,46 +1,68 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import Footer2 from "../Footer2/Footer2";
+import "./LoginPage.css";
+const LoginPage = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLogedIn, setIsLogin] = useState(false);
 
-const LoginPage = ({ onLogin }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleLoginClick = () => {
-    // Basic validation, you may want to add more robust checks
-    if (username === 'bentab1' && password === '12345678') {
-      // For personal account
-      onLogin(username, 'personal');
-    } else if (username === 'bentab2' && password === '12345678') {
-      // For business account
-      onLogin(username, 'business');
+  const handleLoginClick = (e) => {
+    e.preventDefault();
+    if (!username.trim() || !password.trim()) {
+      alert("Please enter both username and password.");
+      return; // Exit the function early if fields are empty
+    }
+    if (username === "bentab1" && password === "12345678") {
+      setPassword(password);
+      setUsername(username);
+      setIsLogin(!isLogedIn);
+      localStorage.setItem("username", username);
+      window.location.href = "/personalAccount";
+    } else if (username === "bentab2" && password === "12345678") {
+      setPassword(password);
+      setUsername(username);
+      setIsLogin(!isLogedIn);
+      localStorage.setItem("username", username);
+      window.location.href = "/businessAccount";
     } else {
-      alert('Invalid credentials. Please try again.');
+      alert("Invalid credentials. Please try again.");
     }
   };
 
   return (
     <div className="login-container">
-      <h2>Login</h2>
-      <label>
-        Username:
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder="Enter your username"
-        />
-      </label>
-      <br />
-      <label>
-        Password:
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Enter your password"
-        />
-      </label>
-      <br />
-      <button onClick={handleLoginClick}>Login</button>
+      <div className="second-main-container">
+        <h3 style={{ color: "black", fontFamily: "Lato", marginLeft: "20px" }}>
+          Enter your username and password to login bellow
+        </h3>
+        <div className="username-password-container">
+          <label>
+            Username:
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Enter your username"
+            />
+          </label>
+
+          <label>
+            Password:
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your password"
+            />
+          </label>
+
+          <button onClick={handleLoginClick} className="login-button-button">
+            Login
+          </button>
+        </div>
+      </div>
+
+      <Footer2 />
     </div>
   );
 };

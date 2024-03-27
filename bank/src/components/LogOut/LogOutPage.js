@@ -1,30 +1,67 @@
 // LogoutPage.js
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { React, useState } from "react";
+import { NavLink } from "react-router-dom";
+import "./LogOut.css";
 
-const LogoutPage = ({ onLogout }) => {
-  const navigate = useNavigate();
+// import { useNavigate } from "react-router-dom";
+const LogoutPage = () => {
+  const [selected, setSelected] = useState(false);
+  const [logOut, setLogOut] = useState(false);
+  // const navigate = useNavigate();
 
-  useEffect(() => {
-    // Log out logic
-    onLogout();
-    
-    // Redirect to the home page after a delay 
-    const redirectTimeout = setTimeout(() => {
-      navigate('/');
-    }, 20000); // 2 seconds delay, for example
+  function handleLogOut() {
+    setLogOut(!logOut);
+    window.location.href = "/App";
+  }
+  // useEffect(() => {
+  //   const redirectTimeout = setTimeout(() => {
+  //     navigate("/");
+  //   }, 20000); // 2 seconds delay, for example
 
-    // Cleanup the timeout to prevent memory leaks
-    return () => clearTimeout(redirectTimeout);
-  }, [onLogout, navigate]);
+  //   // Cleanup the timeout to prevent memory leaks
+  //   return () => clearTimeout(redirectTimeout);
+  // }, [navigate]);
+
+  //
+  //
+  function handleSelected() {
+    setSelected(true);
+    setTimeout(() => {
+      setSelected(false);
+    }, 2000);
+  }
 
   return (
-    <div>
-      <p>Logging out...</p>
-      {/* You can add a loading spinner or other content if needed */}
+    <div
+      className="logout-button-div"
+      style={{
+        backgroundColor: selected ? "#f5f8" : "",
+        transition: "background-color 0.3s ease",
+      }}
+      onClick={handleSelected}
+    >
+      <NavLink
+        to=""
+        activeClassName="active"
+        className={"logout-button-navlink"}
+      >
+        <button
+          className="logout-button"
+          style={{
+            color: selected ? "#f5f8" : "",
+            transition: "background-color 0.3s ease",
+          }}
+          onClick={handleLogOut}
+        >
+          Log Out
+        </button>
+      </NavLink>
     </div>
   );
 };
 
 export default LogoutPage;
 
+<div>
+  <button>Log Out</button>
+</div>;

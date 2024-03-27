@@ -1,32 +1,39 @@
-import '@fortawesome/fontawesome-free/css/all.min.css';
-import { React } from 'react';
-import { NavLink } from 'react-router-dom';
-import './header.css';
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import { React } from "react";
+import { NavLink } from "react-router-dom";
+import "./header.css";
 
 function Header() {
-  
-
   return (
-    <div style={{width:'1390px',height:'34px'}}>
-      <nav className="grid-container">
-<NavLink to="/aboutUs" activeClassName="active">
-  <p style={{marginLeft:'120px', marginTop:'10px',fontSize:'13px', }}>About Us</p>
-</NavLink>
+    <div className="header">
+      <nav className="nav-header">
+        <ul className="ul-header">
+          <li className="header-text">
+            <NavLink to="/aboutUs" activeClassName="active">
+              <span>About Us</span>
+            </NavLink>
+          </li>
+          <li className="header-text">
+            <NavLink to="/liveChat" activeClassName="active">
+              <div style={{ display: "grid" }}>
+                <span>Live Chat</span>
 
-<div className='chat'>
-  <NavLink to="/liveChat"  activeClassName="active"  >
-    <div style={{display:'flex'}}>
-    <p style={{marginTop:'10px', fontSize:'13px', marginLeft:'70px',with:'20px'}}>Live Chat</p>
-    
-    <i className="fas fa-comment" style={{marginLeft:'5px', marginTop:'10px'}}></i>
-    </div>
-  </NavLink >
-</div>
-
-<NavLink to="/help"  activeClassName="active">
-  <p style={{marginRight:'220px', marginTop:'10px', fontSize:'13px'}}>Help</p>
-</NavLink>
-
+                <i
+                  className="fas fa-comment"
+                  style={{
+                    marginLeft: "25px",
+                    fontSize: "25px",
+                  }}
+                />
+              </div>
+            </NavLink>
+          </li>
+          <li className="header-text">
+            <NavLink to="/help" activeClassName="active">
+              <span>Help</span>
+            </NavLink>
+          </li>
+        </ul>
       </nav>
     </div>
   );

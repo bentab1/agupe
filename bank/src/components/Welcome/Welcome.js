@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './welcome.css';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./welcome.css";
 
 const Welcome = () => {
   const navigate = useNavigate();
@@ -12,13 +12,11 @@ const Welcome = () => {
   };
 
   useEffect(() => {
-    const hasWelcomeBeenShown = localStorage.getItem('hasWelcomeBeenShown');
-    
+    const hasWelcomeBeenShown = localStorage.getItem("hasWelcomeBeenShown");
     if (!hasWelcomeBeenShown) {
       setShowWelcome(true);
-      localStorage.setItem('hasWelcomeBeenShown', 'true');
+      localStorage.setItem("hasWelcomeBeenShown", "true");
     }
-
     const hideTimer = setTimeout(() => {
       setShowWelcome(false);
       // Add additional logic if needed when the screen is automatically hidden
@@ -30,22 +28,22 @@ const Welcome = () => {
   }, []);
 
   const handleContinue = () => {
-    console.log('Continue to App');
-    navigate('/app');
+    navigate("/app");
   };
-
   const handleLearnMore = () => {
-    console.log('Learn More');
-    navigate('/learn-more');
+    navigate("/learn-more");
   };
 
   return (
     showWelcome && (
-      <div className="welcome-container" style={{ display: show ? 'none' : 'flex' }}>
-        <div onClick={handleShow} style={{ cursor: 'pointer' }}>
+      <div
+        className="welcome-container"
+        style={{ display: show ? "none" : "flex" }}
+      >
+        <div onClick={handleShow} style={{ cursor: "pointer" }}>
           <p>X</p>
         </div>
-        <div style={{ display: 'grid' }}>
+        <div style={{ display: "grid" }}>
           <h1>Welcome to Your App!</h1>
           <p>Learn more about our app or dive right in.</p>
           <div className="button-container">

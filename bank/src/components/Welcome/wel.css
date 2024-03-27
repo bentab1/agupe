@@ -1,0 +1,88 @@
+/*  */
+/*  *
+/* / */
+
+.continue-button-div:hover {
+  background-color: rgba(252, 233, 67, 1);
+}
+
+.continue-button-div {
+  background-color: aqua;
+  display: flex;
+  height: 65px;
+  width: 145px;
+  padding-left: 10px;
+  padding-right: 4px;
+  border-radius: 28px;
+}
+
+.continue-button-navlink {
+  background-color: rgba(231, 37, 37, 1);
+  height: 50px;
+  border-radius: 25px;
+  width: 130px;
+}
+
+.continue-button-navlink:hover {
+  background-color: blueviolet;
+  transform: rotate(360deg);
+  transition: 0.3s ease;
+}
+
+.continue-button {
+  width: 115px;
+  padding-top: 10px;
+  padding-left: 5px;
+  border-radius: 25px;
+  color: aqua;
+  background-color: black;
+}
+
+.continue-button:hover {
+  background-color: black;
+  color: rgba(252, 233, 67, 1);
+}
+
+/*  */
+/*  */
+
+.get-our-app-button-div:hover {
+  background-color: rgba(252, 233, 67, 1);
+}
+
+.get-our-app-button-div {
+  background-color: aqua;
+  display: flex;
+  height: 65px;
+  width: 145px;
+  padding-left: 10px;
+  padding-right: 4px;
+  border-radius: 28px;
+}
+
+.get-our-app-button-navlink {
+  background-color: rgba(231, 37, 37, 1);
+  height: 50px;
+  border-radius: 25px;
+  width: 130px;
+}
+
+.get-our-app-button-navlink:hover {
+  background-color: blueviolet;
+  transform: rotate(-360deg);
+  transition: 0.3s ease;
+}
+
+.get-our-app-button {
+  width: 115px;
+  padding-top: 10px;
+  padding-left: 5px;
+  border-radius: 25px;
+  color: aqua;
+  background-color: black;
+}
+
+.get-our-app-button:hover {
+  background-color: black;
+  color: rgba(252, 233, 67, 1);
+}

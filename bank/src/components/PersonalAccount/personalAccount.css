@@ -1,17 +1,25 @@
-.personalprofile{
-
-  height: 800px;
-
+.personalprofile {
+  overflow-x: hidden;
+  max-height: calc(98vh);
+  overflow-y: scroll;
+  width: 1360px;
+  top: 0px;
+  bottom: 0px;
+  z-index: 1;
+  position: absolute;
 }
-
-
-.text{
-  font-size: 16px;
-  background-color: white;
+.profile-section {
+  font-size: 13px;
+  cursor: pointer;
+  background-color: transparent;
   color: black;
 }
 
-.text_pro{
-  color:rgb(10, 10, 100);
-  background-color:white;
+.profile-section:hover {
+  background-color: aqua;
+}
+
+.text_pro {
+  color: rgb(10, 10, 100);
+  background-color: rgb(250, 244, 244);
 }

@@ -2,8 +2,9 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -11,21 +12,12 @@ body {
 .app {
   height: 100%;
   display: grid;
-
-  
-  
 }
 
 .content-container {
   display: grid;
-  overflow-x: hidden; 
-  max-height: calc(75vh);
+  overflow-x: hidden;
+  max-height: calc(71vh);
   width: 1360px;
   margin: 5px;
-  
-  
-  
-
- 
 }
-

@@ -1,0 +1,38 @@
+.signup-button-div:hover {
+  background-color: rgba(252, 233, 67, 1);
+}
+
+.signup-button-div {
+  background-color: aqua;
+  display: flex;
+  height: 65px;
+  padding-left: 10px;
+  padding-right: 4px;
+  border-radius: 28px;
+}
+
+.signup-button-navlink {
+  background-color: rgba(231, 37, 37, 1);
+  height: 50px;
+  border-radius: 25px;
+  width: 86px;
+}
+
+.signup-button-navlink:hover {
+  background-color: blueviolet;
+  transform: rotate(-360deg);
+  transition: transform 0.3s ease;
+}
+
+.signup-button {
+  width: 70px;
+  padding-left: 5px;
+  border-radius: 25px;
+  color: aqua;
+  background-color: black;
+}
+
+.signup-button:hover {
+  background-color: black;
+  color: rgba(252, 233, 67, 1);
+}

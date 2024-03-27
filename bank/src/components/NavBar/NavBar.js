@@ -1,56 +1,66 @@
-import { React } from 'react';
-import { NavLink } from 'react-router-dom';
-import Myimage from '../Assets/Myimage.png';
-import Bankingredirect from '../Bankingredirect/Bankingredirect';
+import { React } from "react";
+import { NavLink } from "react-router-dom";
+import LoginButton from "../Login/LoginButton";
+import Menu from "../Menu/Menu";
+import SignUpButton from "../SignUp/SignUpButton";
+import "./navBar.css";
 
-import './navBar.css';
-
-function Navbar() {    
-
+function Navbar() {
   return (
-      <div className='navbar'>
-      <div className='logo-png' >
-
-        <img className='image' src={Myimage} alt=" logo" />
-        <div className=' logo'>
-          <h2 className='a1'>A</h2>
-          <h2 className='g1'>g</h2>
-          <h2 className='u1'>u</h2>
-          <h2 className='p1'>p</h2>
-          <h2 className='e1'>e</h2>
-        </div>
+    <div className="navbar">
+      <div className="mylogo-container">
+        <button className="logo-decorator">
+          <strong className="word1">L</strong>
+          <strong className="word2">p</strong>
+          <strong className="word2">a</strong>
+          <strong className="word2">y</strong>
+        </button>
       </div>
-
-      <nav  className=' nav_link'>
-
-    <NavLink to="/" activeClassName="active"  className=' grid'>
-        <spanc style={{color:'black'}}>Home</spanc></NavLink>
-
-    <NavLink to="/business" activeClassName="active" className=' grid' >
-      Business
-    </NavLink>
-    <NavLink to="/agupepay" activeClassName="active" className=' grid'> 
-       <span style={{color:'rgba(231, 37, 37, 1)'}}> AgupePay</span>
-    </NavLink>
-    <NavLink to="/personal" activeClassName="active" className=' grid'>
-      Personal
-    </NavLink>
-    <NavLink to="/contactus" activeClassName="active" className=' grid' style={{}}>
-      Contact Us
-    </NavLink>
-
-
-    <div style={{ width:'100px',
-       display:'flex'}}>
-    <NavLink to="/banking" activeClassName="active" style={{backgroundColor:'rgba(35, 233, 102, 0.92)', width:'80px', 
-     height:'49.6px', paddingLeft:'14px', paddingTop:'12px'}}>
-      <span style={{color:'black'}}>Banking</span>
-    </NavLink>
-    <Bankingredirect/>
+      <nav className=" nav-link">
+        <ul className="ul-list">
+          <li className="nav-tex">
+            <NavLink to="/" activeClassName="active">
+              <span>Home</span>
+            </NavLink>
+          </li>
+          <li className="nav-tex">
+            <NavLink to="/business" activeClassName="active">
+              <span>Business</span>
+            </NavLink>
+          </li>
+          <li className="nav-tex">
+            <NavLink to="/agupepay" activeClassName="active">
+              <span style={{ color: "rgba(231, 37, 37, 1)" }}>Pay Now</span>
+            </NavLink>
+          </li>
+          <li className="nav-tex">
+            <NavLink to="/personal" activeClassName="active">
+              <span> Personal </span>
+            </NavLink>
+          </li>
+          <li className="nav-tex">
+            <NavLink to="/contactus" activeClassName="active">
+              <span>Contact Us</span>
+            </NavLink>
+          </li>
+          <li className="nav-tex">
+            {" "}
+            <NavLink to="/banking" activeClassName="active">
+              <span className="nav-text">Banking</span>
+            </NavLink>
+          </li>
+        </ul>
+      </nav>
+      <div className="nav-login">
+        <span className="span-login">
+          <LoginButton />
+        </span>
+        <SignUpButton />
+      </div>
+      <div className="menu">
+        <Menu />
+      </div>
     </div>
-    
-  </nav>
-  </div>
   );
-};
-export default Navbar
+}
+export default Navbar;

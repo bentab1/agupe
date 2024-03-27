@@ -1,13 +1,37 @@
-
-.login_form{
+.login-container {
   display: grid;
+  background-color: white;
   overflow-x: hidden;
   overflow-y: scroll;
-  max-height: calc(85vh);
+  max-height: calc(90vh);
   width: 1360px;
-  top: 110px;
+  top: 125px;
+  bottom: 0px;
   z-index: 1;
   position: absolute;
-  
+}
 
+.username-password-container {
+  display: grid;
+  margin-left: 90px;
+  margin-top: 50px;
+  gap: 20px;
+}
+
+.login-button-button {
+  width: 100px;
+  margin-left: 80px;
+  cursor: pointer;
+  background-color: black;
+}
+
+.second-main-container {
+  margin-top: 80px;
+  margin-left: 450px;
+}
+
+.login-button-button:hover {
+  background-color: aqua;
+  color: black;
+  border-radius: 10px;
 }

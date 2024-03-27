@@ -1,11 +1,9 @@
 import React from "react";
-import "./footer.css";
-function Footer() {
+import "./Footer2.css";
+function Footer2() {
   return (
-    <div
-      style={{ backgroundColor: "rgba(246, 216, 216, 0.92)", height: "70px" }}
-    >
-      <div className="emphasis1">
+    <div style={{ backgroundColor: "white", height: "250px" }}>
+      <div className="emphasis">
         <em style={{ fontSize: "13px" }}>
           <span style={{ fontSize: "15px" }}>L</span> pay Digital Banking. All
           Right Reserved
@@ -15,4 +13,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default Footer2;
