@@ -1,11 +1,10 @@
 import { React } from "react";
-import "./UnsupportedCountrySelectionMessage.css";
+import "./UnsupportedCountrySelected.css";
 
-function UnsupportedCountrySelectionMessage() {
+function UnsupportedCountrySelected() {
   function handleExit() {
     window.location.href = "/";
   }
-
   function handleChangeCountry() {
     window.location.href = "/account/signup";
   }
@@ -32,4 +31,4 @@ function UnsupportedCountrySelectionMessage() {
   );
 }
 
-export default UnsupportedCountrySelectionMessage;
+export default UnsupportedCountrySelected;

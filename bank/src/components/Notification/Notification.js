@@ -8,14 +8,7 @@ import twitter from "../Assets/twitter.png";
 import "./notification.css";
 function Notification() {
   return (
-    <div
-      style={{
-        width: "1380px",
-        height: "350px",
-        backgroundColor: "white",
-        marginTop: "0",
-      }}
-    >
+    <div className="notification-container">
       <div className="com_1" style={{ marginTop: "240px" }}>
         <div
           style={{ display: "grid", height: "68px", marginLeft: "100px" }}
@@ -39,7 +32,7 @@ function Notification() {
         </div>
 
         <div style={{ display: "grid", marginLeft: "280px" }}>
-          <h className="mobile">Lpay Mobile,</h>
+          <h className="mobile">LPay Mobile,</h>
           <h className="mobile">Get our app</h>
           <div style={{ display: "flex" }}>
             <img

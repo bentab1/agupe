@@ -4,7 +4,7 @@ import "./LoginPage.css";
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [isLogedIn, setIsLogin] = useState(false);
+  const [isLogedIn, setIsLogedin] = useState(false);
 
   const handleLoginClick = (e) => {
     e.preventDefault();
@@ -15,13 +15,13 @@ const LoginPage = () => {
     if (username === "bentab1" && password === "12345678") {
       setPassword(password);
       setUsername(username);
-      setIsLogin(!isLogedIn);
+      setIsLogedin(!isLogedIn);
       localStorage.setItem("username", username);
       window.location.href = "/personalAccount";
     } else if (username === "bentab2" && password === "12345678") {
       setPassword(password);
       setUsername(username);
-      setIsLogin(!isLogedIn);
+      setIsLogedin(!isLogedIn);
       localStorage.setItem("username", username);
       window.location.href = "/businessAccount";
     } else {
@@ -32,9 +32,9 @@ const LoginPage = () => {
   return (
     <div className="login-container">
       <div className="second-main-container">
-        <h3 style={{ color: "black", fontFamily: "Lato", marginLeft: "20px" }}>
-          Enter your username and password to login bellow
-        </h3>
+        <h2 style={{ color: "black", fontFamily: "Lato", marginLeft: "20px" }}>
+          Enter your username and password bellow
+        </h2>
         <div className="username-password-container">
           <label>
             Username:
@@ -55,7 +55,6 @@ const LoginPage = () => {
               placeholder="Enter your password"
             />
           </label>
-
           <button onClick={handleLoginClick} className="login-button-button">
             Login
           </button>

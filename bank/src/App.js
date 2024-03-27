@@ -1,4 +1,4 @@
-import { React } from "react";
+import { React, useState, useEffect } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
 import AboutUs from "./components/AboutUs/AboutUs";
@@ -10,13 +10,14 @@ import Business from "./components/Business/Business";
 import BusinessAccount from "./components/BusinessAccount/BusinessAccount";
 import ContactUs from "./components/ContactUs/ContactUs";
 import Contents from "./components/Contents/Contents";
-import UnsupportedCountrySelectionMessage from "./components/CountrySelectionMessage/UnsupportedCountrySelectionMessage";
+import UnsupportedCountrySelectionMessage from "./components/CountrySelectionSelected/UnsupportedCountrySelected";
 import Features from "./components/Features/Features";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import Help from "./components/Help/Help";
 import LiveChat from "./components/LiveChat/LiveChat";
 import LoginPage from "./components/Login/LoginPage";
+import Menu from "./components/Menu/Menu";
 import NavBar from "./components/NavBar/NavBar";
 import Notification from "./components/Notification/Notification";
 import Personal from "./components/Personal/Personal";
@@ -26,11 +27,31 @@ import SignUpRedirect from "./components/SignUpRedirect/SignUpRedirect";
 import Welc from "./components/Welcome/Welc";
 import Welcome from "./components/Welcome/Welcome";
 function App() {
+  const [activeButton, setActiveButton] = useState(null);
+
+  const handleClick = (buttonId) => {
+    setActiveButton(buttonId);
+  };
+
+  useEffect(() => {
+    let timeoutId;
+
+    const resetActiveButton = () => {
+      setActiveButton(null);
+    };
+    timeoutId = setTimeout(resetActiveButton, 10000); // Set timeout for 10 seconds
+    return () => {
+      clearTimeout(timeoutId); // Clear timeout on component unmount or when activeButton changes
+    };
+  }, [activeButton]);
+
+  //
+  //
   return (
     <div className="app">
       <Router>
-        <Header />
-        <NavBar />
+        <Header handleClick={handleClick} activeButton={activeButton} />
+        <NavBar handleClick={handleClick} activeButton={activeButton} />
         <div className="content-container">
           <Routes>
             <Route path="/account/login" element={<LoginPage />} />
@@ -45,6 +66,7 @@ function App() {
 
           <Routes>
             <Route path="/aboutUs" element={<AboutUs />} />
+            <Route path="/menu" element={<Menu />} />
             <Route path="/liveChat" element={<LiveChat />} />
             <Route path="/help" element={<Help />} />
             <Route path="/business" element={<Business />} />

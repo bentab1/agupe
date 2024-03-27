@@ -54,6 +54,65 @@
   display: none;
 }
 
+.home-button {
+  border-radius: 25px;
+  display: flex;
+  font-size: 14px;
+  height: 33px;
+  width: 80px;
+  background-color: transparent;
+  color: rgb(10, 10, 100);
+}
+
+.business-button {
+  border-radius: 25px;
+  display: flex;
+  font-size: 14px;
+  height: 33px;
+  width: 95px;
+  background-color: transparent;
+  color: rgb(10, 10, 100);
+}
+
+.personal-button {
+  border-radius: 25px;
+  display: flex;
+  font-size: 14px;
+  height: 33px;
+  width: 97px;
+  background-color: transparent;
+  color: rgb(10, 10, 100);
+}
+
+.pay-now-button {
+  border-radius: 25px;
+  display: flex;
+  font-size: 14px;
+  height: 33px;
+  width: 100px;
+  background-color: transparent;
+  color: rgb(10, 10, 100);
+}
+
+.contact-us-button {
+  border-radius: 25px;
+  display: flex;
+  font-size: 14px;
+  height: 33px;
+  width: 110px;
+  background-color: transparent;
+  color: rgb(10, 10, 100);
+}
+
+.banking-button {
+  border-radius: 25px;
+  display: flex;
+  font-size: 14px;
+  height: 33px;
+  width: 90px;
+  background-color: transparent;
+  color: rgb(10, 10, 100);
+}
 @media (max-width: 1300px) {
   .navbar {
     display: flex;

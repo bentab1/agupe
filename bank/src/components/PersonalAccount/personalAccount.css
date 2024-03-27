@@ -11,6 +11,7 @@
 .profile-section {
   font-size: 13px;
   cursor: pointer;
+  border-radius: 20px;
   background-color: transparent;
   color: black;
 }

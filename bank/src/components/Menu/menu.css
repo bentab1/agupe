@@ -36,6 +36,72 @@
   font-size: 12px;
 }
 
+.menu-home-button {
+  border-radius: 25px;
+  display: flex;
+  font-size: 14px;
+  height: 26px;
+  width: 60px;
+  background-color: transparent;
+  color: rgb(10, 10, 100);
+  padding-right: 5px;
+}
+
+.menu-personal-button {
+  border-radius: 25px;
+  display: flex;
+  font-size: 14px;
+  height: 26px;
+  width: 68px;
+  background-color: transparent;
+  color: rgb(10, 10, 100);
+  padding-right: 5px;
+}
+
+.menu-business-button {
+  border-radius: 25px;
+  display: flex;
+  font-size: 14px;
+  height: 26px;
+  width: 68px;
+  background-color: transparent;
+  color: rgb(10, 10, 100);
+  padding-right: 5px;
+}
+
+.menu-pay-now-button {
+  border-radius: 25px;
+  display: flex;
+  font-size: 14px;
+  height: 26px;
+  width: 70px;
+  background-color: transparent;
+  color: rgb(10, 10, 100);
+  padding-right: 5px;
+}
+
+.menu-banking-button {
+  border-radius: 25px;
+  display: flex;
+  font-size: 14px;
+  height: 26px;
+  width: 65px;
+  background-color: transparent;
+  color: rgb(10, 10, 100);
+  padding-right: 5px;
+}
+
+.menu-contact-us-button {
+  border-radius: 25px;
+  display: flex;
+  font-size: 14px;
+  height: 26px;
+  width: 82px;
+  background-color: transparent;
+  color: rgb(10, 10, 100);
+  padding-right: 5px;
+}
+
 @media (max-width: 768px) {
   .menu-ul-list {
     width: 100%;

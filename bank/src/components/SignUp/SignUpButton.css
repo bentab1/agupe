@@ -1,5 +1,5 @@
 .signup-button-div:hover {
-  background-color: rgba(252, 233, 67, 1);
+  background-color: rgb(250, 244, 244);
 }
 
 .signup-button-div {
@@ -12,14 +12,14 @@
 }
 
 .signup-button-navlink {
-  background-color: rgba(231, 37, 37, 1);
+  background-color: white;
   height: 50px;
   border-radius: 25px;
   width: 86px;
 }
 
 .signup-button-navlink:hover {
-  background-color: blueviolet;
+  background-color: aqua;
   transform: rotate(-360deg);
   transition: transform 0.3s ease;
 }
@@ -34,5 +34,5 @@
 
 .signup-button:hover {
   background-color: black;
-  color: rgba(252, 233, 67, 1);
+  color: aqua;
 }

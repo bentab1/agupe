@@ -1,35 +1,37 @@
-
-
-
-.login_personal{
-  background-color: rgba(246, 216, 216, 0.92);
-  width: 1360;
-  justify-content: center;
-  height: 400px;
-  margin: 1px;
-  
-}
-
-.register_joint{
-  width: 50%;
-  justify-content: center;
-  background-color:rgba(246, 216, 216, 0.92);
-  height: 400px;
-  margin: 1px;
-
-}
-
-.personal_headpage{
+.personal_headpage {
   display: grid;
-  overflow-x: hidden; 
+  overflow-x: hidden;
   max-height: calc(85vh);
   overflow-y: scroll;
   width: 1360px;
-  top: 110px;
+  top: 120px;
   z-index: 1;
   position: absolute;
+}
 
+.content-container {
+  height: 450px;
+}
 
-  
+.get-started-button {
+  border-radius: 25px;
+  background-color: black;
+  padding-left: 5px;
+  width: 108px;
+  color: aqua;
+}
 
+.get-started-button:hover {
+  background-color: aqua;
+  color: white;
+}
+.get-started-link {
+  background-color: aqua;
+  height: 20px;
+  border-radius: 25px;
+  width: 86px;
+}
+
+.get-started-link:hover {
+  background-color: black;
 }

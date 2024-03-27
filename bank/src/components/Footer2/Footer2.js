@@ -5,7 +5,7 @@ function Footer2() {
     <div style={{ backgroundColor: "white", height: "250px" }}>
       <div className="emphasis">
         <em style={{ fontSize: "13px" }}>
-          <span style={{ fontSize: "15px" }}>L</span> pay Digital Banking. All
+          <span style={{ fontSize: "15px" }}>L</span>Pay Digital Banking. All
           Right Reserved
         </em>
       </div>

@@ -2,40 +2,50 @@ import { React, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./LoginButton.css";
 
-const LoginButton = () => {
+const LoginButton = ({ activeButton, handleClick }) => {
   const [selected, setSelected] = useState(false);
 
   function handleSelected() {
     setSelected(true);
     setTimeout(() => {
       setSelected(false);
-    }, 2000);
+    }, 2500);
   }
 
   return (
     <div
-      className="login-button-div"
+      onMouseEnter={() => handleClick(10)}
+      onClick={() => handleClick(10)}
       style={{
-        backgroundColor: selected ? "white" : "",
-        transition: "background-color 0.3s ease",
+        backgroundColor: activeButton === 10 ? "transparent" : "transparent",
+        cursor: "pointer",
+        transition: "background-color 0.3s ease-in-out",
       }}
-      onClick={handleSelected}
     >
-      <NavLink
-        to="/account/login"
-        activeClassName="active  "
-        className={"login-button-navlink"}
+      <div
+        className="login-button-div"
+        style={{
+          backgroundColor: selected ? "white" : "",
+          transition: "background-color 0.3s ease",
+        }}
+        onClick={handleSelected}
       >
-        <button
-          className="login-button"
-          style={{
-            color: selected ? "white" : "",
-            transition: "background-color 0.3s ease",
-          }}
+        <NavLink
+          to="/account/login"
+          activeClassName="active  "
+          className={"login-button-navlink"}
         >
-          Login
-        </button>
-      </NavLink>
+          <button
+            className="login-button"
+            style={{
+              color: selected ? "white" : "",
+              transition: "background-color 0.3s ease",
+            }}
+          >
+            Login
+          </button>
+        </NavLink>
+      </div>
     </div>
   );
 };

@@ -3,7 +3,7 @@
 /* / */
 
 .continue-button-div:hover {
-  background-color: rgba(252, 233, 67, 1);
+  background-color: rgb(250, 244, 244);
 }
 
 .continue-button-div {
@@ -17,14 +17,14 @@
 }
 
 .continue-button-navlink {
-  background-color: rgba(231, 37, 37, 1);
+  background-color: white;
   height: 50px;
   border-radius: 25px;
   width: 130px;
 }
 
 .continue-button-navlink:hover {
-  background-color: blueviolet;
+  background-color: aqua;
   transform: rotate(360deg);
   transition: 0.3s ease;
 }
@@ -40,14 +40,14 @@
 
 .continue-button:hover {
   background-color: black;
-  color: rgba(252, 233, 67, 1);
+  color: aqua;
 }
 
 /*  */
 /*  */
 
 .get-our-app-button-div:hover {
-  background-color: rgba(252, 233, 67, 1);
+  background-color: rgb(250, 244, 244);
 }
 
 .get-our-app-button-div {
@@ -61,14 +61,14 @@
 }
 
 .get-our-app-button-navlink {
-  background-color: rgba(231, 37, 37, 1);
+  background-color: white;
   height: 50px;
   border-radius: 25px;
   width: 130px;
 }
 
 .get-our-app-button-navlink:hover {
-  background-color: blueviolet;
+  background-color: aqua;
   transform: rotate(-360deg);
   transition: 0.3s ease;
 }
@@ -84,5 +84,6 @@
 
 .get-our-app-button:hover {
   background-color: black;
-  color: rgba(252, 233, 67, 1);
+  color: aqua;
 }
+

@@ -6,17 +6,24 @@ function Welc() {
   const [transforming2, setTransforming2] = useState(false);
   const [showWelcome, setShowWelcome] = useState(false);
   const [clockwise, setClockwise] = useState(true);
+  const [selected, setSelected] = useState(false);
   const location = useLocation();
   useEffect(() => {
-    const hasWelcomeBeenShown = localStorage.getItem("hasWelcomeBeenShown");
-    if (!hasWelcomeBeenShown) {
+    const lastWelcomeShownTime = localStorage.getItem("lastWelcomeShownTime");
+    const currentTime = new Date().getTime();
+    const timeDifference = currentTime - parseInt(lastWelcomeShownTime);
+
+    if (!lastWelcomeShownTime || timeDifference >= 5 * 60 * 1000) {
       setShowWelcome(true);
-      localStorage.setItem("hasWelcomeBeenShown", "true");
+      localStorage.setItem("lastWelcomeShownTime", currentTime.toString());
     }
+
+    // Set a timer to hide the welcome message after 10 seconds
     const hideTimer = setTimeout(() => {
       setShowWelcome(false);
-    }, 10000); // Hide the screen after 10 seconds (10000 milliseconds)
+    }, 10000);
 
+    // Clean up the timer
     return () => {
       clearTimeout(hideTimer);
     };
@@ -31,7 +38,7 @@ function Welc() {
       // Set up a timer to show "Welcome" every 10 minutes
       const timerId = setInterval(() => {
         setShowWelcome(true);
-      }, 0.5 * 60 * 1000);
+      }, 60 * 60 * 1000);
 
       // Clean up the timer when the component unmounts
       return () => {
@@ -63,7 +70,7 @@ function Welc() {
         setClockwise(!clockwise);
         setTransforming(false);
         window.location.href = "/";
-      }, 3000); // 5000 milliseconds = 5 seconds
+      }, 5000); // 5000 milliseconds = 5 seconds
     };
 
     if (transforming) {
@@ -123,7 +130,6 @@ function Welc() {
 
   //
   //
-  const [selected, setSelected] = useState(false);
 
   function handleSelected() {
     setSelected(true);
@@ -210,7 +216,7 @@ function Welc() {
                       transition: "background-color 0.3s ease",
                     }}
                   >
-                    continue
+                    Continue
                   </button>
                 </NavLink>
               </div>
@@ -257,12 +263,12 @@ function Welc() {
           </em>
           <em
             style={{
-              marginLeft: "180px",
+              marginLeft: "130px",
               marginBottom: "20px",
-              fontSize: "10px",
+              fontSize: "11px",
             }}
           >
-            AguPay All Right Reserved
+            LPay Digital Banking All Right Reserved
           </em>
         </div>
       </div>
@@ -271,3 +277,18 @@ function Welc() {
 }
 
 export default Welc;
+
+// useEffect(() => {
+//   const hasWelcomeBeenShown = localStorage.getItem("hasWelcomeBeenShown");
+//   if (!hasWelcomeBeenShown) {
+//     setShowWelcome(true);
+//     localStorage.setItem("hasWelcomeBeenShown", "true");
+//   }
+//   const hideTimer = setTimeout(() => {
+//     setShowWelcome(false);
+//   }, 10000); // Hide the screen after 10 seconds (10000 milliseconds)
+
+//   return () => {
+//     clearTimeout(hideTimer);
+//   };
+// }, []);

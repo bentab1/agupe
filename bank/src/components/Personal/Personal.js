@@ -9,59 +9,47 @@ function Personal() {
       className="personal_headpage"
       style={{
         justifyContent: "space-evenly",
-        backgroundColor: "white",
+        backgroundColor: "rgb(250, 244, 244)",
       }}
     >
-     
+      <div className="content-container">
+        <div style={{ display: "grid" }}>
+          <h1
+            style={{
+              color: "rgb(10, 10, 100)",
+              marginTop: "70px",
+              marginLeft: "100px",
+            }}
+          >
+            CHANGE THE WAY YOU SPEND
+            <br />
+            YOU MONEY
+          </h1>
+        </div>
 
-      <div style={{ display: "flex" }}>
-        <h2
+        <p
           style={{
-            paddingLeft: "50px",
-            color: "rgb(10, 10, 100)",
-            marginTop: "70px",
-            marginLeft: "290px",
+            fontWeight: "initial",
+            color: "black",
+            marginLeft: "150px",
           }}
         >
-          Hey!, No need to carry your card around!
-        </h2>
-      </div>
-
-      <div style={{}}>
-        <p style={{ padding: "40px", fontWeight: "initial", height: "80px" }}>
-          Go with the best !! Our individual or joint account gives you
-          opportunity to make and receive seamless payment with our virtual and
-          physical contactless card you make alltime payment with just your
-          mobile phone. No need to carry your card around. Signup above? for
-          joint account click the button below to signUp.
+          For those who wants to make the best use of their money,
+          <br />
+          there's <strong style={{ color: "royalblue" }}> LPay</strong> digital
+          banking. Sign up for free.
         </p>
+
         <div style={{ marginLeft: "300px" }}>
-          <span>Joint Account</span>
           <NavLink
             to="/personal/signup"
             activeClassName="active"
-            style={{
-              backgroundColor: "rgba(231, 37, 37, 1)",
-              height: "50px",
-              borderRadius: "25px",
-              width: "86px",
-            }}
+            className={"get-started-link"}
           >
-            <button
-              style={{
-                width: "70px",
-                paddingLeft: "5px",
-                borderRadius: "25px",
-                backgroundColor: "black",
-              }}
-            >
-              SingUp
-            </button>
+            <button className="get-started-button">Get Started</button>
           </NavLink>
         </div>
       </div>
-
-      <div className="login_personal"></div>
       <Notification />
       <Footer />
     </div>
