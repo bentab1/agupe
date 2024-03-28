@@ -1,0 +1,31 @@
+.personal-hover-div {
+  background-color: transparent;
+  border-radius: 25px;
+  font-size: 14px;
+  height: 33px;
+  width: 105px;
+}
+
+.personal-hover-container {
+  display: none;
+  width: 100%;
+  height: 350px;
+  right: 0px;
+  position: absolute;
+  background-color: rgb(215, 247, 236);
+  z-index: 50;
+  min-width: 160px;
+}
+
+.personal-hover-div:hover .personal-hover-container {
+  display: block;
+}
+
+.personal-hover-button {
+  border-radius: 25px;
+  font-size: 14px;
+  height: 33px;
+  width: 97px;
+  background-color: transparent;
+  color: rgb(10, 10, 100);
+}

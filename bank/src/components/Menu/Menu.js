@@ -53,15 +53,6 @@ const Menu = ({ activeButton, handleClick }) => {
       {toggleMenu ? (
         <div className="menu-signup-login-container">
           <div className="menu-container">
-            <div
-              style={{ marginBottom: "50px", paddingBottom: "10px" }}
-              className="close_menu"
-              onClick={toggleMenuHandler}
-            >
-              <span style={{ cursor: "pointer", fontSize: "25px" }}>
-                &larr;
-              </span>
-            </div>
             <ul className="menu-ul-list">
               <li className="menu-tex">
                 <NavLink
@@ -76,7 +67,7 @@ const Menu = ({ activeButton, handleClick }) => {
                       backgroundColor:
                         activeButton === 13
                           ? "rgb(215, 247, 236)"
-                          : "rgb(250, 244, 244)",
+                          : "transparent",
                       color: activeButton === 13 ? "black" : "rgb(10, 10, 100)",
                       cursor: "pointer",
                       transition: "background-color 0.3s ease-in-out",
@@ -100,7 +91,7 @@ const Menu = ({ activeButton, handleClick }) => {
                       backgroundColor:
                         activeButton === 14
                           ? "rgb(215, 247, 236)"
-                          : "rgb(250, 244, 244)",
+                          : "transparent",
                       color: activeButton === 14 ? "black" : "rgb(10, 10, 100)",
                       cursor: "pointer",
                       transition: "background-color 0.3s ease-in-out",
@@ -124,7 +115,7 @@ const Menu = ({ activeButton, handleClick }) => {
                       backgroundColor:
                         activeButton === 15
                           ? "rgb(215, 247, 236)"
-                          : "rgb(250, 244, 244)",
+                          : "transparent",
                       color: activeButton === 15 ? "black" : "rgb(10, 10, 100)",
                       cursor: "pointer",
                       transition: "background-color 0.3s ease-in-out",
@@ -148,7 +139,7 @@ const Menu = ({ activeButton, handleClick }) => {
                       backgroundColor:
                         activeButton === 16
                           ? "rgb(215, 247, 236)"
-                          : "rgb(250, 244, 244)",
+                          : "transparent",
                       color: activeButton === 16 ? "black" : "rgb(10, 10, 100)",
                       cursor: "pointer",
                       transition: "background-color 0.3s ease-in-out",
@@ -174,7 +165,7 @@ const Menu = ({ activeButton, handleClick }) => {
                       backgroundColor:
                         activeButton === 17
                           ? "rgb(215, 247, 236)"
-                          : "rgb(250, 244, 244)",
+                          : "transparent",
                       color: activeButton === 17 ? "black" : "rgb(10, 10, 100)",
                       cursor: "pointer",
                       transition: "background-color 0.3s ease-in-out",
@@ -198,7 +189,7 @@ const Menu = ({ activeButton, handleClick }) => {
                       backgroundColor:
                         activeButton === 18
                           ? "rgb(215, 247, 236)"
-                          : "rgb(250, 244, 244)",
+                          : "transparent",
                       color: activeButton === 18 ? "black" : "rgb(10, 10, 100)",
                       cursor: "pointer",
                       transition: "background-color 0.3s ease-in-out",
@@ -213,10 +204,10 @@ const Menu = ({ activeButton, handleClick }) => {
           </div>
           <div className="menu-login-signup">
             <span className="span-login">
-              <MobileLoginButton onClick={toggleMenuHandler} />
+              <MobileLoginButton toggleMenuHandler={toggleMenuHandler} />
             </span>
             <span className="span-signup">
-              <MobileSignUpButton onClick={toggleMenuHandler} />
+              <MobileSignUpButton toggleMenuHandler={toggleMenuHandler} />
             </span>
           </div>
         </div>

@@ -4,7 +4,7 @@
   max-height: calc(85vh);
   overflow-y: scroll;
   width: 1360px;
-  top: 120px;
+  top: 115px;
   z-index: 1;
   position: absolute;
 }
@@ -21,14 +21,20 @@
 
 .change-country {
   background-color: black;
+  border-radius: 25px;
+  color: white;
 }
 
 .change-country:hover {
-  background-color: purple;
+  background-color: aqua;
+  color: black;
 }
 
 .exit {
   background-color: black;
+  color: white;
+  border-radius: 25px;
+  width: 100px;
 }
 
 .exit:hover {

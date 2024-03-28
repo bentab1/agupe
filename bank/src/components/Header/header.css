@@ -167,7 +167,7 @@
 
 @media (max-width: 768px) {
   .header {
-    display: flex;
+    display: none;
     width: 100%;
   }
 
@@ -182,7 +182,7 @@
 
 @media (max-width: 500px) {
   .header {
-    display: flex;
+    display: none;
     width: 100%;
   }
 

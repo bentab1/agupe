@@ -1,5 +1,5 @@
 .mobile-signup-button-div:hover {
-  background-color: rgba(252, 233, 67, 1);
+  background-color: rgb(250, 244, 244);
 }
 
 .mobile-signup-button-div {
@@ -12,14 +12,14 @@
 }
 
 .mobile-signup-button-navlink {
-  background-color: rgba(231, 37, 37, 1);
+  background-color: white;
   height: 40px;
   border-radius: 25px;
   width: 86px;
 }
 
 .mobile-signup-button-navlink:hover {
-  background-color: blueviolet;
+  background-color: aqua;
   transform: rotate(-360deg);
   transition: 0.3s ease;
 }
@@ -34,5 +34,5 @@
 
 .mobile-signup-button:hover {
   background-color: black;
-  color: rgba(252, 233, 67, 1);
+  color: aqua;
 }

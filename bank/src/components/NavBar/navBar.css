@@ -27,6 +27,7 @@
   height: 55px;
   margin-right: 30px;
   border-radius: 25px;
+  margin-bottom: 10px;
 }
 
 .word1 {
@@ -44,6 +45,7 @@
 }
 
 .ul-list {
+  margin-top: 10px;
   width: 850px;
   padding: 1rem;
   display: flex;
@@ -64,55 +66,6 @@
   color: rgb(10, 10, 100);
 }
 
-.business-button {
-  border-radius: 25px;
-  display: flex;
-  font-size: 14px;
-  height: 33px;
-  width: 95px;
-  background-color: transparent;
-  color: rgb(10, 10, 100);
-}
-
-.personal-button {
-  border-radius: 25px;
-  display: flex;
-  font-size: 14px;
-  height: 33px;
-  width: 97px;
-  background-color: transparent;
-  color: rgb(10, 10, 100);
-}
-
-.pay-now-button {
-  border-radius: 25px;
-  display: flex;
-  font-size: 14px;
-  height: 33px;
-  width: 100px;
-  background-color: transparent;
-  color: rgb(10, 10, 100);
-}
-
-.contact-us-button {
-  border-radius: 25px;
-  display: flex;
-  font-size: 14px;
-  height: 33px;
-  width: 110px;
-  background-color: transparent;
-  color: rgb(10, 10, 100);
-}
-
-.banking-button {
-  border-radius: 25px;
-  display: flex;
-  font-size: 14px;
-  height: 33px;
-  width: 90px;
-  background-color: transparent;
-  color: rgb(10, 10, 100);
-}
 @media (max-width: 1300px) {
   .navbar {
     display: flex;
@@ -224,7 +177,7 @@
   .navbar {
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    height: 110px;
   }
 
   .nav-login {
@@ -236,10 +189,164 @@
   .menu {
     display: block;
     margin-right: 300px;
+    margin-top: 18px;
   }
 
-  .logo-png {
+  .mylogo-container {
+    margin-right: 515px;
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 730px) {
+  .navbar {
+    width: 100%;
+    display: flex;
+    height: 110px;
+  }
+
+  .menu {
+    display: block;
+    margin-right: 320px;
+    margin-top: 18px;
+  }
+
+  .mylogo-container {
     margin-right: 480px;
+    margin-top: 30px;
+    margin-left: 10px;
+  }
+}
+
+@media (max-width: 690px) {
+  .navbar {
+    width: 100%;
+    display: flex;
+    height: 110px;
+  }
+
+  .menu {
+    display: block;
+    margin-right: 360px;
+    margin-top: 18px;
+  }
+
+  .mylogo-container {
+    margin-right: 450px;
+    margin-top: 30px;
+    margin-left: 10px;
+  }
+}
+
+@media (max-width: 650px) {
+  .navbar {
+    width: 100%;
+    display: flex;
+    height: 110px;
+  }
+
+  .menu {
+    display: block;
+    margin-right: 380px;
+    margin-top: 18px;
+  }
+
+  .mylogo-container {
+    margin-right: 390px;
+    margin-top: 30px;
+    margin-left: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    width: 100%;
+    display: flex;
+    height: 110px;
+  }
+
+  .menu {
+    display: block;
+    margin-right: 410px;
+    margin-top: 18px;
+  }
+
+  .mylogo-container {
+    margin-right: 390px;
+    margin-top: 30px;
+    margin-left: 10px;
+  }
+}
+
+@media (max-width: 570px) {
+  .navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .nav-login {
+    display: none;
+  }
+  .nav-link {
+    display: none;
+  }
+  .menu {
+    display: block;
+    margin-right: 400px;
+  }
+
+  .mylogo-container {
+    margin-right: 320px;
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 550px) {
+  .navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .nav-login {
+    display: none;
+  }
+  .nav-link {
+    display: none;
+  }
+  .menu {
+    display: block;
+    margin-right: 420px;
+  }
+
+  .mylogo-container {
+    margin-right: 320px;
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 530px) {
+  .navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .nav-login {
+    display: none;
+  }
+  .nav-link {
+    display: none;
+  }
+  .menu {
+    display: block;
+    margin-right: 430px;
+  }
+
+  .mylogo-container {
+    margin-right: 320px;
+    margin-top: 30px;
   }
 }
 
@@ -258,10 +365,11 @@
   }
   .menu {
     display: block;
-    margin-right: 440px;
+    margin-right: 430px;
   }
 
-  .logo-png {
-    margin-right: 290px;
+  .mylogo-container {
+    margin-right: 270px;
+    margin-top: 30px;
   }
 }

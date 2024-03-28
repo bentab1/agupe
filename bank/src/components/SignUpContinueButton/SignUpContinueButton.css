@@ -28,5 +28,6 @@
 }
 
 .button-continue:hover {
-  background-color: blueviolet;
+  background-color: aqua;
+  color: black;
 }

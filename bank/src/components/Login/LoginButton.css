@@ -5,7 +5,7 @@
 .login-button-div {
   background-color: aqua;
   display: flex;
-  height: 65px;
+  height: 55px;
   padding-left: 10px;
   padding-right: 4px;
   border-radius: 28px;
@@ -13,7 +13,7 @@
 
 .login-button-navlink {
   background-color: white;
-  height: 50px;
+  height: 45px;
   border-radius: 25px;
   width: 86px;
 }

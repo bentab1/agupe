@@ -4,7 +4,7 @@
   max-height: calc(85vh);
   overflow-y: scroll;
   width: 1360px;
-  top: 120px;
+  top: 110px;
   z-index: 1;
   position: absolute;
 }

@@ -102,7 +102,13 @@
   padding-right: 5px;
 }
 
+@media (max-width: 850px) {
+}
+
 @media (max-width: 768px) {
+  .menu-signup-login-container {
+    top: 110px;
+  }
   .menu-ul-list {
     width: 100%;
     display: flex;
@@ -129,15 +135,76 @@
     margin-left: 20px;
     margin-top: 13px;
   }
+
+  .menu-home-button {
+    border-radius: 25px;
+    font-size: 14px;
+    height: 26px;
+    width: 55px;
+    text-decoration: underline;
+    background-color: transparent;
+    color: rgb(10, 10, 100);
+  }
+
+  .menu-personal-button {
+    border-radius: 25px;
+    font-size: 14px;
+    height: 26px;
+    width: 68px;
+    text-decoration: underline;
+    background-color: transparent;
+    color: rgb(10, 10, 100);
+  }
+
+  .menu-business-button {
+    border-radius: 25px;
+    font-size: 14px;
+    height: 26px;
+    width: 70px;
+    text-decoration: underline;
+    background-color: transparent;
+    color: rgb(10, 10, 100);
+  }
+
+  .menu-pay-now-button {
+    border-radius: 25px;
+    font-size: 14px;
+    height: 26px;
+    width: 74px;
+    text-decoration: underline;
+    background-color: transparent;
+    color: rgb(10, 10, 100);
+  }
+
+  .menu-banking-button {
+    border-radius: 25px;
+    font-size: 14px;
+    height: 26px;
+    width: 68px;
+    text-decoration: underline;
+    background-color: transparent;
+    color: rgb(10, 10, 100);
+  }
+
+  .menu-contact-us-button {
+    border-radius: 25px;
+    font-size: 14px;
+    height: 26px;
+    width: 82px;
+    text-decoration: underline;
+    background-color: transparent;
+    color: rgb(10, 10, 100);
+  }
 }
 
 @media (max-width: 500px) {
+  .menu-container {
+    width: 100%;
+  }
   .menu-ul-list {
     width: 100%;
     display: flex;
-    justify-content: space-evenly;
     margin-right: 880px;
-    margin-top: 15px;
   }
 
   .menu-tex {
@@ -152,5 +219,65 @@
   .span-signup {
     margin-left: 10px;
     margin-top: 13px;
+  }
+
+  .menu-home-button {
+    border-radius: 25px;
+    font-size: 12px;
+    height: 26px;
+    width: 45px;
+    text-decoration: underline;
+    background-color: transparent;
+    color: rgb(10, 10, 100);
+  }
+
+  .menu-personal-button {
+    border-radius: 25px;
+    font-size: 12px;
+    height: 26px;
+    width: 60px;
+    text-decoration: underline;
+    background-color: transparent;
+    color: rgb(10, 10, 100);
+  }
+
+  .menu-business-button {
+    border-radius: 25px;
+    font-size: 12px;
+    height: 26px;
+    width: 68px;
+    text-decoration: underline;
+    background-color: transparent;
+    color: rgb(10, 10, 100);
+  }
+
+  .menu-banking-button {
+    border-radius: 25px;
+    font-size: 12px;
+    height: 26px;
+    width: 60px;
+    text-decoration: underline;
+    background-color: transparent;
+    color: rgb(10, 10, 100);
+  }
+
+  .menu-pay-now-button {
+    border-radius: 25px;
+    font-size: 12px;
+    height: 26px;
+    width: 60px;
+    text-decoration: underline;
+    background-color: transparent;
+    color: rgb(10, 10, 100);
+  }
+
+  .menu-contact-us-button {
+    border-radius: 25px;
+    font-size: 12px;
+    height: 26px;
+    width: 70px;
+    text-decoration: underline;
+    background-color: transparent;
+    color: rgb(10, 10, 100);
   }
 }

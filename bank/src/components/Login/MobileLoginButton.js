@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./MobileLoginButton.css";
-function MobileLoginButton() {
+function MobileLoginButton({ toggleMenuHandler }) {
   const [selected, setSelected] = useState(false);
 
   function handleSelected() {
@@ -14,7 +14,7 @@ function MobileLoginButton() {
     <div
       className="mobile-login-button-div"
       style={{
-        backgroundColor: selected ? "#f5f8" : "",
+        backgroundColor: selected ? "white" : "",
         transition: "background-color 0.3s ease",
       }}
       onClick={handleSelected}
@@ -25,9 +25,10 @@ function MobileLoginButton() {
         className={"mobile-login-button-navlink"}
       >
         <button
+          onClick={toggleMenuHandler}
           className="mobile-login-button"
           style={{
-            color: selected ? "#f5f8" : "",
+            color: selected ? "white" : "",
             transition: "background-color 0.3s ease",
           }}
         >
