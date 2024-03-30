@@ -5,36 +5,42 @@ import Notification from "../Notification/Notification";
 import "./agupePay.css";
 function AgupePay() {
   return (
-    <div style={{ backgroundColor: "white" }} className="agupepay_headpage">
-     
-
+    <div
+      style={{ backgroundColor: "rgb(250, 244, 244)" }}
+      className="agupepay_headpage"
+    >
       <div style={{ display: "" }}>
-        <h2
+        <h1
           style={{
             paddingLeft: "50px",
-            color: "rgb(10, 10, 100)",
+            color: "purple",
             marginTop: "70px",
             marginLeft: "134px",
           }}
         >
-          Welcome to AgupePay
-        </h2>
+          LPay WALLET OFFERS THE BEST CONTACTLESS <br />
+          PAYMENT SOLUTION
+        </h1>
       </div>
 
-      <div style={{ display: "flex" }}>
-        <p style={{ marginTop: "20px", padding: "40px" }}>
-          Create AgupePay account to start making and receiving seamless payment
-          as a merchant or private Business owner across the globe with our
-          Agupepay. Our virtual and physical point of sale (POS) makes your
-          business easy. Do not miss any Business because of payment means.
-          signup below for freedom of Business transaction.
-        </p>
-      </div>
+      <p
+        style={{
+          marginTop: "40px",
+          marginLeft: "250px",
+          paddingBottom: "100px",
+          color: "black",
+          fontFamily: "Roboto",
+        }}
+      >
+        Worry no more about exposing your physical or virtual cards for
+        payments. <br />
+        With <strong>LPay</strong> wallet you are covered!! <br />
+        Just signup, add your card and start making card payments without worry
+        of exposing your card information.
+        <br />
+        <strong>LPay</strong> wallet hides your card information during payment.
+      </p>
 
-      <div
-        style={{ display: "grid", margin: "5px" }}
-        className="personal"
-      ></div>
       <Notification />
       <Footer />
     </div>

@@ -20,31 +20,28 @@ function PayNowHoverMenu({ handleClick, activeButton }) {
       </button>
       <div className="pay-now-hover-container">
         <div style={{ display: "grid" }}>
-          <h1
+          <h2
             style={{
               color: "rgb(10, 10, 100)",
               marginTop: "70px",
               marginLeft: "100px",
             }}
           >
-            CHANGE THE WAY YOU SPEND
-            <br />
-            YOU MONEY
-          </h1>
+            LPay WALLET, YOUR CARD PAYMENT SOLUTION
+          </h2>
         </div>
 
-        <p
-          style={{
-            fontWeight: "initial",
-            color: "black",
-            marginLeft: "150px",
-          }}
-        >
-          For those who wants to make the best use of their money,
-          <br />
-          there's <strong style={{ color: "royalblue" }}> LPay</strong> digital
-          banking. Sign up for free.
-        </p>
+        <ul className="lpay-ul">
+          <li>How to open LPay Wallet account</li>
+          <li>How to add card to LPay Wallet</li>
+          <li>How to make payment with LPay Wallet</li>
+          <li>I want to Join LPay Payday</li>
+          {/* <li>How to get LPay Gift Card</li>
+          Lpay will be used by anybody that want to make a transaction , who intended to 
+          use contactless payment but the marchant does not have the means. our customer can generate 
+          a gift card which th
+           */}
+        </ul>
       </div>
     </div>
   );
