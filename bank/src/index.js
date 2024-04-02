@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 // import App from "./App";
 import "./index.css";
-import TransferToOwnAccount from "./components/TransferToOwnAccount";
+import TransferToOwnAccount from "./components/Transfer/TransferToOwnAccount/TransferToOwnAccount";
 
 // import TransferAnotherBank from "./components/TransferAnotherBank";
 // import Transfer from "./components/Transfer";

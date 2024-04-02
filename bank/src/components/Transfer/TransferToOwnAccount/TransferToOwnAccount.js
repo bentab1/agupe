@@ -2,6 +2,7 @@ import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import React, { useState } from "react";
 import Select from "react-select";
+import "./TransferToOwnAccount.css";
 
 const sourceAccounts = [
   { accountType: "Savings", accountNumber: "2222222222", balance: 1135 },
@@ -120,11 +121,15 @@ function TransferToOwnAccount() {
     setShowAccountForm(true);
     setShowSuccessPopup(false);
   };
-
+  function handleGoBackOfSuccessForm() {
+    setShowAccountForm(true);
+    setShowSuccessPopup(false);
+  }
   return (
     <div>
       {showAccountForm && (
-        <div className="other-select-account-container">
+        <div className="own-source-account-container">
+          <button className="own-source-close-button">&larr;</button>
           <form onSubmit={handleSourceAccountSubmit}>
             <Select
               value={
@@ -173,7 +178,10 @@ function TransferToOwnAccount() {
       )}
 
       {showDestinationAccountForm && (
-        <div className="other-select-account-container">
+        <div className="own-destination-account-container">
+          <button className="own-destination-account-close-button">
+            &larr;
+          </button>
           <form onSubmit={handleSourceAccountSubmit}>
             <Select
               value={
@@ -223,11 +231,12 @@ function TransferToOwnAccount() {
       )}
 
       {showPaymentForm && (
-        <div>
+        <div className="own-show-payment-container">
+          <button className="own-show-payment-close-button">&larr;</button>
           <p>
             {" "}
             From {selectedSourceAccount} Account <br /> Available Balance{" "}
-            {accountBalance}
+            {CURRENCY_SYMBOL} {parseFloat(accountBalance).toLocaleString("en")}
           </p>
 
           <form onSubmit={handlePaymentFormSubmit}>
@@ -271,82 +280,88 @@ function TransferToOwnAccount() {
         </div>
       )}
       {showConfirmation && (
-        <div className="other-select-conformPayment-container">
-          <p>
+        <div className="other-sow-confirmation-container">
+          <button className="own-show-confirmation-close-button">&larr;</button>
+          <div>
             You are about to send money ({CURRENCY_SYMBOL}
             {parseFloat(paymentData.amount).toLocaleString("en")}) from Your
             <br />
             <p>
               Account Type {selectedSourceAccount} <br />
-              Available Balance{" "}
+              Available Balance {CURRENCY_SYMBOL}
               {parseFloat(accountBalance).toLocaleString("en")}
             </p>
             <p>To</p>
             <p>
               Account Type {selectedDestinationAccount} <br />
-              Current Balance {parseFloat(accountBalance1).toLocaleString("en")}
+              Current Balance {CURRENCY_SYMBOL}
+              {parseFloat(accountBalance1).toLocaleString("en")}
               <br />
               Account Number {accountNumber}
-            </p>{" "}
-            :
-          </p>
+            </p>
+          </div>
 
           <p>
             {" "}
             {CURRENCY_SYMBOL}
             {parseFloat(paymentPlusCharges).toLocaleString("en")}
           </p>
+          <div className="own-payment-details">
+            <p>Account Number: {accountNumber}</p>
+            <p>Account Type: {selectedDestinationAccount}</p>
+            <p>
+              Amount: {CURRENCY_SYMBOL}
+              {parseFloat(paymentData.amount).toLocaleString("en")}
+            </p>
+            <p>
+              Fee: {CURRENCY_SYMBOL}
+              {parseFloat(0.14 * paymentData.amount).toLocaleString("en")}{" "}
+            </p>
+            <p>Description: {paymentData.description}</p>
 
-          <p>Account Number: {accountNumber}</p>
-          <p>Account Type: {selectedDestinationAccount}</p>
-          <p>
-            Amount: {CURRENCY_SYMBOL}
-            {parseFloat(paymentData.amount).toLocaleString("en")}
-          </p>
-          <p>
-            Fee: {CURRENCY_SYMBOL}
-            {parseFloat(0.14 * paymentData.amount).toLocaleString("en")}{" "}
-          </p>
-          <p>Description: {paymentData.description}</p>
-
-          <p>
-            Paying from:{" "}
-            {
-              sourceAccounts.find(
-                (source) => source.accountType === selectedSourceAccount
-              )?.accountType
-            }
-            {"  "}Account
-          </p>
-          <div style={{ display: "flex" }}>
-            <p>Available Balance</p>
-            <p style={{ marginLeft: "30px" }}>
-              {CURRENCY_SYMBOL}{" "}
-              {parseFloat(
+            <p>
+              Paying from:{" "}
+              {
                 sourceAccounts.find(
                   (source) => source.accountType === selectedSourceAccount
-                )?.balance
-              ).toLocaleString("en")}
+                )?.accountType
+              }
+              {"  "}Account
             </p>
+            <div style={{ display: "flex" }}>
+              <p>Available Balance</p>
+              <p style={{ marginLeft: "30px" }}>
+                {CURRENCY_SYMBOL}{" "}
+                {parseFloat(
+                  sourceAccounts.find(
+                    (source) => source.accountType === selectedSourceAccount
+                  )?.balance
+                ).toLocaleString("en")}
+              </p>
+            </div>
           </div>
 
           <button onClick={handleConfirmation}>Continue</button>
         </div>
       )}
       {showPinForm && (
-        <form onSubmit={handlePinSubmit}>
-          <label htmlFor="pin">Enter PIN:</label>
-          <input
-            type="password"
-            id="pin"
-            name="pin"
-            value={pin}
-            onChange={(e) => setPin(e.target.value)}
-            required
-          />
-          <br />
-          <button type="submit">Submit</button>
-        </form>
+        <div className="own-show-pin-container">
+          <button className="own-show-pin-close-button">&larr;</button>
+
+          <form onSubmit={handlePinSubmit}>
+            <label htmlFor="pin">Enter PIN:</label>
+            <input
+              type="password"
+              id="pin"
+              name="pin"
+              value={pin}
+              onChange={(e) => setPin(e.target.value)}
+              required
+            />
+            <br />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
       )}
       {error && (
         <div>
@@ -357,18 +372,68 @@ function TransferToOwnAccount() {
         </div>
       )}
       {showSuccessPopup && (
-        <div className="popup">
-          <h2>Payment Successful!</h2>
-          <button onClick={handleViewReceipt}>View Transaction Receipt</button>
-          <button onClick={handleMakeAnotherPayment}>
-            Make Another Payment
-          </button>
-          <button onClick={handleSaveAsBeneficiary}>Save as Beneficiary</button>
-          <button onClick={handleDone}>Done</button>
+        <div className="own-show-success-container">
+          <div className="show-success-sub-container">
+            <button
+              className="own-show-success-close-button"
+              onClick={handleGoBackOfSuccessForm}
+            >
+              &larr;
+            </button>
+            <div className="own-beneficiary-done-container">
+              <button
+                onClick={handleSaveAsBeneficiary}
+                className="own-save-beneficiary-button"
+              >
+                Save as Beneficiary
+              </button>
+              <button onClick={handleDone} className="own-done-button">
+                Done
+              </button>
+            </div>
+            <div className="own-appreciation-container">
+              <h3 className="own-payment-successful">Payment Successful!</h3>
+              <em className="own-customer-appreciation">
+                Thank you for banking with us
+              </em>
+            </div>
+            <div className="own-show-success-third-container">
+              <div className="own-show-success-fourth-container">
+                <button
+                  onClick={handleViewReceipt}
+                  className="own-view-transaction-receipt"
+                >
+                  View Transaction Receipt
+                </button>
+                <button
+                  onClick={handleMakeAnotherPayment}
+                  className="own-make-another-payment"
+                >
+                  Make Another Payment
+                </button>
+                <button className="own-schedule-payment">
+                  Schedule payment
+                </button>
+              </div>
+              <div className="own-show-success-fifth-container">
+                <button className="own-report-this-payment">
+                  Report this payment
+                </button>
+                <button className="own-tell-us-your-experience">
+                  Tell us your experience
+                </button>
+                <button className="own-rate-our-service">
+                  Rate our services
+                </button>
+              </div>
+            </div>
+            <button className="own-refer-friend">
+              Invite 5 friends to earn ₦2000
+            </button>
+          </div>
         </div>
       )}
     </div>
   );
 }
-
 export default TransferToOwnAccount;

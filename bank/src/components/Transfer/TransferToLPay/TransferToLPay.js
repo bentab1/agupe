@@ -2,18 +2,7 @@ import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import React, { useState } from "react";
 import Select from "react-select";
-import "./TransferAnotherBank.css";
-
-const bankOptions = [
-  {
-    value: "FirstBank",
-    label: "First Bank",
-    api: "/FirstBank-payment",
-    image: "/FirbankLogo.png",
-  },
-  { value: "ZenithBank", label: "Zenith Bank", api: "/ZenithBank-payment" },
-  // Add other banks with their respective APIs
-];
+import "./TransferToLPay.css";
 
 const sourceAccounts = [
   { accountType: "Savings", accountNumber: "2222222222", balance: 1135 },
@@ -21,84 +10,45 @@ const sourceAccounts = [
   { accountType: "Master POS", accountNumber: "4444444444", balance: 70000 },
   { accountType: "Sub POS_01", accountNumber: "4444444444", balance: 90000 },
 ];
-// Currency symbol
 
-const TransferAnotherBank = () => {
+function TransferToLPay() {
   const [selectedSourceAccount, setSelectedSourceAccount] = useState("");
   const [accountBalance, setAccountBalance] = useState(null);
-  const [selectedBank, setSelectedBank] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
   const [accountName, setAccountName] = useState("");
   const [paymentData, setPaymentData] = useState({});
   const [showAccountForm, setShowAccountForm] = useState(true);
-  const [showBankSelection, setShowBankSelection] = useState(false);
-  const [showAccountNumberSearch, setShowAccountNumberSearch] = useState(false);
+  const [showAccountFormSubmit, setShowAccountFormSubmit] = useState(false);
   const [showPaymentForm, setShowPaymentForm] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [showPinForm, setShowPinForm] = useState(false);
-  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
-  const [paymentPlusCharges, setPaymenPlusCharges] = useState("");
-  const [error, setError] = useState("");
   const [pin, setPin] = useState("");
-
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+  const [paymentPlusCharges, setPaymenPlusCharges] = useState(0);
+  const [error, setError] = useState("");
   const CURRENCY_SYMBOL = "₦";
 
-  // MockAdapter instance
+  // Create a new MockAdapter instance
   const mock = new MockAdapter(axios);
 
-  // Mock GET request to fetch account number based on bank selection
-  mock.onGet("/bank-payment").reply((config) => {
-    const bank = config.params.bank;
-    switch (bank) {
-      case "FirstBank":
-        return [200, { accountNumber: "1234567890" }];
-      case "ZenithBank":
-        return [200, { accountNumber: "0987654321" }];
-      // Add more cases for other banks
-      default:
-        return [404, { error: "Bank not found" }];
+  // Mock GET request to fetch account name
+  mock.onGet("/get-account-name").reply((config) => {
+    // Simulate fetching account name from the server based on account number
+    const accountNumberParam = new URLSearchParams(config.params).get(
+      "accountNumber"
+    );
+    if (accountNumberParam === "1234567890") {
+      return [200, { name: "John Doe" }];
+    } else {
+      return [404, { error: "Account not found" }];
     }
   });
 
-  // Mock GET request to fetch account name based on account number
-  mock.onGet("/get-account-name").reply((config) => {
-    const accountNumber = config.params.accountNumber;
-    let name;
-    if (selectedBank === "FirstBank") {
-      name = accountNumber === "1234567890" ? "John Doe" : "Jane Doe"; // Mock account name for First Bank
-    } else if (selectedBank === "ZenithBank") {
-      name =
-        accountNumber === "0987654321" ? "Benjamin Joseph" : "Benjamin Joseph"; // Mock account name for Zenith Bank
-    } else {
-      name = "Unknown"; // Default mock account name
-    }
-    return [200, { name }];
-  });
   // Mock POST request to submit payment
   mock.onPost("/submit-payment").reply(200);
 
   // Mock POST request to submit PIN
   mock.onPost("/submit-pin").reply(200);
-
-  const handleSourceAccountSubmit = (e) => {
-    e.preventDefault();
-    // Hide the source account selection form
-    setShowBankSelection(true); // Show the bank selection form
-  };
-
-  const handleBankFormSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      // Simulate fetching account number from the server
-      const response = await axios.get("/bank-payment", {
-        params: { bank: selectedBank },
-      });
-      setAccountNumber(response.data.accountNumber);
-      setShowBankSelection(false);
-    } catch (error) {
-      console.error("Error fetching account number:", error);
-    }
-  };
 
   const handleAccountFormSubmit = async (e) => {
     e.preventDefault();
@@ -108,34 +58,34 @@ const TransferAnotherBank = () => {
         params: { accountNumber },
       });
       setAccountName(response.data.name);
-      setShowAccountNumberSearch(false);
-      setShowBankSelection(false);
+
+      setShowAccountFormSubmit(false);
       setShowPaymentForm(true);
     } catch (error) {
       console.error("Error fetching account name:", error);
     }
   };
 
+  const handleSourceAccountSubmit = (e) => {
+    e.preventDefault();
+    setShowAccountForm(false);
+    // Hide the source account selection form
+  };
+
   const handlePaymentFormSubmit = async (e) => {
     e.preventDefault();
+    setPaymenPlusCharges(
+      parseFloat(paymentData.amount) +
+        parseFloat((0.14 * paymentData.amount).toFixed(2))
+    );
+    setShowAccountFormSubmit(false);
+    setShowPaymentForm(false);
     try {
-      // Check if the account balance is sufficient
+      // Simulate submitting payment data to the server
+      await axios.post("/submit-payment", { ...paymentData, accountName });
 
-      await axios.post("/submit-payment", {
-        ...paymentData,
-        accountName,
-        accountNumber,
-        paymentPlusCharges,
-      });
-      setShowPaymentForm(false);
-      setShowAccountForm(false);
-      setPaymenPlusCharges(
-        parseFloat(paymentData.amount) +
-          parseFloat((0.14 * paymentData.amount).toFixed(2))
-      );
       setShowConfirmation(true);
     } catch (error) {
-      // Simulate submitting payment data to the server
       console.error("Error submitting payment data:", error);
     }
   };
@@ -147,7 +97,6 @@ const TransferAnotherBank = () => {
 
   const handlePinSubmit = async (e) => {
     e.preventDefault();
-
     try {
       if (parseFloat(accountBalance) < parseFloat(paymentPlusCharges)) {
         // If balance is insufficient, set an error message
@@ -166,37 +115,39 @@ const TransferAnotherBank = () => {
   };
 
   const handleViewReceipt = () => {
+    // Handle viewing receipt
     alert("Viewing transaction receipt...");
   };
 
   const handleMakeAnotherPayment = () => {
-    setSelectedBank("");
+    // Reset state for another payment
     setAccountNumber("");
     setAccountName("");
     setPaymentData({});
     setShowAccountForm(true);
-    setShowPaymentForm(false);
     setShowSuccessPopup(false);
   };
 
   const handleSaveAsBeneficiary = () => {
+    // Handle saving as beneficiary
     alert("Saving as beneficiary...");
   };
 
   const handleDone = () => {
-    setSelectedBank("");
+    // Reset state and exit
     setAccountNumber("");
     setAccountName("");
     setPaymentData({});
     setShowAccountForm(true);
-    setShowPaymentForm(false);
     setShowSuccessPopup(false);
   };
+
   return (
     <div>
       {showAccountForm && (
-        <div className="other-select-account-container">
-          <form onSubmit={handleSourceAccountSubmit}>
+        <div className="source-account-container">
+          <button className="source-account-close-button">&larr;</button>
+          <form onSubmit={{ handleSourceAccountSubmit }}>
             <Select
               value={
                 selectedSourceAccount
@@ -214,9 +165,10 @@ const TransferAnotherBank = () => {
                   : null
               }
               onChange={(selected) => {
+                setShowAccountForm(false);
                 setSelectedSourceAccount(selected.accountType);
                 setAccountBalance(selected.balance);
-                setShowBankSelection(true);
+                setShowAccountFormSubmit(true);
               }}
               options={sourceAccounts}
               isSearchable
@@ -241,88 +193,45 @@ const TransferAnotherBank = () => {
           </form>
         </div>
       )}
-      {showBankSelection && (
-        <div className="other-select-bank-container">
-          <button className="other-select-bank-close">x</button>
-          <form onSubmit={handleBankFormSubmit}>
-            {selectedBank && (
-              <div>
-                <img
-                  src={
-                    bankOptions.find((bank) => bank.value === selectedBank)
-                      ?.image
-                  }
-                  alt="Bank Logo"
-                  className="bank-logo"
-                />
-                <div style={{ display: "grid" }}>
-                  <p>{selectedSourceAccount} Account</p>
-                  <div style={{ display: "flex" }}>
-                    <p>Available Balance</p>
-                    <p style={{ marginLeft: "30px" }}>
-                      {CURRENCY_SYMBOL}
-                      {parseFloat(accountBalance).toLocaleString("en")}
-                      {}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            )}
-            <Select
-              value={
-                selectedBank
-                  ? {
-                      value: selectedBank,
-                      label: selectedBank,
-                      image: selectedBank,
-                    }
-                  : null
-              }
-              onChange={(selected) => {
-                setSelectedBank(selected.value);
-                setShowAccountNumberSearch(true);
-                setShowAccountForm(false); // Show account number search form immediately when bank is selected
+      {showAccountFormSubmit && (
+        <div className="show-confirmation-container">
+          <button className="show-confirmation-close-button">&larr;</button>
+          <form onSubmit={handleAccountFormSubmit}>
+            <p>
+              {" "}
+              {selectedSourceAccount} <br />
+              Available Balance {accountBalance}
+            </p>
+
+            <label htmlFor="accountNumber">Account Number:</label>
+            <input
+              type="text"
+              id="accountNumber"
+              name="accountNumber"
+              value={accountNumber}
+              onChange={(e) => {
+                setAccountNumber(e.target.value);
               }}
-              options={bankOptions}
-              isSearchable
-              placeholder="Select a bank"
-              disabled={!showAccountForm}
-              className="other-select-bank-form"
+              required
             />
+            <button type="submit">Continue</button>
           </form>
         </div>
       )}
 
-      {showAccountNumberSearch && (
-        <form onSubmit={handleAccountFormSubmit}>
-          <label htmlFor="accountNumber">Account Number:</label>
-          <input
-            type="text"
-            id="accountNumber"
-            name="accountNumber"
-            value={accountNumber}
-            onChange={(e) => setAccountNumber(e.target.value)}
-            required
-            className="other-select-accountNumber-form"
-          />
-          <button type="submit">Continue</button>
-        </form>
-      )}
-
       {showPaymentForm && (
-        <form onSubmit={handlePaymentFormSubmit}>
-          <img
-            src={bankOptions.find((bank) => bank.value === selectedBank)?.image}
-            alt="Bank Logo"
-            className="bank-logo"
-          />
-          <p>Bank: {selectedBank}</p>
-          <p>Account Number: {accountNumber}</p>
-          <p>Account Name: {accountName}</p>
+        <div className="show-payment-container">
+          <button className="show-payment-close-button">&larr;</button>
 
-          <div style={{ display: "flex" }}>
+          <form onSubmit={handlePaymentFormSubmit}>
+            <p>
+              {" "}
+              {selectedSourceAccount} Account <br /> Available Balance{" "}
+              {accountBalance}
+            </p>
+            <p>Account Name: {accountName}</p>
+            <p>Account Name: {accountNumber}</p>
             <label htmlFor="amount">Amount:</label>
-            <span style={{ marginRight: "5px" }}>{CURRENCY_SYMBOL}</span>{" "}
             <input
               type="text"
               id="amount"
@@ -332,28 +241,29 @@ const TransferAnotherBank = () => {
               }
               required
             />
-          </div>
-          <br />
-          <label htmlFor="description">Description:</label>
-          <textarea
-            id="description"
-            name="description"
-            onChange={(e) =>
-              setPaymentData({ ...paymentData, description: e.target.value })
-            }
-            required
-          />
-          <br />
-          <button type="submit">Continue</button>
-        </form>
+            <br />
+            <label htmlFor="description">Description:</label>
+            <textarea
+              id="description"
+              name="description"
+              onChange={(e) =>
+                setPaymentData({ ...paymentData, description: e.target.value })
+              }
+              required
+            />
+            <br />
+            <button type="submit">Continue</button>
+          </form>
+        </div>
       )}
 
       {showConfirmation && (
         <div className="other-select-conformPayment-container">
+          <button className="other-bonk-select-close-button">&larr;</button>
           <p>
             You are about to send money ({CURRENCY_SYMBOL}
-            {paymentData.amount}) <br />
-            {accountName} {selectedBank} {accountNumber}:
+            {parseFloat(paymentData.amount).toLocaleString("en")}) to <br />
+            {accountName}: {accountNumber}:
           </p>
 
           <p>
@@ -361,14 +271,17 @@ const TransferAnotherBank = () => {
             {CURRENCY_SYMBOL}
             {parseFloat(paymentPlusCharges).toLocaleString("en")}
           </p>
-          <p>Bank: {selectedBank}</p>
+
           <p>Account Number: {accountNumber}</p>
           <p>Account Name: {accountName}</p>
           <p>
             Amount: {CURRENCY_SYMBOL}
             {parseFloat(paymentData.amount).toLocaleString("en")}
           </p>
-          <p>Fee: {parseFloat(0.14 * paymentData.amount).toFixed(2)}</p>
+          <p>
+            Fee: {CURRENCY_SYMBOL}
+            {parseFloat(0.14 * paymentData.amount).toLocaleString("en")}{" "}
+          </p>
           <p>Description: {paymentData.description}</p>
 
           <p>
@@ -395,9 +308,9 @@ const TransferAnotherBank = () => {
           <button onClick={handleConfirmation}>Continue</button>
         </div>
       )}
-
       {showPinForm && (
         <form onSubmit={handlePinSubmit}>
+          <button className="other-bonk-select-close-button">&larr;</button>
           <label htmlFor="pin">Enter PIN:</label>
           <input
             type="password"
@@ -406,33 +319,64 @@ const TransferAnotherBank = () => {
             value={pin}
             onChange={(e) => setPin(e.target.value)}
             required
-            className="other-select-conform-pin-form"
           />
           <br />
           <button type="submit">Submit</button>
         </form>
       )}
-
       {error && (
         <div>
-          <p>{error}</p>
-          <button>Add Money</button>
+          {error}{" "}
+          <p>
+            <button>Add Money</button>
+          </p>
         </div>
       )}
-
       {showSuccessPopup && (
-        <div className="other-successful-popup-container">
-          <h2>Payment Successful!</h2>
-          <button onClick={handleViewReceipt}>View Transaction Receipt</button>
-          <button onClick={handleMakeAnotherPayment}>
-            Make Another Payment
-          </button>
-          <button onClick={handleSaveAsBeneficiary}>Save as Beneficiary</button>
-          <button onClick={handleDone}>Done</button>
+        <div className="own-popup-container">
+          <button className="own-popup-close-button">&larr;</button>
+          <div className="show-success-sub-container">
+            <div className="own-beneficiary-done-container">
+              <button
+                onClick={handleSaveAsBeneficiary}
+                className="own-save-beneficiary"
+              >
+                Save as Beneficiary
+              </button>
+              <button onClick={handleDone} className="own-done">
+                Done
+              </button>
+            </div>
+            <h2 className="own-payment-successful">Payment Successful!</h2>
+            <div className="own-show-success-third-container">
+              <div className="own-show-success-fourth-container">
+                <button
+                  onClick={handleViewReceipt}
+                  className="own-view-transaction-receipt"
+                >
+                  View Transaction Receipt
+                </button>
+                <button
+                  onClick={handleMakeAnotherPayment}
+                  className="own-make-another-payment"
+                >
+                  Make Another Payment
+                </button>
+
+                <button>Schedule payment</button>
+              </div>
+              <div className="own-show-success-fifth-container">
+                <button>Report this payment</button>
+                <button>Tell us your experience</button>
+                <button>Rate our services</button>
+                <button>Invite a friend to earn a cash back point</button>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>
   );
-};
+}
 
-export default TransferAnotherBank;
+export default TransferToLPay;
