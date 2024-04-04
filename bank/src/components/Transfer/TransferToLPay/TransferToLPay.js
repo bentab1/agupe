@@ -333,45 +333,64 @@ function TransferToLPay() {
         </div>
       )}
       {showSuccessPopup && (
-        <div className="own-popup-container">
-          <button className="own-popup-close-button">&larr;</button>
+        <div className="own-show-success-container">
           <div className="show-success-sub-container">
+            <button
+              className="own-show-success-close-button"
+              // onClick={handleGoBackOfSuccessForm}
+            >
+              &larr;
+            </button>
             <div className="own-beneficiary-done-container">
               <button
                 onClick={handleSaveAsBeneficiary}
-                className="own-save-beneficiary"
+                className="own-save-beneficiary-button"
               >
                 Save as Beneficiary
               </button>
-              <button onClick={handleDone} className="own-done">
-                Done
+              <button onClick={handleDone} className="own-done-button">
+                Done &gt;
               </button>
             </div>
-            <h2 className="own-payment-successful">Payment Successful!</h2>
+            <div className="own-appreciation-container">
+              <h3 className="own-payment-successful">Payment Successful!</h3>
+              <em className="own-customer-appreciation">
+                Thank you for banking with us
+              </em>
+            </div>
             <div className="own-show-success-third-container">
               <div className="own-show-success-fourth-container">
                 <button
                   onClick={handleViewReceipt}
                   className="own-view-transaction-receipt"
                 >
-                  View Transaction Receipt
+                  View Transaction Receipt &gt;
                 </button>
                 <button
                   onClick={handleMakeAnotherPayment}
                   className="own-make-another-payment"
                 >
-                  Make Another Payment
+                  Make Another Payment &gt;
                 </button>
-
-                <button>Schedule payment</button>
+                <button className="own-schedule-payment">
+                  Schedule payment &gt;
+                </button>
               </div>
               <div className="own-show-success-fifth-container">
-                <button>Report this payment</button>
-                <button>Tell us your experience</button>
-                <button>Rate our services</button>
-                <button>Invite a friend to earn a cash back point</button>
+                <button className="own-report-this-payment">
+                  Report this payment &gt;
+                </button>
+                <button className="own-tell-us-your-experience">
+                  Give us a feedback &gt;
+                </button>
+                <button className="own-rate-our-service">
+                  Rate our services &gt;
+                </button>
               </div>
             </div>
+            <button className="own-refer-friend">
+              Invite 5 friends to earn ₦2000 &gt;
+            </button>
           </div>
         </div>
       )}

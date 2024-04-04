@@ -388,7 +388,7 @@ function TransferToOwnAccount() {
                 Save as Beneficiary
               </button>
               <button onClick={handleDone} className="own-done-button">
-                Done
+                Done &gt;
               </button>
             </div>
             <div className="own-appreciation-container">
@@ -403,32 +403,32 @@ function TransferToOwnAccount() {
                   onClick={handleViewReceipt}
                   className="own-view-transaction-receipt"
                 >
-                  View Transaction Receipt
+                  View Transaction Receipt &gt;
                 </button>
                 <button
                   onClick={handleMakeAnotherPayment}
                   className="own-make-another-payment"
                 >
-                  Make Another Payment
+                  Make Another Payment &gt;
                 </button>
                 <button className="own-schedule-payment">
-                  Schedule payment
+                  Schedule payment &gt;
                 </button>
               </div>
               <div className="own-show-success-fifth-container">
                 <button className="own-report-this-payment">
-                  Report this payment
+                  Report this payment &gt;
                 </button>
                 <button className="own-tell-us-your-experience">
-                  Tell us your experience
+                  Give us a feedback &gt;
                 </button>
                 <button className="own-rate-our-service">
-                  Rate our services
+                  Rate our services &gt;
                 </button>
               </div>
             </div>
             <button className="own-refer-friend">
-              Invite 5 friends to earn ₦2000
+              Invite 5 friends to earn ₦2000 &gt;
             </button>
           </div>
         </div>

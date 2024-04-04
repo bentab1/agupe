@@ -7,3 +7,177 @@
   margin-left: 50px;
   margin-top: 50px;
 }
+
+/* //////////  show success form css start from here*/
+.own-show-success-container {
+  display: block;
+}
+
+.show-success-sub-container {
+  display: grid;
+  margin-top: 80px;
+  margin-left: 450px;
+  border-radius: 25px;
+  width: 400px;
+  height: 400px;
+  background-color: white;
+}
+.own-beneficiary-done-container {
+  display: flex;
+  height: 30px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.own-show-success-third-container {
+  display: flex;
+  margin-left: 0px;
+  margin-top: 30px;
+}
+
+.own-show-success-fourth-container {
+  display: grid;
+  margin-right: 20px;
+  gap: 13px;
+}
+
+.own-show-success-fifth-container {
+  display: grid;
+  margin-left: 40px;
+  gap: 13px;
+}
+.own-appreciation-container {
+  display: grid;
+  margin-left: 103px;
+  height: 70px;
+  width: 250px;
+  background-color: transparent;
+}
+.own-payment-successful {
+  color: green;
+  height: 30px;
+
+  margin-bottom: 10px;
+  background-color: transparent;
+}
+
+.own-customer-appreciation {
+  background-color: transparent;
+  width: 230px;
+  height: 20px;
+  margin-left: 10px;
+  font-size: 11px;
+}
+
+.own-done-button {
+  color: blue;
+  margin-left: 50px;
+  height: 20px;
+  margin-left: 200px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.own-done-button:hover {
+  color: aqua;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.own-show-success-close-button {
+  height: 20px;
+  width: 40px;
+  margin-left: 10px;
+  margin-top: 5px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 20px;
+  background-color: transparent;
+}
+.own-view-transaction-receipt {
+  height: 20px;
+  width: 170px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.own-view-transaction-receipt:hover {
+  color: royalblue;
+}
+.own-make-another-payment {
+  height: 20px;
+  width: 160px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.own-make-another-payment:hover {
+  color: royalblue;
+}
+.own-save-beneficiary-button {
+  height: 20px;
+  width: 130px;
+  margin-left: 10px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.own-save-beneficiary-button:hover {
+  color: royalblue;
+}
+.own-schedule-payment {
+  height: 20px;
+  width: 150px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.own-schedule-payment:hover {
+  color: royalblue;
+}
+.own-report-this-payment {
+  height: 20px;
+  width: 150px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.own-report-this-payment:hover {
+  color: royalblue;
+}
+
+.own-report-this-payment:hover {
+  color: royalblue;
+}
+.own-tell-us-your-experience {
+  height: 20px;
+  width: 150px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.own-tell-us-your-experience:hover {
+  color: royalblue;
+}
+.own-rate-our-service {
+  height: 20px;
+  width: 150px;
+  background-color: transparent;
+  cursor: pointer;
+}
+.own-rate-our-service:hover {
+  color: royalblue;
+}
+.own-refer-friend {
+  height: 20px;
+  width: 250px;
+  margin-left: 70px;
+  margin-top: 10px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.own-refer-friend:hover {
+  color: royalblue;
+}
+/* /////////// */

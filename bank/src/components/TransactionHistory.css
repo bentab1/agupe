@@ -1,0 +1,39 @@
+.showAll-category-viv {
+  display: grid;
+  background-color: aqua;
+  width: 320px;
+  position: absolute;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.showAll-category-All-button {
+  margin-bottom: 20px;
+}
+
+.billPayment-label {
+  width: 100px;
+}
+
+li {
+  gap: 10px;
+}
+
+.billPayment-label {
+  margin-bottom: 15px;
+}
+
+.subPOS-select-container {
+  display: grid;
+  gap: 0px;
+  width: 170px;
+}
+
+.showPOS-category-div {
+  position: absolute;
+  background-color: aqua;
+  margin-top: 17px;
+  width: 300px;
+  left: 113px;
+  border-radius: 20px;
+}
