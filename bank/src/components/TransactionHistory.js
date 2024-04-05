@@ -1,6 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { React, useEffect, useState } from "react";
 import Select from "react-select";
 import "./TransactionHistory.css";
+import StatusByAccountNumber from "./StatusByAccountNumber";
 
 const transactionHistory = [
   {
@@ -184,7 +186,7 @@ const transactionHistory = [
     status: "completed",
   },
   {
-    id: 15,
+    id: 16,
     customer_id: "uc12",
     accountNumber: "6666666666",
     date: "2023-01-24",
@@ -197,7 +199,7 @@ const transactionHistory = [
     status: "completed",
   },
   {
-    id: 15,
+    id: 17,
     customer_id: "uc12",
     TransactionType: "TransferToOtherBank",
     accountNumber: "6666666666",
@@ -211,7 +213,7 @@ const transactionHistory = [
     status: "completed",
   },
   {
-    id: 15,
+    id: 18,
     customer_id: "uc12",
     TransactionType: "LPayWalletTransaction",
     accountNumber: "6666666666",
@@ -224,7 +226,7 @@ const transactionHistory = [
     status: "completed",
   },
   {
-    id: 15,
+    id: 19,
     customer_id: "uc12",
     TransactionType: "AddMoney",
     accountNumber: "6666666666",
@@ -237,7 +239,7 @@ const transactionHistory = [
     status: "completed",
   },
   {
-    id: 15,
+    id: 20,
     customer_id: "uc12",
     TransactionType: "OtherBankDeposit",
     accountNumber: "6666666666",
@@ -250,7 +252,7 @@ const transactionHistory = [
     status: "completed",
   },
   {
-    id: 15,
+    id: 21,
     customer_id: "uc12",
     TransactionType: "CardWithDrawal",
     accountNumber: "6666666666",
@@ -263,7 +265,7 @@ const transactionHistory = [
     status: "completed",
   },
   {
-    id: 15,
+    id: 22,
     customer_id: "uc12",
     TransactionType: "Refund",
     accountNumber: "6666666666",
@@ -276,7 +278,7 @@ const transactionHistory = [
     status: "completed",
   },
   {
-    id: 15,
+    id: 23,
     customer_id: "uc12",
     TransactionType: "CardPayment",
     accountNumber: "6666666666",
@@ -289,7 +291,7 @@ const transactionHistory = [
     status: "completed",
   },
   {
-    id: 15,
+    id: 24,
     customer_id: "uc12",
     TransactionType: "Qcode",
     accountNumber: "6666666666",
@@ -303,7 +305,7 @@ const transactionHistory = [
     status: "completed",
   },
   {
-    id: 15,
+    id: 25,
     customer_id: "uc12",
     TransactionType: "Commission",
     accountNumber: "6666666666",
@@ -316,7 +318,7 @@ const transactionHistory = [
     status: "completed",
   },
   {
-    id: 15,
+    id: 26,
     customer_id: "uc12",
     TransactionType: "CashBack",
     accountNumber: "6666666666",
@@ -329,7 +331,7 @@ const transactionHistory = [
     status: "completed",
   },
   {
-    id: 15,
+    id: 27,
     customer_id: "uc12",
     TransactionType: "TV",
     accountNumber: "6666666666",
@@ -343,7 +345,7 @@ const transactionHistory = [
     status: "completed",
   },
   {
-    id: 15,
+    id: 28,
     customer_id: "uc12",
     TransactionType: "MobileData",
     accountNumber: "6666666666",
@@ -356,7 +358,7 @@ const transactionHistory = [
     status: "completed",
   },
   {
-    id: 15,
+    id: 29,
     customer_id: "uc12",
     TransactionType: "Airtime",
     accountNumber: "6666666666",
@@ -370,7 +372,7 @@ const transactionHistory = [
     status: "completed",
   },
   {
-    id: 15,
+    id: 30,
     customer_id: "uc12",
     TransactionType: "Electricity",
     accountNumber: "6666666666",
@@ -384,7 +386,7 @@ const transactionHistory = [
     status: "completed",
   },
   {
-    id: 15,
+    id: 31,
     customer_id: "uc12",
     TransactionType: "Flight",
     accountNumber: "6666666666",
@@ -397,7 +399,7 @@ const transactionHistory = [
     status: "completed",
   },
   {
-    id: 15,
+    id: 32,
     customer_id: "uc12",
     TransactionType: "Education",
     accountNumber: "6666666666",
@@ -411,7 +413,7 @@ const transactionHistory = [
   },
 
   {
-    id: 15,
+    id: 33,
     customer_id: "uc12",
     TransactionType: "Purchase",
     accountNumber: "6666666665",
@@ -422,11 +424,11 @@ const transactionHistory = [
     description: "Withdrawal from ATM",
     amount: -100.0,
     balance: 11860.0,
-    status: "completed",
+    status: "Pending",
   },
 
   {
-    id: 15,
+    id: 34,
     customer_id: "uc12",
     TransactionType: "EPin",
     accountNumber: "6666666666",
@@ -437,12 +439,12 @@ const transactionHistory = [
     description: "Withdrawal from ATM",
     amount: -100.0,
     balance: 11860.0,
-    status: "completed",
+    status: "Pending",
   },
   {
-    id: 15,
+    id: 35,
     customer_id: "uc12",
-    TransactionType: "Betting",
+    TransactionType: "CardWithdrawal",
     accountNumber: "6666666667",
     date: "2023-01-24",
     business_id: "ubmc123",
@@ -454,7 +456,6 @@ const transactionHistory = [
     status: "completed",
   },
 ];
-
 function groupTransactionsByMonth(transactions) {
   const groupedTransactions = {};
   transactions.forEach((transaction) => {
@@ -471,6 +472,7 @@ function groupTransactionsByMonth(transactions) {
 }
 
 function TransactionHistory() {
+ 
   const [searchQuery, setSearchQuery] = useState("");
   const [groupedTransactions, setGroupedTransactions] = useState({});
   const [showCompleted, setShowCompleted] = useState(false);
@@ -486,15 +488,56 @@ function TransactionHistory() {
   const [selectedSubPOS, setSelectedSubPOS] = useState(null);
   const [selectedMasterPOS, setSelectedMasterPOS] = useState(null);
   const [showSubPOSTransaction, setShowSubPOSTransaction] = useState(false);
-  const [error, setError] = useState("");
   const [selectedTransactionType, setSelectedTransactionType] = useState("");
+  const [showSubPOSCategoryTransactions, setShowSubPOSCategoryTRansactions] =
+    useState(false);
+  const [showMasterPOSTransaction, setShowMasterPOSTransaction] =
+    useState(false);
+  const [selectedTransactionStatus, setSelectedTransactionStatus] =
+    useState("");
+  const [
+    allTransactionTypeCategoryseleted,
+    setAllTransactionTypeCategoryseleted,
+  ] = useState("");
+  const [showAllTransactionsCategory, setShowAllTransactionsCategory] =
+    useState(false);
+  const [
+    showMasterPOSCategoryTRansactions,
+    setShowMasterPOSCategoryTRansactions,
+  ] = useState(false);
+  const [error, setError] = useState("");
 
+  //////
+  //////
+  const [selectedAccountNumber, setSelectedAccountNUmber] = useState(null); // State to store the selected option
+
+  // Function to handle selection change
+  const handleOptionChange = (selectedOption) => {
+    setSelectedAccountNUmber(selectedOption);
+    // Check if the selected account number exists
+    // if (selectedOption) {
+    //   const accountNumberCheck = selectedOption.value;
+    //   const accountExists = hasAccountNumber(accountNumberCheck);
+    //   console.log("Account exists:", accountExists);
+    // }
+  };
+
+  // // Function to check if the transaction history contains the given account number
+  // const hasAccountNumber = (accountNumber) => {
+  //   return transactionHistory.some(
+  //     (transactionHistory) => transactionHistory.accountNumber === accountNumber
+  //   );
+  // };
+
+  ////////
+  ///////
+  ///////
   const businessTransactions1 = transactionHistory.filter(
     (transaction) =>
       transaction.customer_id === "uc12" && // Replace "your_customer_id" with the actual customer ID
       transaction.business_id === "ubmc123"
   );
-  console.log(businessTransactions1);
+
   // Extract unique combinations of accountNumber and serialNumber from all transactions
   const uniqueMasterPOSMap = new Map();
   businessTransactions1.forEach((transaction) => {
@@ -519,11 +562,6 @@ function TransactionHistory() {
     });
   });
 
-  const handleMasterPOSChange = (selectedOption1) => {
-    setSelectedMasterPOS(selectedOption1);
-    // Do something with the selected option
-  };
-
   const MasterPOScustomStyles = {
     control: (provided, state) => ({
       ...provided,
@@ -543,13 +581,90 @@ function TransactionHistory() {
       transform: state.selectProps.menuIsOpen ? "rotate(180deg)" : null,
     }),
   };
+
+  const handleShowMasterPOSTransaction = () => {
+    try {
+      if (
+        selectedMasterPOS.value <= 0 ||
+        selectedMasterPOS.value === null ||
+        selectedMasterPOS.value === undefined
+      ) {
+        setError("There is no available transaction for the selected category");
+      }
+      const accountNumber = selectedMasterPOS.value;
+      setGroupedTransactions(
+        groupTransactionsByMonth(
+          transactionHistory.filter(
+            (MasterPOStransaction) =>
+              MasterPOStransaction.accountNumber === accountNumber
+          )
+        )
+      );
+      setShowMasterPOSTransaction(true);
+      setShowUpcoming(false);
+      setShowCompleted(false);
+      setShowAllTransaction(false);
+      setShowSubPOSTransaction(false);
+      setShowSubPOSCategoryTRansactions(false);
+    } catch (error) {
+      console.error("An error occurred:", error);
+      // You can handle the error further if needed
+    }
+  };
+
+  const handleShowMasterPOSCategoryTransaction = () => {
+    try {
+      if (
+        selectedMasterPOS.value <= 0 ||
+        selectedMasterPOS.value === null ||
+        selectedMasterPOS.value === undefined
+      ) {
+        setError("There is no available transaction for the selected category");
+      }
+
+      if (
+        selectedTransactionType === null ||
+        selectedTransactionType === undefined
+      ) {
+        setError("There is no available transaction for the selected category");
+      }
+      const accountNumber = selectedMasterPOS.value;
+      setGroupedTransactions(
+        groupTransactionsByMonth(
+          transactionHistory.filter(
+            (MasterPOSCategoryTransaction) =>
+              MasterPOSCategoryTransaction.accountNumber === accountNumber &&
+              MasterPOSCategoryTransaction.TransactionType ===
+                selectedTransactionType
+          )
+        )
+      );
+
+      setShowMasterPOSCategoryTRansactions(true);
+    } catch (error) {
+      console.error("An error occurred:", error);
+      // You can handle the error further if needed
+    }
+  };
+
+  function handleMasterPOSCategoryView() {
+    if (selectedMasterPOS !== null) setShowAllTransactionCategory(false);
+    setShowPOSCategory(true);
+  }
+
+  function reverseMasterPOSCategoryView() {
+    setSelectedSubPOS(null);
+  }
+  ///////////////
+  //////////////
+  //////////////
   // Filter transactions for business accounts
   const businessTransactions = transactionHistory.filter(
     (transaction) =>
       transaction.customer_id === "uc12" && // Replace "your_customer_id" with the actual customer ID
       transaction.business_id === "ubmc123"
   );
-  console.log(businessTransactions);
+
   // Extract unique combinations of accountNumber and serialNumber from all transactions
   const uniqueSubPOSMap = new Map();
   businessTransactions.forEach((transaction) => {
@@ -571,55 +686,39 @@ function TransactionHistory() {
           Serial-Number: {serialNumber}
         </span>
       ),
-      value: accountNumber || serialNumber, // You can set the value to whatever you need
+
+      value: accountNumber, // You can set the value to whatever you need
     });
   });
-
-  const handleSubPOSChange = (selectedOption) => {
-    setSelectedSubPOS(selectedOption);
-    // Do something with the selected option
-  };
-
-  ///////////
-  ///////////
-  const handleSubPOSSelectToFilter = (selectedOption) => {
-    if (selectedOption) {
-      const selectedSerialNumber = selectedOption.value;
-
-      // Check if a transaction type is selected
-      if (!selectedTransactionType) {
-        setError("Please select a transaction type.");
-        setShowSubPOSTransaction(false);
-        return;
+  /////////////
+  const handleShowSubPOSTransaction = () => {
+    try {
+      if (
+        selectedSubPOS.value <= 0 ||
+        selectedSubPOS.value === null ||
+        selectedSubPOS.value === undefined
+      ) {
+        setError("There is no available transaction for the selected category");
       }
-      const filteredTransactions = setGroupedTransactions(
+      const accountNumber = selectedSubPOS.value;
+      setGroupedTransactions(
         groupTransactionsByMonth(
           transactionHistory.filter(
             (SubPOStransaction) =>
-              SubPOStransaction.serialNumber === selectedSerialNumber &&
-              SubPOStransaction.TransactionType === selectedTransactionType
+              SubPOStransaction.accountNumber === accountNumber
           )
         )
       );
-
-      if (filteredTransactions.length > 0) {
-        setShowSubPOSTransaction(true);
-        setError("");
-      } else {
-        setError(
-          "There are no transactions available for the selected transaction type."
-        );
-        setShowSubPOSTransaction(false);
-      }
+      setShowSubPOSTransaction(true);
+      setShowUpcoming(false);
+      setShowCompleted(false);
+    } catch (error) {
+      console.error("An error occurred:", error);
+      // You can handle the error further if needed
     }
   };
+  ////////////
 
-  // Function to handle changing the selected transaction type
-  const handleTransactionTypeChange = (event) => {
-    setSelectedTransactionType(event.target.value);
-  };
-////////////
-/////////////
   const customStyles = {
     control: (provided, state) => ({
       ...provided,
@@ -639,7 +738,49 @@ function TransactionHistory() {
       transform: state.selectProps.menuIsOpen ? "rotate(180deg)" : null,
     }),
   };
+  //////////////////
+  const handleShowSubPOSCategoryTransaction = () => {
+    try {
+      if (
+        selectedSubPOS.value <= 0 ||
+        selectedSubPOS.value === null ||
+        selectedSubPOS.value === undefined
+      ) {
+        setError("There is no available transaction for the selected category");
+      }
 
+      if (
+        selectedTransactionType === null ||
+        selectedTransactionType === undefined
+      ) {
+        setError("There is no available transaction for the selected category");
+      }
+      const accountNumber = selectedSubPOS.value;
+      setGroupedTransactions(
+        groupTransactionsByMonth(
+          transactionHistory.filter(
+            (SubPOSCategoryTransaction) =>
+              SubPOSCategoryTransaction.accountNumber === accountNumber &&
+              SubPOSCategoryTransaction.TransactionType ===
+                selectedTransactionType
+          )
+        )
+      );
+
+      setShowSubPOSCategoryTRansactions(true);
+    } catch (error) {
+      console.error("An error occurred:", error);
+      // You can handle the error further if needed
+    }
+  };
+
+  function handleSelectedTransactionType(option) {
+    setSelectedTransactionType(option);
+  }
+
+  ////////
+  ////////
+  ////////
   function toggleButton() {
     if (showStatus === true) setShowStatus(false);
     if (showPOSSelection === true) setShowPOSSelection(false);
@@ -648,10 +789,23 @@ function TransactionHistory() {
     if (showPOSCategory === true) setShowPOSCategory(false);
   }
 
+  function handleCategporyView() {
+    if (selectedSubPOS !== null) {
+      setShowAllTransactionCategory(false);
+      setShowPOSCategory(true);
+    }
+  }
+
+  function reverseSubPOSCategoryView() {
+    setSelectedSubPOS(null);
+  }
+  ////////
+  ////////
+  ////////
   useEffect(() => {
     const grouped = groupTransactionsByMonth(transactionHistory);
     setGroupedTransactions(grouped);
-    handleShowCompleted();
+    handleShowTransactionStatus();
     handleShowAllTransactions();
   }, []);
 
@@ -692,18 +846,31 @@ function TransactionHistory() {
     const grouped = groupTransactionsByMonth(filtered);
     setGroupedTransactions(grouped);
   };
-
-  const handleShowCompleted = () => {
+  ///////
+  ///////
+  ////////
+  const handleShowTransactionStatus = () => {
+    const TransactionStatus = selectedTransactionStatus;
     setGroupedTransactions(
       groupTransactionsByMonth(
         transactionHistory.filter(
-          (transaction) => transaction.status === "completed"
+          (transaction) => transaction.status === TransactionStatus
         )
       )
     );
+    if (TransactionStatus === null || TransactionStatus === undefined) {
+      setError("No transaction found");
+      setShowCompleted({});
+      return;
+    }
     setShowCompleted(true);
   };
-
+  function handleTransactionStatus(value) {
+    setSelectedTransactionStatus(value);
+  }
+  ///////
+  ///////
+  ///////
   const handleShowUpcoming = () => {
     setGroupedTransactions(
       groupTransactionsByMonth(
@@ -714,16 +881,43 @@ function TransactionHistory() {
     );
     setShowUpcoming(true);
   };
-
+  //////
+  ///////
+  ///////
   const handleShowAllTransactions = () => {
     setGroupedTransactions(
       groupTransactionsByMonth(
         transactionHistory.filter((transaction2) => transaction2)
       )
     );
+
     setShowAllTransaction(true);
   };
+  /////////
+  /////////
+  /////////
+  const handleShowAllTransactionsCategory = () => {
+    const AllTransactionTypeCategory = allTransactionTypeCategoryseleted;
+    const term = setGroupedTransactions(
+      groupTransactionsByMonth(
+        transactionHistory.filter(
+          (AllTransactionCategory) =>
+            AllTransactionCategory.TransactionType ===
+            AllTransactionTypeCategory
+        )
+      )
+    );
+    console.log(term);
+    setShowAllTransactionsCategory(true);
+  };
 
+  function handleAllTransactionTypeCategory(option) {
+    setAllTransactionTypeCategoryseleted(option);
+  }
+
+  /////////
+  /////////
+  ////////
   useEffect(() => {
     let timer;
     if (selectedStatus) {
@@ -733,7 +927,9 @@ function TransactionHistory() {
     }
     return () => clearTimeout(timer);
   }, [selectedStatus]);
-
+  ///////
+  ///////
+  ///////
   useEffect(() => {
     let timer;
     if (POSselectedStatus) {
@@ -743,9 +939,20 @@ function TransactionHistory() {
     }
     return () => clearTimeout(timer);
   }, [POSselectedStatus]);
+  /////////
+  /////////
+  /////////
+  useEffect(() => {
+    if (selectedSubPOS !== null) {
+      handleShowSubPOSTransaction();
+    }
+  }, [handleShowSubPOSTransaction, selectedSubPOS]);
 
+  ////////
+  ////////
   return (
     <div className="">
+      <StatusByAccountNumber handleOptionChange={handleOptionChange} />
       <div style={{ backgroundColor: "white" }}>
         <h3>Transaction History</h3>
         <div>
@@ -764,6 +971,7 @@ function TransactionHistory() {
             onClick={() => {
               handleShowAllTransactions();
               toggleButton();
+              setShowSubPOSTransaction(false);
               setShowCompleted(false);
               setShowUpcoming(false);
             }}
@@ -774,14 +982,14 @@ function TransactionHistory() {
             <button
               onClick={() => {
                 setShowAllTransactionCategory(true);
+                handleMasterPOSCategoryView();
                 toggleButton();
-                setShowCompleted(true);
-                setShowUpcoming(false);
+                handleCategporyView();
               }}
             >
               Categories
             </button>
-            {showAllTransactionCategory && (
+            {showAllTransactionCategory ? (
               <div className="showAll-category-viv">
                 <label style={{ marginLeft: "20px", marginTop: "20px" }}>
                   Select a category
@@ -802,127 +1010,390 @@ function TransactionHistory() {
                     }}
                   >
                     <li>
-                      <button className="showAll-category-All-button">
+                      <button
+                        className="showAll-category-All-button"
+                        onClick={() => {
+                          handleShowAllTransactions();
+                          toggleButton();
+                          setShowSubPOSTransaction(false);
+                          setShowCompleted(false);
+                          setShowUpcoming(false);
+                        }}
+                      >
                         All
                       </button>
                     </li>
                     <li>
-                      <button>Transfer to LPay</button>
+                      <button
+                        onClick={() => {
+                          handleShowAllTransactionsCategory();
+                          handleAllTransactionTypeCategory("TransferToBank");
+                          toggleButton();
+                        }}
+                      >
+                        Transfer to LPay
+                      </button>
                     </li>
                     <li>
-                      <button>Transfer to LPay</button>
+                      <button
+                        onClick={() => {
+                          handleShowAllTransactionsCategory();
+                          handleAllTransactionTypeCategory("TransferToLPay");
+                          toggleButton();
+                        }}
+                      >
+                        Transfer to LPay
+                      </button>
                     </li>
                     <li>
-                      <button>LPay wallet Transaction</button>
+                      <button
+                        onClick={() => {
+                          handleShowAllTransactionsCategory();
+                          handleAllTransactionTypeCategory(
+                            "LPayWalletTransaction"
+                          );
+                          toggleButton();
+                        }}
+                      >
+                        LPay wallet Transaction
+                      </button>
                     </li>
                     <li>
-                      <button>Add Money</button>
+                      <button
+                        onClick={() => {
+                          handleShowAllTransactionsCategory();
+                          handleAllTransactionTypeCategory("AddMoney");
+                          toggleButton();
+                        }}
+                      >
+                        Add Money
+                      </button>
                     </li>
                     <li>
-                      <button>Other bank Deposit</button>
+                      <button
+                        onClick={() => {
+                          handleShowAllTransactionsCategory();
+                          handleAllTransactionTypeCategory("OtherBankDeposit");
+                          toggleButton();
+                        }}
+                      >
+                        Other bank Deposit
+                      </button>
                     </li>
                     <li>
-                      <button>Card Withdrawal</button>
+                      <button
+                        onClick={() => {
+                          handleShowAllTransactionsCategory();
+                          handleAllTransactionTypeCategory("CardWithdrawal");
+                          toggleButton();
+                        }}
+                      >
+                        Card Withdrawal
+                      </button>
                     </li>
                     <li>
-                      <button>Refunds</button>
+                      <button
+                        onClick={() => {
+                          handleShowAllTransactionsCategory();
+                          handleAllTransactionTypeCategory("Refund");
+                          toggleButton();
+                        }}
+                      >
+                        Refunds
+                      </button>
                     </li>
                     <li>
-                      <button>Card Payment</button>
+                      <button
+                        onClick={() => {
+                          handleShowAllTransactionsCategory();
+                          handleAllTransactionTypeCategory("CardPayment");
+                          toggleButton();
+                        }}
+                      >
+                        Card Payment
+                      </button>
                     </li>
                     <li>
-                      <button>Qcode</button>
+                      <button
+                        onClick={() => {
+                          handleShowAllTransactionsCategory();
+                          handleAllTransactionTypeCategory("QCode");
+                          toggleButton();
+                        }}
+                      >
+                        QCode
+                      </button>
                     </li>
                     <li>
-                      <button>Commission</button>
+                      <button
+                        onClick={() => {
+                          handleShowAllTransactionsCategory();
+                          handleAllTransactionTypeCategory("Commission");
+                          toggleButton();
+                        }}
+                      >
+                        Commission
+                      </button>
                     </li>
                     <li>
-                      <button>Cash Back</button>
+                      <button
+                        onClick={() => {
+                          handleShowAllTransactionsCategory();
+                          handleAllTransactionTypeCategory("CshBack");
+                          toggleButton();
+                        }}
+                      >
+                        Cash Back
+                      </button>
                     </li>
                   </ul>
                   <div>
                     <ul style={{ display: "grid", marginTop: "60px" }}>
                       <label className="billPayment-label">Bill Category</label>
                       <li>
-                        <button>TV</button>
+                        <button
+                          onClick={() => {
+                            handleShowAllTransactionsCategory();
+                            handleAllTransactionTypeCategory("CshBack");
+                            toggleButton();
+                          }}
+                        >
+                          TV
+                        </button>
                       </li>
                       <li>
-                        <button>Mobile Data</button>
+                        <button
+                          onClick={() => {
+                            handleShowAllTransactionsCategory();
+                            handleAllTransactionTypeCategory("CshBack");
+                            toggleButton();
+                          }}
+                        >
+                          Mobile Data
+                        </button>
                       </li>
                       <li>
-                        <button>Airtime</button>
+                        <button
+                          onClick={() => {
+                            handleShowAllTransactionsCategory();
+                            handleAllTransactionTypeCategory("CshBack");
+                            toggleButton();
+                          }}
+                        >
+                          Airtime
+                        </button>
                       </li>
                       <li>
-                        <button>Electricity</button>
+                        <button
+                          onClick={() => {
+                            handleShowAllTransactionsCategory();
+                            handleAllTransactionTypeCategory("CshBack");
+                            toggleButton();
+                          }}
+                        >
+                          Electricity
+                        </button>
                       </li>
                       <li>
-                        <button>Flight</button>
+                        <button
+                          onClick={() => {
+                            handleShowAllTransactionsCategory();
+                            handleAllTransactionTypeCategory("CshBack");
+                            toggleButton();
+                          }}
+                        >
+                          Flight
+                        </button>
                       </li>
                       <li>
-                        <button>Education</button>
+                        <button
+                          onClick={() => {
+                            handleShowAllTransactionsCategory();
+                            handleAllTransactionTypeCategory("CshBack");
+                            toggleButton();
+                          }}
+                        >
+                          Education
+                        </button>
                       </li>
                       <li>
-                        <button>Purchase</button>
+                        <button
+                          onClick={() => {
+                            handleShowAllTransactionsCategory();
+                            handleAllTransactionTypeCategory("CshBack");
+                            toggleButton();
+                          }}
+                        >
+                          Purchase
+                        </button>
                       </li>
                       <li>
-                        <button>E-Pin</button>
+                        <button
+                          onClick={() => {
+                            handleShowAllTransactionsCategory();
+                            handleAllTransactionTypeCategory("CshBack");
+                            toggleButton();
+                          }}
+                        >
+                          E-Pin
+                        </button>
                       </li>
                       <li>
-                        <button>Betting</button>
+                        <button
+                          onClick={() => {
+                            handleShowAllTransactionsCategory();
+                            handleAllTransactionTypeCategory("CshBack");
+                            toggleButton();
+                          }}
+                        >
+                          Betting
+                        </button>
                       </li>
                     </ul>
                   </div>
                 </duv>
               </div>
-            )}
-
-            {showPOSCategory && (
-              <duv className="showPOS-category-div">
-                <button
-                  onClick={() => {
-                    toggleButton();
-                  }}
-                  style={{
-                    display: "block",
-                    marginLeft: "5px",
-                    fontSize: "25px",
-                    backgroundColor: "transparent",
-                    cursor: "pointer",
-                  }}
-                >
-                  &times;
-                </button>
-                <label style={{ marginLeft: "20px" }}>Select a category</label>
-                <ul style={{ display: "grid", padding: "20px" }}>
-                  <li>
-                    <button>Card Withdrawal</button>
-                  </li>
-                  <li>
-                    <button>Card Payment</button>
-                  </li>
-                  <li>
-                    <button>POS Qcode</button>
-                  </li>
-                  <li>
-                    <button>POS Transfer</button>
-                  </li>
-                  <li>
-                    <button>LPay USSD</button>
-                  </li>
-                  <li>
-                    <button>Bank USSD</button>
-                  </li>
-                  <li>
-                    <button>Withdrawal Code</button>
-                  </li>
-                  <li>
-                    <button>Qcode Card Transfer</button>
-                  </li>
-                  <li>
-                    <button>LPay account Transfer</button>
-                  </li>
-                </ul>
-              </duv>
+            ) : (
+              showPOSCategory && (
+                <duv className="showPOS-category-div">
+                  <button
+                    onClick={() => {
+                      toggleButton();
+                      reverseSubPOSCategoryView();
+                      reverseMasterPOSCategoryView();
+                    }}
+                    style={{
+                      display: "block",
+                      marginLeft: "5px",
+                      fontSize: "25px",
+                      backgroundColor: "transparent",
+                      cursor: "pointer",
+                    }}
+                  >
+                    &times;
+                  </button>
+                  <label style={{ marginLeft: "20px" }}>
+                    Select a c ategory
+                  </label>
+                  <ul
+                    style={{
+                      display: "grid",
+                      padding: "20px",
+                      position: "absolute",
+                    }}
+                  >
+                    <li>
+                      <button
+                        onClick={() => {
+                          toggleButton();
+                          handleSelectedTransactionType("CardWithdrawal");
+                          handleShowSubPOSCategoryTransaction();
+                          handleShowMasterPOSCategoryTransaction();
+                        }}
+                        style={{ cursor: "pointer" }}
+                      >
+                        Card Withdrawal
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        onClick={() => {
+                          toggleButton();
+                          handleSelectedTransactionType("CardPayment");
+                          handleShowSubPOSCategoryTransaction();
+                          handleShowMasterPOSCategoryTransaction();
+                        }}
+                      >
+                        Card Payment
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        onClick={() => {
+                          toggleButton();
+                          handleSelectedTransactionType("POSQCode");
+                          handleShowSubPOSCategoryTransaction();
+                          handleShowMasterPOSCategoryTransaction();
+                        }}
+                      >
+                        POS Qcode
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        onClick={() => {
+                          toggleButton();
+                          handleSelectedTransactionType("POSTransfer");
+                          handleShowSubPOSCategoryTransaction();
+                          handleShowMasterPOSCategoryTransaction();
+                        }}
+                      >
+                        POS Transfer
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        onClick={() => {
+                          toggleButton();
+                          handleSelectedTransactionType("LPayUSSD");
+                          handleShowSubPOSCategoryTransaction();
+                          handleShowMasterPOSCategoryTransaction();
+                        }}
+                      >
+                        LPay USSD
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        onClick={() => {
+                          toggleButton();
+                          handleSelectedTransactionType("BankUSSD");
+                          handleShowSubPOSCategoryTransaction();
+                          handleShowMasterPOSCategoryTransaction();
+                        }}
+                      >
+                        Bank USSD
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        onClick={() => {
+                          toggleButton();
+                          handleSelectedTransactionType("WithDrawalCode");
+                          handleShowSubPOSCategoryTransaction();
+                          handleShowMasterPOSCategoryTransaction();
+                        }}
+                      >
+                        Withdrawal Code
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        onClick={() => {
+                          toggleButton();
+                          handleSelectedTransactionType("QCodeCardTransfer");
+                          handleShowSubPOSCategoryTransaction();
+                          handleShowMasterPOSCategoryTransaction();
+                        }}
+                      >
+                        Qcode Card Transfer
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        onClick={() => {
+                          toggleButton();
+                          handleSelectedTransactionType("LPayAccountTransfer");
+                          handleShowSubPOSCategoryTransaction();
+                          handleShowMasterPOSCategoryTransaction();
+                        }}
+                      >
+                        LPay account Transfer
+                      </button>
+                    </li>
+                  </ul>
+                </duv>
+              )
             )}
           </div>
           <div>
@@ -952,11 +1423,11 @@ function TransactionHistory() {
                       isClearable
                       isSearchable
                       placeholder="Select Master POS"
-                      onChange={() => {
-                        handleMasterPOSChange();
+                      onChange={(selectedOption) => {
+                        setSelectedMasterPOS(selectedOption);
                         toggleButton();
+                        handleShowMasterPOSTransaction();
                         setPOSSelectedStatus("Master-POS");
-                        setShowPOSCategory(true);
                       }}
                       value={selectedMasterPOS}
                       styles={MasterPOScustomStyles}
@@ -968,12 +1439,12 @@ function TransactionHistory() {
                       isClearable
                       isSearchable
                       placeholder="Select a Sub POS"
-                      onChange={() => {
-                        handleSubPOSChange();
+                      onChange={(selectedOption) => {
+                        setSelectedSubPOS(selectedOption);
                         toggleButton();
+                        handleShowSubPOSTransaction();
                         setPOSSelectedStatus("Sub-POS");
-                        handleSubPOSSelectToFilter();
-                        setShowPOSCategory(true);
+                        //useEffect is handling a function here
                       }}
                       styles={customStyles}
                       value={selectedSubPOS}
@@ -1005,7 +1476,8 @@ function TransactionHistory() {
                 >
                   <button
                     onClick={() => {
-                      handleShowCompleted();
+                      handleShowTransactionStatus();
+                      handleTransactionStatus("completed");
                       toggleButton();
                       setShowUpcoming(false);
                       setShowAllTransaction(false);
@@ -1016,17 +1488,20 @@ function TransactionHistory() {
                   </button>
                   <button
                     onClick={() => {
+                      setShowSubPOSTransaction(false);
+                      setShowCompleted(false);
+                      setShowAllTransaction(false);
                       handleShowUpcoming();
                       setSelectedStatus("Upcoming");
                       toggleButton();
-                      setShowCompleted(false);
-                      setShowAllTransaction(false);
                     }}
                   >
                     Upcoming
                   </button>
                   <button
                     onClick={() => {
+                      handleShowTransactionStatus();
+                      handleTransactionStatus("Pending");
                       setSelectedStatus("Pending");
                       toggleButton();
                     }}
@@ -1054,7 +1529,7 @@ function TransactionHistory() {
             )}
           </div>
         </div>
-
+        {error && error}
         {showCompleted && (
           <div>
             {Object.keys(groupedTransactions).map((monthYear) => (
@@ -1114,33 +1589,138 @@ function TransactionHistory() {
             ))}
           </div>
         )}
-        {showUpcoming && (
+        {showAllTransactionsCategory && (
           <div>
             {Object.keys(groupedTransactions).map((monthYear) => (
               <div key={monthYear}>
                 <h3>{monthYear}</h3>
-                <ul>
-                  {groupedTransactions[monthYear].map((transaction1) => (
-                    <li
-                      key={transaction1.id}
-                      style={{
-                        backgroundColor: "wheat",
-                        marginBottom: "10px", // Apply 10px margin bottom
-                        padding: "10px", // Apply 10px padding
-                        borderRadius: "5px",
-                        width: "250px", // Optional: Add rounded corners
-                      }}
-                    >
-                      <p>Date: {transaction1.date}</p>
-                      <p>Description: {transaction1.description}</p>
-                    </li>
-                  ))}
+                <ul style={{ listStyle: "none", padding: 0 }}>
+                  {groupedTransactions[monthYear].map(
+                    (AllTransactionCategory) => (
+                      <li
+                        key={AllTransactionCategory.id}
+                        style={{
+                          backgroundColor: "wheat",
+                          marginBottom: "10px", // Apply 10px margin bottom
+                          padding: "10px", // Apply 10px padding
+                          borderRadius: "5px",
+                          width: "250px", // Optional: Add rounded corners
+                        }}
+                      >
+                        <p>Type: {AllTransactionCategory.TransactionType}</p>
+                        <p>Date: {AllTransactionCategory.date}</p>
+                        <p>Description: {AllTransactionCategory.description}</p>
+                        <p>Amount: {AllTransactionCategory.amount}</p>
+                        <p>Balance: {AllTransactionCategory.balance}</p>
+                      </li>
+                    )
+                  )}
+                </ul>
+              </div>
+            ))}
+          </div>
+        )}
+        {showMasterPOSTransaction && (
+          <div>
+            {Object.keys(groupedTransactions).map((monthYear) => (
+              <div key={monthYear}>
+                <h3>{monthYear}</h3>
+                <ul style={{ listStyle: "none", padding: 0 }}>
+                  {groupedTransactions[monthYear].map(
+                    (MasterPOStransaction) => (
+                      <li
+                        key={MasterPOStransaction.id}
+                        style={{
+                          backgroundColor: "wheat",
+                          marginBottom: "10px", // Apply 10px margin bottom
+                          padding: "10px", // Apply 10px padding
+                          borderRadius: "5px",
+                          width: "250px", // Optional: Add rounded corners
+                        }}
+                      >
+                        <p>Type: {MasterPOStransaction.TransactionType}</p>
+                        <p>Date: {MasterPOStransaction.date}</p>
+                        <p>Description: {MasterPOStransaction.description}</p>
+                        <p>Amount: {MasterPOStransaction.amount}</p>
+                        <p>Balance: {MasterPOStransaction.balance}</p>
+                      </li>
+                    )
+                  )}
                 </ul>
               </div>
             ))}
           </div>
         )}
 
+        {showMasterPOSCategoryTRansactions && (
+          <div>
+            {Object.keys(groupedTransactions).map((monthYear) => (
+              <div key={monthYear}>
+                <h3>{monthYear}</h3>
+                <ul style={{ listStyle: "none", padding: 0 }}>
+                  {groupedTransactions[monthYear].map(
+                    (MasterPOSCategoryTransaction) => (
+                      <li
+                        key={MasterPOSCategoryTransaction.id}
+                        style={{
+                          backgroundColor: "wheat",
+                          marginBottom: "10px", // Apply 10px margin bottom
+                          padding: "10px", // Apply 10px padding
+                          borderRadius: "5px",
+                          width: "250px", // Optional: Add rounded corners
+                        }}
+                      >
+                        <p>
+                          Type: {MasterPOSCategoryTransaction.TransactionType}
+                        </p>
+                        <p>Date: {MasterPOSCategoryTransaction.date}</p>
+                        <p>
+                          Description:{" "}
+                          {MasterPOSCategoryTransaction.description}
+                        </p>
+                        <p>Amount: {MasterPOSCategoryTransaction.amount}</p>
+                        <p>Balance: {MasterPOSCategoryTransaction.balance}</p>
+                      </li>
+                    )
+                  )}
+                </ul>
+              </div>
+            ))}
+          </div>
+        )}
+        {showSubPOSCategoryTransactions && (
+          <div>
+            {Object.keys(groupedTransactions).map((monthYear) => (
+              <div key={monthYear}>
+                <h3>{monthYear}</h3>
+                <ul style={{ listStyle: "none", padding: 0 }}>
+                  {groupedTransactions[monthYear].map(
+                    (SubPOSCategoryTransaction) => (
+                      <li
+                        key={SubPOSCategoryTransaction.id}
+                        style={{
+                          backgroundColor: "wheat",
+                          marginBottom: "10px", // Apply 10px margin bottom
+                          padding: "10px", // Apply 10px padding
+                          borderRadius: "5px",
+                          width: "250px", // Optional: Add rounded corners
+                        }}
+                      >
+                        <p>Type: {SubPOSCategoryTransaction.TransactionType}</p>
+                        <p>Date: {SubPOSCategoryTransaction.date}</p>
+                        <p>
+                          Description: {SubPOSCategoryTransaction.description}
+                        </p>
+                        <p>Amount: {SubPOSCategoryTransaction.amount}</p>
+                        <p>Balance: {SubPOSCategoryTransaction.balance}</p>
+                      </li>
+                    )
+                  )}
+                </ul>
+              </div>
+            ))}
+          </div>
+        )}
         {showSubPOSTransaction && (
           <div>
             {Object.keys(groupedTransactions).map((monthYear) => (
@@ -1170,7 +1750,32 @@ function TransactionHistory() {
             ))}
           </div>
         )}
-
+        {showUpcoming && (
+          <div>
+            {Object.keys(groupedTransactions).map((monthYear) => (
+              <div key={monthYear}>
+                <h3>{monthYear}</h3>
+                <ul>
+                  {groupedTransactions[monthYear].map((transaction1) => (
+                    <li
+                      key={transaction1.id}
+                      style={{
+                        backgroundColor: "wheat",
+                        marginBottom: "10px", // Apply 10px margin bottom
+                        padding: "10px", // Apply 10px padding
+                        borderRadius: "5px",
+                        width: "250px", // Optional: Add rounded corners
+                      }}
+                    >
+                      <p>Date: {transaction1.date}</p>
+                      <p>Description: {transaction1.description}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        )}
         {/* oooooooo */}
       </div>
     </div>
