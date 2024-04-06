@@ -472,7 +472,6 @@ function groupTransactionsByMonth(transactions) {
 }
 
 function TransactionHistory() {
- 
   const [searchQuery, setSearchQuery] = useState("");
   const [groupedTransactions, setGroupedTransactions] = useState({});
   const [showCompleted, setShowCompleted] = useState(false);
@@ -532,35 +531,41 @@ function TransactionHistory() {
   ////////
   ///////
   ///////
-  const businessTransactions1 = transactionHistory.filter(
+  const masterPOSTransactions = transactionHistory.filter(
     (transaction) =>
       transaction.customer_id === "uc12" && // Replace "your_customer_id" with the actual customer ID
+      transaction.accountType === "Master_POS" &&
       transaction.business_id === "ubmc123"
   );
 
   // Extract unique combinations of accountNumber and serialNumber from all transactions
-  const uniqueMasterPOSMap = new Map();
-  businessTransactions1.forEach((transaction) => {
-    if (transaction.accountType === "Master_POS") {
-      const { accountNumber, serialNumber } = transaction;
-      uniqueMasterPOSMap.set(accountNumber, serialNumber);
-    }
-  });
-  // Create options for Select component
-  const options1 = [];
-  uniqueMasterPOSMap.forEach((serialNumber, accountNumber) => {
-    options1.push({
-      label: (
-        <span>
-          Master POS: <br />
-          Account-Number: {accountNumber}
-          <br />
-          Serial-Number: {serialNumber}
-        </span>
-      ),
-      value: accountNumber, // You can set the value to whatever you need
+  const getMasterPOSOptions = (transactions) => {
+    const uniqueMasterPOSMap = new Map();
+    transactions.forEach((transaction) => {
+      const { accountNumber, serialNumber, balance } = transaction;
+      if (!uniqueMasterPOSMap.has(accountNumber)) {
+        uniqueMasterPOSMap.set(accountNumber, { serialNumber, balance });
+      }
     });
-  });
+
+    const options = [];
+    uniqueMasterPOSMap.forEach((data, accountNumber) => {
+      const { serialNumber, balance } = data;
+      options.push({
+        label: (
+          <span>
+            Master POS: <br />
+            Account Number: {accountNumber} <br />
+            Serial Number: {serialNumber} <br />
+            Balance: {balance}
+          </span>
+        ),
+        value: accountNumber,
+      });
+    });
+    return options;
+  };
+  const masterPOSOptions = getMasterPOSOptions(masterPOSTransactions);
 
   const MasterPOScustomStyles = {
     control: (provided, state) => ({
@@ -659,37 +664,41 @@ function TransactionHistory() {
   //////////////
   //////////////
   // Filter transactions for business accounts
-  const businessTransactions = transactionHistory.filter(
+  const subPOSTransactions = transactionHistory.filter(
     (transaction) =>
       transaction.customer_id === "uc12" && // Replace "your_customer_id" with the actual customer ID
+      transaction.accountType === "Sub_POS" &&
       transaction.business_id === "ubmc123"
   );
 
   // Extract unique combinations of accountNumber and serialNumber from all transactions
-  const uniqueSubPOSMap = new Map();
-  businessTransactions.forEach((transaction) => {
-    if (transaction.accountType === "Sub_POS") {
-      const { accountNumber, serialNumber } = transaction;
-      uniqueSubPOSMap.set(accountNumber, serialNumber);
-    }
-  });
-  // Create options for Select component
-  // Create options for Select component
-  const options = [];
-  uniqueSubPOSMap.forEach((serialNumber, accountNumber) => {
-    options.push({
-      label: (
-        <span>
-          Sub POS: <br />
-          Account-Number: {accountNumber}
-          <br />
-          Serial-Number: {serialNumber}
-        </span>
-      ),
-
-      value: accountNumber, // You can set the value to whatever you need
+  const getSubPOSOptions = (transactions) => {
+    const uniqueSubPOSMap = new Map();
+    transactions.forEach((transaction) => {
+      const { accountNumber, serialNumber, balance } = transaction;
+      if (!uniqueSubPOSMap.has(accountNumber)) {
+        uniqueSubPOSMap.set(accountNumber, { serialNumber, balance });
+      }
     });
-  });
+
+    const options = [];
+    uniqueSubPOSMap.forEach((data, accountNumber) => {
+      const { serialNumber, balance } = data;
+      options.push({
+        label: (
+          <span>
+            Sub POS: <br />
+            Account Number: {accountNumber} <br />
+            Serial Number: {serialNumber} <br />
+            Balance: {balance}
+          </span>
+        ),
+        value: accountNumber,
+      });
+    });
+    return options;
+  };
+  const subPOSOptions = getSubPOSOptions(subPOSTransactions);
   /////////////
   const handleShowSubPOSTransaction = () => {
     try {
@@ -1419,7 +1428,7 @@ function TransactionHistory() {
                 >
                   <li>
                     <Select
-                      options={options1}
+                      options={masterPOSOptions}
                       isClearable
                       isSearchable
                       placeholder="Select Master POS"
@@ -1435,7 +1444,7 @@ function TransactionHistory() {
                   </li>
                   <div className="subPOS-select-container">
                     <Select
-                      options={options}
+                      options={subPOSOptions}
                       isClearable
                       isSearchable
                       placeholder="Select a Sub POS"

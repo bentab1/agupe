@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 // import App from "./App";
+import Slide from "./components/Slide";
 import "./index.css";
-import TransactionHistory from "./components/TransactionHistory";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <TransactionHistory />
+    <Slide />
   </React.StrictMode>
 );

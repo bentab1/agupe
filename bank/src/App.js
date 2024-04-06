@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useEffect, useState } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
 import AboutUs from "./components/AboutUs/AboutUs";
@@ -80,7 +80,9 @@ function App() {
               element={<UnsupportedCountrySelectionMessage />}
             />
           </Routes>
+
           <Contents />
+
           <Features />
           <Review />
           <Welc />

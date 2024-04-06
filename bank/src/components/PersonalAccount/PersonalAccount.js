@@ -39,6 +39,7 @@ function personalAccount() {
             />
           </div>
         </div>
+
         <div>
           <NavLink to="/addmoney">
             <button className="profile-section">Add Money</button>

@@ -3,7 +3,7 @@ import Select from "react-select";
 import FetchTransactionHistory from "./FetchedTransactionHistory";
 
 function StatusByAccountNumber({ handleOptionChange }) {
-  const [selectedSavings, setSelectedSaving] = useState(null);
+  const [selectedSavings, setSelectedSavings] = useState(null);
   const [selectedBusiness, setSelectedBusiness] = useState(null);
   const [selectedMasterPOS, setSelectedMasterPOS] = useState(null);
   const [selectedSubPOS, setSelectedSubPOS] = useState(null);
@@ -33,12 +33,14 @@ function StatusByAccountNumber({ handleOptionChange }) {
   const masterPOSTransactions = transactionHistory.filter(
     (transaction) =>
       transaction.customer_id === "uc12" && // Replace "your_customer_id" with the actual customer ID
-      transaction.accountType === "Master_POS"
+      transaction.accountType === "Master_POS" &&
+      transaction.business_id === "ubmc123"
   );
   const subPOSTransactions = transactionHistory.filter(
     (transaction) =>
       transaction.customer_id === "uc12" && // Replace "your_customer_id" with the actual customer ID
-      transaction.accountType === "Sub_POS"
+      transaction.accountType === "Sub_POS" &&
+      transaction.business_id === "ubmc123"
   );
 
   const getBusinessOptions = (transactions) => {
@@ -191,7 +193,7 @@ function StatusByAccountNumber({ handleOptionChange }) {
             placeholder="Savings Account"
             onChange={(selectedOption) => {
               handleOptionChange(selectedSavings);
-              setSelectedSaving(selectedOption);
+              setSelectedSavings(selectedOption);
             }}
             value={selectedSavings}
             styles={customStyles} // Define custom styles for savings
