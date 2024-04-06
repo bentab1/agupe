@@ -59,17 +59,15 @@ const Slider = ({ slides }) => {
       >
         {slides.map((slide, index) => (
           <div
-            className={`slide ${
-              selected === index ? "selected" : "unselected"
-            }`}
-            key={slide.index}
+            className={`slide ${selected === index ? "selected" : ""}`}
+            key={index}
             onClick={() => handleSlideClick(index)}
           >
             {slide}
           </div>
         ))}
       </div>
-      <button className="  prev " onClick={prevSlide}>
+      <button className="prev" onClick={prevSlide}>
         Prev
       </button>
       <button className="next" onClick={nextSlide}>

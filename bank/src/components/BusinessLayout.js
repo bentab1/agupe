@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useRef } from "react";
-import FetchTransactionHistory from "./FetchedTransactionHistory";
+import React, { useEffect, useRef, useState } from "react";
 import "./BusinessLayout.css";
+import FetchTransactionHistory from "./FetchedTransactionHistory";
 
-const Exampler = () => {
+const BusinessLayout = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selected, setSelected] = useState(null);
   const [startIndex, setStartIndex] = useState(null);
@@ -51,7 +51,10 @@ const Exampler = () => {
         label: (
           <div style={{ width: "130px", height: "80px", marginLeft: "10px" }}>
             <div style={{ marginTop: "20px" }}>
-              Business: NAIRA <br />
+              <span style={{ fontSize: "15px", marginLeft: "10px" }}>
+                {" "}
+                Business: NAIRA{" "}
+              </span>
             </div>
             <div style={{ marginTop: "20px", backgroundColor: "transparent" }}>
               <span style={{ fontSize: "15px" }}>
@@ -65,9 +68,19 @@ const Exampler = () => {
                 )}
               </span>
             </div>
-            <button style={{ borderRadius: "20px" }}>
+            <button
+              style={{
+                borderRadius: "20px",
+                backgroundColor: showBalance ? "royalblue" : "transparent",
+                marginTop: "30px",
+                height: "40px",
+                width: "125px",
+                fontSize: "11px",
+              }}
+            >
               {" "}
-              Account: Number {accountNumber}
+              {showBalance ? "Account Number" : ""}{" "}
+              {showBalance ? accountNumber : ""}
             </button>
           </div>
         ),
@@ -131,19 +144,28 @@ const Exampler = () => {
         ref={sliderRef}
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
-        <input
-          type="checkbox"
-          checked={showBalance}
-          onChange={handleToggleBalance}
-        />{" "}
-        <span style={{ fontSize: "10px" }}>Show Balance</span>
         {businessOptions.map((option, index) => (
           <ul
             className={`slide1 ${selected === index ? "selected1" : ""}`}
             onClick={() => handleSlideClick(index)}
             key={index}
           >
-            <li key={option.value}>{option.label}</li>
+            <li key={option.value}>
+              <input
+                style={{
+                  marginTop: "9px",
+                  cursor: "pointer",
+                  marginLeft: "15px",
+                }}
+                type="checkbox"
+                checked={showBalance}
+                onChange={handleToggleBalance}
+              />{" "}
+              <span style={{ fontSize: "12px" }}>
+                {showBalance ? "Hide Balance" : "Show Balance"}
+              </span>
+              {option.label}
+            </li>
           </ul>
         ))}
       </div>
@@ -168,4 +190,4 @@ const Exampler = () => {
   );
 };
 
-export default Exampler;
+export default BusinessLayout;

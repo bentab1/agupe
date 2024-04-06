@@ -64,11 +64,24 @@ const SubPOSLayout = ({ slides }) => {
                 )}
               </span>
             </div>
-            <button style={{ borderRadius: "20px", fontSize: "12px" }}>
+            <button
+              style={{
+                borderRadius: "20px",
+                backgroundColor: showBalance ? "royalblue" : "transparent",
+                fontSize: "12px",
+                marginTop: "80px",
+                marginLeft: "4px",
+                height: "40px",
+              }}
+            >
               {" "}
-              Account: Number {accountNumber}
+              {showBalance ? "Account Number" : ""}{" "}
+              {showBalance ? accountNumber : ""}
             </button>
-            <span style={{ fontSize: "11px" }}> S/N: {serialNumber}</span>
+            <p style={{ fontSize: "11px", marginTop: "15px" }}>
+              {" "}
+              S/N: {serialNumber}
+            </p>
           </div>
         ),
         value: accountNumber,
@@ -120,48 +133,59 @@ const SubPOSLayout = ({ slides }) => {
 
   return (
     <div
-      className="slider-container1"
+      className="slider-container-subPos"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={() => setStartIndex(null)}
     >
       <div
-        className="slider1"
+        className="slider-subPos"
         ref={sliderRef}
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {subPOSOptions.map((option, index) => (
           <ul
-            className={`slide1 ${selected === index ? "selected1" : ""}`}
+            className={`slide-subPos ${
+              selected === index ? "selected-subPos" : ""
+            }`}
             onClick={() => handleSlideClick(index)}
             key={option.index}
           >
-            <li key={option.value}>
+            <li
+              key={option.value}
+              style={{
+                position: "absolute",
+                cursor: "pointer",
+                marginLeft: "10px",
+              }}
+            >
               <input
                 style={{ marginTop: "9px", marginLeft: "15px" }}
                 type="checkbox"
                 checked={showBalance}
                 onChange={handleToggleBalance}
               />{" "}
-              <span style={{ fontSize: "10px" }}>Show Balance</span>
+              <span style={{ fontSize: "12px" }}>
+                {showBalance ? "Hide Balance" : "Show Balance"}
+              </span>
               {option.label}
             </li>
           </ul>
         ))}
       </div>
-      <button className="prev1 button" onClick={prevSlide}>
+      <button className="prev-subPos button-subPos" onClick={prevSlide}>
         Prev
       </button>
-      <button className="next1 button" onClick={nextSlide}>
+      <button className="next-subPos button-subPos" onClick={nextSlide}>
         Next
       </button>
-      <div className="indicators1">
+      <div className="indicators-subPos">
         {subPOSOptions.map((option, index) => (
           <div
             key={option.index}
-            className={`dot1 ${index === currentIndex ? "active1" : ""} ${
-              selected === index ? "selected1" : ""
-            }`}
+            className={`dot-subPos ${
+              index === currentIndex ? "active-subPos" : ""
+            } ${selected === index ? "selected-subPos" : ""}`}
             onClick={() => setCurrentIndex(index)}
           ></div>
         ))}

@@ -1,59 +1,61 @@
-.slider-container1 {
-  position: relative;
+.slider-container-subPos {
+  position: absolute;
   overflow: hidden;
-  width: 150px;
-  height: 180px;
-  margin-left: 100px;
-  margin-top: 50px;
+  width: 180px;
+  height: 200px;
+  margin-left: 60px;
+  margin-top: 21px;
   border-radius: 25px;
 }
 
-.slider1 {
+.slider-subPos {
   display: flex;
 }
 
-.slide1 {
-  background-color: aqua;
+.slide-subPos {
+  background-color: wheat;
   flex: 0 0 100%;
-  width: 200px;
+  width: 140px;
   height: 200px;
-  position: absolute;
+  z-index: 10;
 }
 
-.selected1 {
-  background-color: #fff;
+.selected-subPos {
+  background-color: rgb(184, 201, 233);
 }
 
-.button {
+.button-subPos {
   position: absolute;
-  top: 150px;
+  top: 181px;
   transform: translateY(-50%);
   padding: 10px;
-  background-color: #007bff;
+  background-color: #002;
   color: #fff;
   border: none;
   cursor: pointer;
   font-size: 10px;
 }
 
-.prev1 {
+.prev-subPos {
   left: 0;
-  border-top-right-radius: 20px;
+  border-top-right-radius: 25px;
+  border-bottom-left-radius: 25px;
 }
 
-.next1 {
+.next-subPos {
   right: 0;
-  border-top-left-radius: 20px;
+  border-top-left-radius: 25px;
+  border-bottom-right-radius: 25px;
 }
 
-.indicators1 {
+.indicators-subPos {
   position: absolute;
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
 }
 
-.dot1 {
+.dot-subPos {
   width: 10px;
   height: 10px;
   border-radius: 50%;
@@ -63,10 +65,10 @@
   cursor: pointer;
 }
 
-.dot1.active1 {
+.dot-subPos.active-subPos {
   background-color: #007bff;
 }
 
-.dot1.selected1 {
+.dot-subPos.selected-subPos {
   background-color: red;
 }

@@ -53,7 +53,7 @@ const MasterPOSLayout = ({ slides }) => {
         label: (
           <div style={{ width: "130px", height: "80px", marginLeft: "10px" }}>
             <div style={{ marginTop: "20px" }}>
-              Master-POS: NAIRA <br />
+              <p style={{ fontSize: "14px" }}> Master-POS: NAIRA</p>
             </div>
             <div style={{ marginTop: "20px", backgroundColor: "transparent" }}>
               <span style={{ fontSize: "15px" }}>
@@ -67,11 +67,25 @@ const MasterPOSLayout = ({ slides }) => {
                 )}
               </span>
             </div>
-            <button style={{ borderRadius: "20px" }}>
+            <button
+              style={{
+                borderRadius: "20px",
+                backgroundColor: showBalance ? "royalblue" : "transparent",
+                marginTop: "50px",
+                height: "40px",
+                width: "125px",
+                fontSize: "11px",
+                marginLeft: "15px",
+              }}
+            >
               {" "}
-              Account: Number {accountNumber}
+              {showBalance ? "Account Number" : ""}{" "}
+              {showBalance ? accountNumber : ""}
             </button>
-            <span style={{ fontSize: "11px" }}> S/N: {serialNumber}</span>
+            <p style={{ fontSize: "11px", marginTop: "10px" }}>
+              {" "}
+              S/N: {serialNumber}
+            </p>
           </div>
         ),
         value: accountNumber,
@@ -125,48 +139,56 @@ const MasterPOSLayout = ({ slides }) => {
 
   return (
     <div
-      className="slider-container1"
+      className="slider-container-masterPos"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={() => setStartIndex(null)}
     >
       <div
-        className="slider1"
+        className="slider-masterPos"
         ref={sliderRef}
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {masterPOSOptions.map((option, index) => (
           <ul
-            className={`slide1 ${selected === index ? "selected1" : ""}`}
+            className={`slide-masterPos ${
+              selected === index ? "selected-masterPos" : ""
+            }`}
             onClick={() => handleSlideClick(index)}
             key={option.index}
           >
             <li key={option.value}>
               <input
-                style={{ marginTop: "9px", marginLeft: "15px" }}
+                style={{
+                  marginTop: "9px",
+                  cursor: "pointer",
+                  marginLeft: "15px",
+                }}
                 type="checkbox"
                 checked={showBalance}
                 onChange={handleToggleBalance}
               />{" "}
-              <span style={{ fontSize: "10px" }}>Show Balance</span>
+              <span style={{ fontSize: "12px" }}>
+                {showBalance ? "Hide Balance" : "Show Balance"}
+              </span>
               {option.label}
             </li>
           </ul>
         ))}
       </div>
-      <button className="prev1 button" onClick={prevSlide}>
+      <button className="prev-masterPos button-masterPos" onClick={prevSlide}>
         Prev
       </button>
-      <button className="next1 button" onClick={nextSlide}>
+      <button className="next-masterPos button-master-Pos" onClick={nextSlide}>
         Next
       </button>
-      <div className="indicators1">
+      <div className="indicators-masterPos">
         {masterPOSOptions.map((option, index) => (
           <div
             key={option.index}
-            className={`dot1 ${index === currentIndex ? "active1" : ""} ${
-              selected === index ? "selected1" : ""
-            }`}
+            className={`dot-masterPos ${
+              index === currentIndex ? "active-masterPos" : ""
+            } ${selected === index ? "selected-masterPos" : ""}`}
             onClick={() => setCurrentIndex(index)}
           ></div>
         ))}

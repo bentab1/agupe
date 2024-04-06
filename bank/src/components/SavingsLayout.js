@@ -48,7 +48,13 @@ const SavingsLayout = ({ slides }) => {
       const { balance } = data;
       options.push({
         label: (
-          <div style={{ width: "130px", height: "80px", marginLeft: "10px" }}>
+          <div
+            style={{
+              width: "130px",
+              height: "100px",
+              marginLeft: "10px",
+            }}
+          >
             <div style={{ marginTop: "20px" }}>
               Savings: NAIRA <br />
             </div>
@@ -56,7 +62,7 @@ const SavingsLayout = ({ slides }) => {
               <span style={{ fontSize: "15px" }}>
                 {" "}
                 {showBalance && (
-                  <p>
+                  <p style={{ marginTop: "20px" }}>
                     {" "}
                     {CURRENCY_SYMBOL}
                     {parseFloat(balance).toLocaleString("en")}
@@ -64,9 +70,20 @@ const SavingsLayout = ({ slides }) => {
                 )}
               </span>
             </div>
-            <button style={{ borderRadius: "20px" }}>
+            <button
+              style={{
+                borderRadius: "20px",
+
+                fontSize: "12px",
+                marginTop: "30px",
+                height: "40px",
+                width: "130px",
+                marginLeft: "10px",
+              }}
+            >
               {" "}
-              Account: Number {accountNumber}
+              {showBalance ? "Account Number" : ""}{" "}
+              {showBalance ? accountNumber : ""}
             </button>
           </div>
         ),
@@ -119,48 +136,56 @@ const SavingsLayout = ({ slides }) => {
 
   return (
     <div
-      className="slider-container1"
+      className="slider-container-saving"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={() => setStartIndex(null)}
     >
       <div
-        className="slider1"
+        className="slider-saving"
         ref={sliderRef}
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {savingsOptions.map((option, index) => (
           <ul
-            className={`slide1 ${selected === index ? "selected1" : ""}`}
+            className={`slide-saving ${
+              selected === index ? "selected-saving" : ""
+            }`}
             onClick={() => handleSlideClick(index)}
             key={option.index}
           >
             <li key={option.value}>
               <input
-                style={{ marginTop: "9px", marginLeft: "15px" }}
+                style={{
+                  marginTop: "9px",
+                  cursor: "pointer",
+                  marginLeft: "15px",
+                }}
                 type="checkbox"
                 checked={showBalance}
                 onChange={handleToggleBalance}
               />{" "}
-              <span style={{ fontSize: "10px" }}>Show Balance</span>
+              <span style={{ fontSize: "12px" }}>
+                {showBalance ? "Hide Balance" : "Show Balance"}
+              </span>
               {option.label}
             </li>
           </ul>
         ))}
       </div>
-      <button className="prev1 button" onClick={prevSlide}>
+      <button className="prev-saving button-saving" onClick={prevSlide}>
         Prev
       </button>
-      <button className="next1 button" onClick={nextSlide}>
+      <button className="next-saving button-saving" onClick={nextSlide}>
         Next
       </button>
-      <div className="indicators1">
+      <div className="indicators-saving">
         {savingsOptions.map((option, index) => (
           <div
             key={option.index}
-            className={`dot1 ${index === currentIndex ? "active1" : ""} ${
-              selected === index ? "selected1" : ""
-            }`}
+            className={`dot-saving ${
+              index === currentIndex ? "active-saving" : ""
+            } ${selected === index ? "selected-saving" : ""}`}
             onClick={() => setCurrentIndex(index)}
           ></div>
         ))}

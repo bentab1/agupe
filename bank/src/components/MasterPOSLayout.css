@@ -1,19 +1,19 @@
-.slider-container1 {
+.slider-container-masterPos {
   position: relative;
   overflow: hidden;
-  width: 150px;
-  height: 180px;
-  margin-left: 100px;
-  margin-top: 50px;
+  width: 180px;
+  height: 200px;
+  margin-left: 60px;
+  top: 21px;
   border-radius: 25px;
 }
 
-.slider1 {
+.slider-masterPos {
   display: flex;
 }
 
-.slide1 {
-  background-color: aqua;
+.slide-masterPos {
+  background-color: rgb(226, 210, 211);
   flex: 0 0 100%;
   width: 200px;
   height: 200px;
@@ -23,7 +23,8 @@
   background-color: #fff;
 } */
 
-.button {
+.button-masterPos {
+  display: none;
   position: absolute;
   top: 150px;
   transform: translateY(-50%);
@@ -35,24 +36,26 @@
   font-size: 10px;
 }
 
-.prev1 {
+.prev-masterPos {
   left: 0;
   border-top-right-radius: 20px;
 }
 
-.next1 {
+.next-masterPos {
+  display: none;
   right: 0;
+  top: 150px;
   border-top-left-radius: 20px;
 }
 
-.indicators1 {
+.indicators-masterPos {
   position: absolute;
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
 }
 
-.dot1 {
+.dot-masterPos {
   width: 10px;
   height: 10px;
   border-radius: 50%;
@@ -62,10 +65,10 @@
   cursor: pointer;
 }
 
-.dot1.active1 {
-  background-color: #007bff;
+.dot-masterPos.active-masterPos {
+  background-color: yellow;
 }
 
-.dot1.selected1 {
+/* .dot-masterPos.selected-masterPos {
   background-color: red;
-}
+} */
