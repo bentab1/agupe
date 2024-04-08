@@ -47,19 +47,19 @@ const Slider = ({ slides }) => {
   };
   return (
     <div
-      className="slider-container"
+      className="account-slider-container"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={() => setStartIndex(null)}
     >
       <div
-        className="slider"
+        className="account-slider"
         ref={sliderRef}
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {slides.map((slide, index) => (
           <div
-            className={`slide ${
+            className={`account-slide ${
               selected === index ? "selected" : "unselected"
             }`}
             key={slide.index}
@@ -69,19 +69,19 @@ const Slider = ({ slides }) => {
           </div>
         ))}
       </div>
-      <button className="  prev " onClick={prevSlide}>
+      <button className="  account-prev account-button" onClick={prevSlide}>
         Prev
       </button>
-      <button className="next" onClick={nextSlide}>
+      <button className="account-next  account-button" onClick={nextSlide}>
         Next
       </button>
-      <div className="indicators">
+      <div className="account-indicators">
         {slides.map((slide, index) => (
           <div
             key={index}
-            className={`dot ${index === currentIndex ? "active" : ""} ${
-              selected === index ? "selected" : ""
-            }`}
+            className={`account-dot ${
+              index === currentIndex ? "account-active" : ""
+            } ${selected === index ? "account-selected" : ""}`}
             onClick={() => setCurrentIndex(index)}
           ></div>
         ))}

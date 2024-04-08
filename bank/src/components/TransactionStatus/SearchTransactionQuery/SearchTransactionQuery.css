@@ -1,0 +1,27 @@
+.searchQuery-transaction-container {
+  top: 0px;
+  width: 332px;
+  z-index: 2;
+  height: 50px;
+  border-radius: 20px;
+  position: relative;
+  background-color: white;
+}
+
+.searchQuery-transaction {
+  width: 325px;
+  z-index: 30;
+  height: 28px;
+  border-radius: 20px;
+  margin-left: 5px;
+  position: absolute;
+  background-color: white;
+}
+
+.searchQuery-input {
+  border-radius: 20px;
+  width: 325px;
+  font-size: 11px;
+  padding: 9px;
+  height: 28px;
+}

@@ -1,4 +1,4 @@
-.showAll-category-viv {
+.showAll-category-div {
   display: grid;
   background-color: aqua;
   width: 320px;
@@ -36,4 +36,9 @@ li {
   width: 300px;
   left: 113px;
   border-radius: 20px;
+}
+
+.transaction-container {
+  width: 100%;
+  max-height: calc(71vh);
 }

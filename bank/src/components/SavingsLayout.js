@@ -31,6 +31,7 @@ const SavingsLayout = ({ slides }) => {
       transaction.customer_id === "uc12" && // Replace "your_customer_id" with the actual customer ID
       transaction.accountType === "Savings"
   );
+
   const getSavingsOptions = (transactions) => {
     const uniqueSavingsMap = new Map();
     transactions.forEach((transaction) => {

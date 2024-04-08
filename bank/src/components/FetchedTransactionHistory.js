@@ -48,7 +48,8 @@ const fetchTransactionHistory = () => {
       description: "Online Payment",
       amount: -70.0,
       balance: 8730.0,
-      status: "completed",
+      Merchant: "Bentab",
+      status: "upcoming",
     },
     {
       id: 5,
@@ -72,7 +73,7 @@ const fetchTransactionHistory = () => {
       description: "Salary Deposit",
       amount: 3000.0,
       balance: 11630.0,
-      status: "completed",
+      status: "reversed",
     },
     {
       id: 7,
@@ -99,7 +100,7 @@ const fetchTransactionHistory = () => {
       description: "Deposit",
       amount: 500.0,
       balance: 11980.0,
-      status: "completed",
+      status: "pending",
     },
     {
       id: 9,
@@ -245,7 +246,7 @@ const fetchTransactionHistory = () => {
       description: "Withdrawal from ATM",
       amount: -100.0,
       balance: 11860.0,
-      status: "completed",
+      status: "pending",
     },
     {
       id: 21,
@@ -258,7 +259,7 @@ const fetchTransactionHistory = () => {
       description: "Withdrawal from ATM",
       amount: -100.0,
       balance: 11860.0,
-      status: "completed",
+      status: "pending",
     },
     {
       id: 22,
@@ -271,7 +272,7 @@ const fetchTransactionHistory = () => {
       description: "Withdrawal from ATM",
       amount: -100.0,
       balance: 11860.0,
-      status: "completed",
+      status: "failed",
     },
     {
       id: 23,

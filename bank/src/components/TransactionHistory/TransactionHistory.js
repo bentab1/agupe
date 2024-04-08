@@ -1,461 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { React, useEffect, useState } from "react";
+import { React, useCallback, useEffect, useState } from "react";
 import Select from "react-select";
+import fetchTransactionHistory from "../FetchedTransactionHistory";
 import "./TransactionHistory.css";
-import StatusByAccountNumber from "./StatusByAccountNumber";
 
-const transactionHistory = [
-  {
-    id: 1,
-    customer_id: "uc12",
-    TransactionType: "CardWithdrawal",
-    accountType: "Savings",
-    accountNumber: "4444444444",
-    date: "2024-04-01",
-    description: "Purchase at Grocery Store",
-    amount: -50.0,
-    balance: 8950.0,
-    status: "upcoming",
-  },
-  {
-    id: 2,
-    customer_id: "uc12",
-    accountType: "Savings",
-    TransactionType: "CardWithdrawal",
-    accountNumber: "4444444444",
-    date: "2024-03-30",
-    description: "Deposit",
-    amount: 1000.0,
-    balance: 9000.0,
-    status: "upcoming",
-  },
-  {
-    id: 3,
-    customer_id: "uc12",
-    accountType: "Savings",
-    TransactionType: "CardWithdrawal",
-    accountNumber: "4444444444",
-    date: "2024-03-25",
-    description: "Withdrawal from ATM",
-    amount: -200.0,
-    balance: 8800.0,
-    status: "completed",
-  },
-  {
-    id: 4,
-    customer_id: "uc12",
-    accountType: "Business",
-    business_id: "ubmc123",
-    TransactionType: "Transfer to LPay",
-    accountNumber: "5555555555",
-    date: "2024-03-20",
-    description: "Online Payment",
-    amount: -70.0,
-    balance: 8730.0,
-    status: "completed",
-  },
-  {
-    id: 5,
-    customer_id: "uc12",
-    TransactionType: "CardWithdrawal",
-    accountType: "Business",
-    accountNumber: "5555555555",
-    date: "2024-03-15",
-    description: "Transfer to Friend",
-    amount: -100.0,
-    balance: 8630.0,
-    status: "completed",
-  },
-  {
-    id: 6,
-    customer_id: "uc12",
-    accountType: "Business",
-    TransactionType: "TransferToOtherBank",
-    accountNumber: "5555555555",
-    date: "2024-03-10",
-    description: "Salary Deposit",
-    amount: 3000.0,
-    balance: 11630.0,
-    status: "completed",
-  },
-  {
-    id: 7,
-    customer_id: "uc12",
-    accountType: "Master_POS",
-    serialNumber: "1232",
-    TransactionType: "CardRefund",
-    accountNumber: "6666666666",
-    date: "2024-03-05",
-    description: "Utility Bill Payment",
-    amount: -150.0,
-    balance: 11480.0,
-    status: "completed",
-  },
-  {
-    id: 8,
-    customer_id: "uc12",
-    accountType: "Master_POS",
-    business_id: "ubmc123",
-    serialNumber: "1228",
-    TransactionType: "TransferToOwnBank",
-    accountNumber: "5555555555",
-    date: "2024-02-28",
-    description: "Deposit",
-    amount: 500.0,
-    balance: 11980.0,
-    status: "completed",
-  },
-  {
-    id: 9,
-    customer_id: "uc12",
-    accountType: "Master_POS",
-    business_id: "ubmc123",
-    TransactionType: "CardDeposit",
-    accountNumber: "5555555555",
-    serialNumber: "1233",
-    date: "2024-02-23",
-    description: "Online Shopping",
-    amount: -80.0,
-    balance: 11900.0,
-    status: "completed",
-  },
-  {
-    id: 10,
-    customer_id: "uc12",
-    accountType: "Master_POS",
-    serialNumber: "1234",
-    TransactionType: "CardDeposit",
-    accountNumber: "5555555555",
-    date: "2024-02-18",
-    description: "Withdrawal from ATM",
-    amount: -200.0,
-    balance: 11700.0,
-    status: "completed",
-  },
-  {
-    id: 11,
-    customer_id: "uc12",
-    accountType: "Master_POS",
-    serialNumber: "1235",
-    TransactionType: "otherBankDeposit",
-    accountNumber: "5555555555",
-    date: "2024-02-13",
-    description: "Transfer to Family",
-    amount: -150.0,
-    balance: 11550.0,
-    status: "completed",
-  },
-  {
-    id: 12,
-    customer_id: "uc12",
-    accountType: "Sub_POS",
-    serialNumber: "1236",
-    TransactionType: "otherBankDeposit",
-    accountNumber: "6666666666",
-    date: "2024-02-08",
-    description: "Deposit",
-    amount: 1000.0,
-    balance: 12550.0,
-    status: "completed",
-  },
-  {
-    id: 13,
-    customer_id: "uc12",
-    accountNumber: "6666666666",
-    accountType: "Sub_POS",
-    serialNumber: "1237",
-    TransactionType: "CardWithdrawal",
-    date: "2024-02-03",
-    description: "Online Payment",
-    amount: -90.0,
-    balance: 12460.0,
-    status: "completed",
-  },
-  {
-    id: 14,
-    customer_id: "uc12",
-    business_id: "ubmc123",
-    TransactionType: "CardWithdrawal",
-    accountNumber: "6666666666",
-    date: "2024-01-29",
-    accountType: "Sub_POS",
-    serialNumber: "1237",
-    description: "Purchase at Electronics Store",
-    amount: -500.0,
-    balance: 11960.0,
-    status: "completed",
-  },
-  {
-    id: 16,
-    customer_id: "uc12",
-    accountNumber: "6666666666",
-    date: "2023-01-24",
-    business_id: "ubmc123",
-    accountType: "Sub_POS",
-    serialNumber: "1238",
-    description: "Withdrawal from ATM",
-    amount: -100.0,
-    balance: 11860.0,
-    status: "completed",
-  },
-  {
-    id: 17,
-    customer_id: "uc12",
-    TransactionType: "TransferToOtherBank",
-    accountNumber: "6666666666",
-    date: "2023-01-24",
-    business_id: "ubmc123",
-    accountType: "Sub_POS",
-    serialNumber: "1238",
-    description: "Withdrawal from ATM",
-    amount: -100.0,
-    balance: 11860.0,
-    status: "completed",
-  },
-  {
-    id: 18,
-    customer_id: "uc12",
-    TransactionType: "LPayWalletTransaction",
-    accountNumber: "6666666666",
-    date: "2023-01-24",
-    accountType: "Sub_POS",
-    serialNumber: "1238",
-    description: "Withdrawal from ATM",
-    amount: -100.0,
-    balance: 11860.0,
-    status: "completed",
-  },
-  {
-    id: 19,
-    customer_id: "uc12",
-    TransactionType: "AddMoney",
-    accountNumber: "6666666666",
-    date: "2023-01-24",
-    accountType: "Sub_POS",
-    serialNumber: "1238",
-    description: "Withdrawal from ATM",
-    amount: -100.0,
-    balance: 11860.0,
-    status: "completed",
-  },
-  {
-    id: 20,
-    customer_id: "uc12",
-    TransactionType: "OtherBankDeposit",
-    accountNumber: "6666666666",
-    date: "2023-01-24",
-    accountType: "Sub_POS",
-    serialNumber: "1238",
-    description: "Withdrawal from ATM",
-    amount: -100.0,
-    balance: 11860.0,
-    status: "completed",
-  },
-  {
-    id: 21,
-    customer_id: "uc12",
-    TransactionType: "CardWithDrawal",
-    accountNumber: "6666666666",
-    date: "2023-01-24",
-    accountType: "Sub_POS",
-    serialNumber: "1238",
-    description: "Withdrawal from ATM",
-    amount: -100.0,
-    balance: 11860.0,
-    status: "completed",
-  },
-  {
-    id: 22,
-    customer_id: "uc12",
-    TransactionType: "Refund",
-    accountNumber: "6666666666",
-    date: "2023-01-24",
-    accountType: "Sub_POS",
-    serialNumber: "1238",
-    description: "Withdrawal from ATM",
-    amount: -100.0,
-    balance: 11860.0,
-    status: "completed",
-  },
-  {
-    id: 23,
-    customer_id: "uc12",
-    TransactionType: "CardPayment",
-    accountNumber: "6666666666",
-    date: "2023-01-24",
-    accountType: "Sub_POS",
-    serialNumber: "1238",
-    description: "Withdrawal from ATM",
-    amount: -100.0,
-    balance: 11860.0,
-    status: "completed",
-  },
-  {
-    id: 24,
-    customer_id: "uc12",
-    TransactionType: "Qcode",
-    accountNumber: "6666666666",
-    date: "2023-01-24",
-    accountType: "Sub_POS",
-    business_id: "ubmc123",
-    serialNumber: "1238",
-    description: "Withdrawal from ATM",
-    amount: -100.0,
-    balance: 11860.0,
-    status: "completed",
-  },
-  {
-    id: 25,
-    customer_id: "uc12",
-    TransactionType: "Commission",
-    accountNumber: "6666666666",
-    date: "2023-01-24",
-    accountType: "Sub_POS",
-    serialNumber: "1238",
-    description: "Withdrawal from ATM",
-    amount: -100.0,
-    balance: 11860.0,
-    status: "completed",
-  },
-  {
-    id: 26,
-    customer_id: "uc12",
-    TransactionType: "CashBack",
-    accountNumber: "6666666666",
-    date: "2023-01-24",
-    accountType: "Sub_POS",
-    serialNumber: "1238",
-    description: "Withdrawal from ATM",
-    amount: -100.0,
-    balance: 11860.0,
-    status: "completed",
-  },
-  {
-    id: 27,
-    customer_id: "uc12",
-    TransactionType: "TV",
-    accountNumber: "6666666666",
-    date: "2023-01-24",
-    accountType: "Sub_POS",
-    business_id: "ubmc123",
-    serialNumber: "1238",
-    description: "Withdrawal from ATM",
-    amount: -100.0,
-    balance: 11860.0,
-    status: "completed",
-  },
-  {
-    id: 28,
-    customer_id: "uc12",
-    TransactionType: "MobileData",
-    accountNumber: "6666666666",
-    date: "2023-01-24",
-    accountType: "Sub_POS",
-    serialNumber: "1238",
-    description: "Withdrawal from ATM",
-    amount: -100.0,
-    balance: 11860.0,
-    status: "completed",
-  },
-  {
-    id: 29,
-    customer_id: "uc12",
-    TransactionType: "Airtime",
-    accountNumber: "6666666666",
-    date: "2023-01-24",
-    accountType: "Sub_POS",
-    business_id: "ubmc123",
-    serialNumber: "1238",
-    description: "Withdrawal from ATM",
-    amount: -100.0,
-    balance: 11860.0,
-    status: "completed",
-  },
-  {
-    id: 30,
-    customer_id: "uc12",
-    TransactionType: "Electricity",
-    accountNumber: "6666666666",
-    date: "2023-01-24",
-    accountType: "Sub_POS",
-    business_id: "ubmc123",
-    serialNumber: "1238",
-    description: "Withdrawal from ATM",
-    amount: -100.0,
-    balance: 11860.0,
-    status: "completed",
-  },
-  {
-    id: 31,
-    customer_id: "uc12",
-    TransactionType: "Flight",
-    accountNumber: "6666666666",
-    date: "2023-01-24",
-    accountType: "Sub_POS",
-    serialNumber: "1238",
-    description: "Withdrawal from ATM",
-    amount: -100.0,
-    balance: 11860.0,
-    status: "completed",
-  },
-  {
-    id: 32,
-    customer_id: "uc12",
-    TransactionType: "Education",
-    accountNumber: "6666666666",
-    date: "2023-01-24",
-    accountType: "Sub_POS",
-    serialNumber: "1238",
-    description: "Withdrawal from ATM",
-    amount: -100.0,
-    balance: 11860.0,
-    status: "completed",
-  },
-
-  {
-    id: 33,
-    customer_id: "uc12",
-    TransactionType: "Purchase",
-    accountNumber: "6666666665",
-    date: "2023-01-24",
-    business_id: "ubmc123",
-    accountType: "Sub_POS",
-    serialNumber: "1233",
-    description: "Withdrawal from ATM",
-    amount: -100.0,
-    balance: 11860.0,
-    status: "Pending",
-  },
-
-  {
-    id: 34,
-    customer_id: "uc12",
-    TransactionType: "EPin",
-    accountNumber: "6666666666",
-    date: "2023-01-24",
-    accountType: "Sub_POS",
-    business_id: "ubmc123",
-    serialNumber: "1238",
-    description: "Withdrawal from ATM",
-    amount: -100.0,
-    balance: 11860.0,
-    status: "Pending",
-  },
-  {
-    id: 35,
-    customer_id: "uc12",
-    TransactionType: "CardWithdrawal",
-    accountNumber: "6666666667",
-    date: "2023-01-24",
-    business_id: "ubmc123",
-    accountType: "Sub_POS",
-    serialNumber: "1222",
-    description: "Withdrawal from ATM",
-    amount: -100.0,
-    balance: 11860.0,
-    status: "completed",
-  },
-];
 function groupTransactionsByMonth(transactions) {
   const groupedTransactions = {};
   transactions.forEach((transaction) => {
@@ -473,6 +21,7 @@ function groupTransactionsByMonth(transactions) {
 
 function TransactionHistory() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [transactionHistory, setTransactionHistory] = useState([]);
   const [groupedTransactions, setGroupedTransactions] = useState({});
   const [showCompleted, setShowCompleted] = useState(false);
   const [showUpcoming, setShowUpcoming] = useState(false);
@@ -508,27 +57,16 @@ function TransactionHistory() {
 
   //////
   //////
-  const [selectedAccountNumber, setSelectedAccountNUmber] = useState(null); // State to store the selected option
-
-  // Function to handle selection change
-  const handleOptionChange = (selectedOption) => {
-    setSelectedAccountNUmber(selectedOption);
-    // Check if the selected account number exists
-    // if (selectedOption) {
-    //   const accountNumberCheck = selectedOption.value;
-    //   const accountExists = hasAccountNumber(accountNumberCheck);
-    //   console.log("Account exists:", accountExists);
-    // }
-  };
-
-  // // Function to check if the transaction history contains the given account number
-  // const hasAccountNumber = (accountNumber) => {
-  //   return transactionHistory.some(
-  //     (transactionHistory) => transactionHistory.accountNumber === accountNumber
-  //   );
-  // };
 
   ////////
+  useEffect(() => {
+    // Fetch transaction history when the component mounts
+    const fetchData = async () => {
+      const transactionData = fetchTransactionHistory();
+      setTransactionHistory(transactionData);
+    };
+    fetchData();
+  }, [transactionHistory]);
   ///////
   ///////
   const masterPOSTransactions = transactionHistory.filter(
@@ -652,14 +190,6 @@ function TransactionHistory() {
     }
   };
 
-  function handleMasterPOSCategoryView() {
-    if (selectedMasterPOS !== null) setShowAllTransactionCategory(false);
-    setShowPOSCategory(true);
-  }
-
-  function reverseMasterPOSCategoryView() {
-    setSelectedSubPOS(null);
-  }
   ///////////////
   //////////////
   //////////////
@@ -797,16 +327,24 @@ function TransactionHistory() {
       setShowAllTransactionCategory(false);
     if (showPOSCategory === true) setShowPOSCategory(false);
   }
-
+  
   function handleCategporyView() {
     if (selectedSubPOS !== null) {
       setShowAllTransactionCategory(false);
       setShowPOSCategory(true);
+    }if (selectedSubPOS === null) {
+      setShowAllTransactionCategory(true);
+    }if (selectedMasterPOS !== null) {
+      setShowAllTransactionCategory(false);
+      setShowPOSCategory(true);
+    } if (selectedMasterPOS === null) {
+      setShowAllTransactionCategory(true);
     }
   }
 
-  function reverseSubPOSCategoryView() {
+  function reversePOSCategoryView() {
     setSelectedSubPOS(null);
+    setSelectedMasterPOS(null);
   }
   ////////
   ////////
@@ -905,7 +443,7 @@ function TransactionHistory() {
   /////////
   /////////
   /////////
-  const handleShowAllTransactionsCategory = () => {
+  const handleShowAllTransactionsCategory = useCallback(() => {
     const AllTransactionTypeCategory = allTransactionTypeCategoryseleted;
     const term = setGroupedTransactions(
       groupTransactionsByMonth(
@@ -918,7 +456,7 @@ function TransactionHistory() {
     );
     console.log(term);
     setShowAllTransactionsCategory(true);
-  };
+  }, [allTransactionTypeCategoryseleted]);
 
   function handleAllTransactionTypeCategory(option) {
     setAllTransactionTypeCategoryseleted(option);
@@ -960,8 +498,7 @@ function TransactionHistory() {
   ////////
   ////////
   return (
-    <div className="">
-      <StatusByAccountNumber handleOptionChange={handleOptionChange} />
+    <div className=" transaction-container">
       <div style={{ backgroundColor: "white" }}>
         <h3>Transaction History</h3>
         <div>
@@ -980,9 +517,6 @@ function TransactionHistory() {
             onClick={() => {
               handleShowAllTransactions();
               toggleButton();
-              setShowSubPOSTransaction(false);
-              setShowCompleted(false);
-              setShowUpcoming(false);
             }}
           >
             All Transactions
@@ -990,8 +524,6 @@ function TransactionHistory() {
           <div display={{}}>
             <button
               onClick={() => {
-                setShowAllTransactionCategory(true);
-                handleMasterPOSCategoryView();
                 toggleButton();
                 handleCategporyView();
               }}
@@ -999,7 +531,21 @@ function TransactionHistory() {
               Categories
             </button>
             {showAllTransactionCategory ? (
-              <div className="showAll-category-viv">
+              <div className="showAll-category-div">
+                <button
+                  onClick={() => {
+                    toggleButton();
+                  }}
+                  style={{
+                    display: "block",
+                    marginLeft: "5px",
+                    fontSize: "25px",
+                    backgroundColor: "transparent",
+                    cursor: "pointer",
+                  }}
+                >
+                  &times;
+                </button>
                 <label style={{ marginLeft: "20px", marginTop: "20px" }}>
                   Select a category
                 </label>
@@ -1024,9 +570,6 @@ function TransactionHistory() {
                         onClick={() => {
                           handleShowAllTransactions();
                           toggleButton();
-                          setShowSubPOSTransaction(false);
-                          setShowCompleted(false);
-                          setShowUpcoming(false);
                         }}
                       >
                         All
@@ -1148,7 +691,7 @@ function TransactionHistory() {
                       <button
                         onClick={() => {
                           handleShowAllTransactionsCategory();
-                          handleAllTransactionTypeCategory("CshBack");
+                          handleAllTransactionTypeCategory("CashBack");
                           toggleButton();
                         }}
                       >
@@ -1163,7 +706,7 @@ function TransactionHistory() {
                         <button
                           onClick={() => {
                             handleShowAllTransactionsCategory();
-                            handleAllTransactionTypeCategory("CshBack");
+                            handleAllTransactionTypeCategory("TV");
                             toggleButton();
                           }}
                         >
@@ -1185,7 +728,7 @@ function TransactionHistory() {
                         <button
                           onClick={() => {
                             handleShowAllTransactionsCategory();
-                            handleAllTransactionTypeCategory("CshBack");
+                            handleAllTransactionTypeCategory("CashBack");
                             toggleButton();
                           }}
                         >
@@ -1196,7 +739,7 @@ function TransactionHistory() {
                         <button
                           onClick={() => {
                             handleShowAllTransactionsCategory();
-                            handleAllTransactionTypeCategory("CshBack");
+                            handleAllTransactionTypeCategory("CashBack");
                             toggleButton();
                           }}
                         >
@@ -1207,7 +750,7 @@ function TransactionHistory() {
                         <button
                           onClick={() => {
                             handleShowAllTransactionsCategory();
-                            handleAllTransactionTypeCategory("CshBack");
+                            handleAllTransactionTypeCategory("CashBack");
                             toggleButton();
                           }}
                         >
@@ -1218,7 +761,7 @@ function TransactionHistory() {
                         <button
                           onClick={() => {
                             handleShowAllTransactionsCategory();
-                            handleAllTransactionTypeCategory("CshBack");
+                            handleAllTransactionTypeCategory("CashBack");
                             toggleButton();
                           }}
                         >
@@ -1229,7 +772,7 @@ function TransactionHistory() {
                         <button
                           onClick={() => {
                             handleShowAllTransactionsCategory();
-                            handleAllTransactionTypeCategory("CshBack");
+                            handleAllTransactionTypeCategory("CashBack");
                             toggleButton();
                           }}
                         >
@@ -1268,8 +811,7 @@ function TransactionHistory() {
                   <button
                     onClick={() => {
                       toggleButton();
-                      reverseSubPOSCategoryView();
-                      reverseMasterPOSCategoryView();
+                      reversePOSCategoryView();
                     }}
                     style={{
                       display: "block",
@@ -1488,8 +1030,6 @@ function TransactionHistory() {
                       handleShowTransactionStatus();
                       handleTransactionStatus("completed");
                       toggleButton();
-                      setShowUpcoming(false);
-                      setShowAllTransaction(false);
                       setSelectedStatus("Completed");
                     }}
                   >
@@ -1497,9 +1037,6 @@ function TransactionHistory() {
                   </button>
                   <button
                     onClick={() => {
-                      setShowSubPOSTransaction(false);
-                      setShowCompleted(false);
-                      setShowAllTransaction(false);
                       handleShowUpcoming();
                       setSelectedStatus("Upcoming");
                       toggleButton();

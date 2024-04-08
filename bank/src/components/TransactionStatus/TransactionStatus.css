@@ -1,0 +1,20 @@
+.transaction-status-div {
+  background-color: white;
+  height: 500px;
+  width: 100%;
+  z-index: 5;
+  top: 120px;
+}
+
+.category-all-transaction-container {
+  display: flex;
+  width: 400px;
+  background-color: aqua;
+}
+
+.category-all-transaction-ul-1 {
+  display: grid;
+}
+.category-all-transaction-ul-2 {
+  display: grid;
+}

@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-// import App from "./App";
-import Slide from "./components/Slide";
+import App from "./App";
 import "./index.css";
+import TransactionParentcomponent from "./components/TransactionParentcomponent/TransactionParentcomponent";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Slide />
+    <App />
   </React.StrictMode>
 );

@@ -6,6 +6,9 @@ import NigeriaFlag from "../Assets/NigeriaFlag.jpg";
 import LogOutPage from "../LogOut/LogOutPage";
 import "./personalAccount.css";
 function personalAccount() {
+  function handleTransactionHistry() {
+    window.location.href = "/AllTransactiionSearch";
+  }
   return (
     <div
       style={{ display: "flex", backgroundColor: "rgb(250, 244, 244)" }}
@@ -211,7 +214,15 @@ function personalAccount() {
           </div>
 
           <div>
-            <button className="text">Transaction History</button>
+            <button
+              className="text"
+              onClick={() => {
+                handleTransactionHistry();
+              }}
+            >
+              {" "}
+              Transaction History
+            </button>
           </div>
 
           <div>

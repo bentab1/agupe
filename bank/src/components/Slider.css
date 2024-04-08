@@ -1,4 +1,4 @@
-.slider-container {
+.account-slider-container {
   position: relative;
   overflow: hidden;
   width: 300px;
@@ -8,13 +8,13 @@
   border-radius: 25px;
 }
 
-.slider {
+.account-slider {
   display: flex;
   width: 300px;
   height: 400px;
 }
 
-.slide {
+.account-slide {
   flex: 0 0 100%;
   width: 300px;
   height: 400px;
@@ -27,7 +27,7 @@
 .selected {
   background-color: whitesmoke;
 }
-button {
+.account-button {
   position: absolute;
   top: 250px;
   transform: translateY(-50%);
@@ -40,26 +40,26 @@ button {
   font-size: 10px;
 }
 
-.prev {
+.account-prev {
   left: 0;
   border-top-right-radius: 25px;
   border-bottom-left-radius: 25px;
 }
 
-.next {
+.account-next {
   right: 0;
   border-top-left-radius: 25px;
   border-bottom-right-radius: 25px;
 }
 
-.indicators {
+.account-indicators {
   position: absolute;
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
 }
 
-.dot {
+.account-dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
@@ -69,10 +69,10 @@ button {
   cursor: pointer;
 }
 
-.dot.active {
+.account-dot.account-active {
   background-color: #007bff;
 }
 
-.dot.selected {
+.account-dot.account-selected {
   background-color: red;
 }
