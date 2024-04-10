@@ -244,8 +244,8 @@ export default function App() {
               element={<UnsupportedCountrySelectionMessage />}
             />
           </Routes>
-          {/* 
-          <SubPOSLayout
+
+          {/* <FilteredAllTransactionAccount
             transactionHistory={transactionHistory}
             options={options}
             selected={selected}
