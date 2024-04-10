@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { React, useCallback, useEffect, useState } from "react";
 import Select from "react-select";
-import fetchTransactionHistory from "../FetchedTransactionHistory";
+import fetchTransactionHistory from "../../FetchedTransactionHistory";
 import "./TransactionHistory.css";
 
 function groupTransactionsByMonth(transactions) {
@@ -327,17 +327,20 @@ function TransactionHistory() {
       setShowAllTransactionCategory(false);
     if (showPOSCategory === true) setShowPOSCategory(false);
   }
-  
+
   function handleCategporyView() {
     if (selectedSubPOS !== null) {
       setShowAllTransactionCategory(false);
       setShowPOSCategory(true);
-    }if (selectedSubPOS === null) {
+    }
+    if (selectedSubPOS === null) {
       setShowAllTransactionCategory(true);
-    }if (selectedMasterPOS !== null) {
+    }
+    if (selectedMasterPOS !== null) {
       setShowAllTransactionCategory(false);
       setShowPOSCategory(true);
-    } if (selectedMasterPOS === null) {
+    }
+    if (selectedMasterPOS === null) {
       setShowAllTransactionCategory(true);
     }
   }

@@ -1,9 +1,0 @@
-.completed-transaction {
-  top: 255px;
-  width: 100%;
-  z-index: 20;
-  height: 500px;
-  position: absolute;
-  overflow-y: scroll;
-  background-color: aqua;
-}

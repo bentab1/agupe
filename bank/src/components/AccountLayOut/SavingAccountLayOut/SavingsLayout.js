@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./BusinessLayout.css";
-import FetchTransactionHistory from "./FetchedTransactionHistory";
+import FetchTransactionHistory from "../../FetchedTransactionHistory";
+import "./SavingsLayout.css";
 
-const BusinessLayout = () => {
+const SavingsLayout = ({ slides }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selected, setSelected] = useState(0); // Initialize selected with 0
   const [startIndex, setStartIndex] = useState(null);
@@ -12,6 +12,7 @@ const BusinessLayout = () => {
   const CURRENCY_SYMBOL = "₦";
 
   useEffect(() => {
+    // Fetch transaction history when the component mounts
     const fetchData = async () => {
       const transactionData = FetchTransactionHistory();
       setTransactionHistory(transactionData);
@@ -23,39 +24,45 @@ const BusinessLayout = () => {
     setShowBalance(!showBalance);
   };
 
-  const businessTransactions = transactionHistory.filter(
+  const savingsTransactions = transactionHistory.filter(
     (transaction) =>
-      transaction.customer_id === "uc12" &&
-      transaction.accountType === "Business"
+      transaction.customer_id === "uc12" && // Replace "your_customer_id" with the actual customer ID
+      transaction.accountType === "Savings"
   );
 
-  const getBusinessOptions = (transactions) => {
-    const uniqueBusinessMap = new Map();
+  const getSavingsOptions = (transactions) => {
+    const uniqueSavingsMap = new Map();
     transactions.forEach((transaction) => {
       const { accountNumber, balance } = transaction;
       if (
-        transaction.accountType === "Business" &&
-        !uniqueBusinessMap.has(accountNumber)
+        transaction.accountType === "Savings" &&
+        !uniqueSavingsMap.has(accountNumber)
       ) {
-        uniqueBusinessMap.set(accountNumber, { balance });
+        uniqueSavingsMap.set(accountNumber, { balance });
       }
     });
 
     const options = [];
-    uniqueBusinessMap.forEach((data, accountNumber) => {
+    uniqueSavingsMap.forEach((data, accountNumber) => {
       const { balance } = data;
       options.push({
         label: (
-          <div style={{ width: "130px", height: "80px", marginLeft: "10px" }}>
+          <div
+            style={{
+              width: "130px",
+              height: "100px",
+              marginLeft: "10px",
+            }}
+          >
             <div style={{ marginTop: "20px" }}>
-              <span style={{ fontSize: "15px", marginLeft: "10px" }}>
-                Business: NAIRA
-              </span>
+              Savings: NAIRA <br />
             </div>
             <div style={{ marginTop: "20px", backgroundColor: "transparent" }}>
               <span style={{ fontSize: "15px" }}>
+                {" "}
                 {showBalance && (
-                  <p>
+                  <p style={{ marginTop: "20px" }}>
+                    {" "}
                     {CURRENCY_SYMBOL}
                     {parseFloat(balance).toLocaleString("en")}
                   </p>
@@ -66,13 +73,14 @@ const BusinessLayout = () => {
               style={{
                 backgroundColor: showBalance ? "royalblue" : "transparent",
                 fontSize: "11px",
-                width: "30px",
+                with: "30px",
                 paddingLeft: "25px",
                 marginTop: "10px",
                 height: "29px",
                 borderRadius: "20px",
               }}
             >
+              {" "}
               {showBalance ? "Account Number" : ""}{" "}
               {showBalance ? accountNumber : "xxxxxx>"}
             </p>
@@ -84,8 +92,8 @@ const BusinessLayout = () => {
     return options;
   };
 
-  const businessOptions = getBusinessOptions(businessTransactions);
-  const slideCount = businessOptions.length;
+  const savingsOptions = getSavingsOptions(savingsTransactions);
+  const slideCount = savingsOptions.length;
 
   const nextSlide = () => {
     const nextIndex = (currentIndex + 1) % slideCount;
@@ -123,25 +131,25 @@ const BusinessLayout = () => {
 
   return (
     <div
-      className="slider-container-business"
+      className="slider-container-saving"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={() => setStartIndex(null)}
     >
       <div
-        className="slider-business"
+        className="slider-saving"
         ref={sliderRef}
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
-        {businessOptions.map((option, index) => (
-          <ul
-            className={`slide-business ${
-              selected === index ? "selected-business" : ""
+        {savingsOptions.map((option, index) => (
+          <div
+            className={`slide-saving ${
+              selected === index ? "selected-saving" : ""
             }`}
             onClick={() => handleSlideClick(index)}
-            key={index}
+            key={option.index}
           >
-            <li key={option.value}>
+            <div key={option.value}>
               <input
                 style={{
                   marginTop: "9px",
@@ -156,24 +164,24 @@ const BusinessLayout = () => {
                 {showBalance ? "Hide Balance" : "Show Balance"}
               </span>
               {option.label}
-            </li>
-          </ul>
+            </div>
+          </div>
         ))}
       </div>
-      <button className="prev-business button-business" onClick={prevSlide}>
+      <button className="prev-saving button-saving" onClick={prevSlide}>
         Prev
       </button>
-      <button className="next-business button-business" onClick={nextSlide}>
+      <button className="next-saving button-saving" onClick={nextSlide}>
         Next
       </button>
-      <div className="indicators-business">
-        {businessOptions.map((option, index) => (
+      <div className="indicators-saving">
+        {savingsOptions.map((option, index) => (
           <div
-            key={index}
-            className={`dot-business ${
-              index === currentIndex ? "active-business" : ""
-            } ${selected === index ? "selected-business" : ""}`}
-            onClick={() => setCurrentIndex(index)}
+            key={option.index}
+            className={`dot-saving ${
+              index === currentIndex ? "active-saving" : ""
+            } ${selected === index ? "selected-saving" : ""}`}
+            onClick={() => handleSlideClick(index)}
           ></div>
         ))}
       </div>
@@ -181,4 +189,4 @@ const BusinessLayout = () => {
   );
 };
 
-export default BusinessLayout;
+export default SavingsLayout;

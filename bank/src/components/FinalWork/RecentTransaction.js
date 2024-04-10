@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-
+import "./RecentTransaction.css";
 const RecentTransaction = ({
   transactionHistory,
   options,
@@ -132,7 +132,6 @@ const RecentTransaction = ({
         <div
           style={{
             backgroundColor: "rgba(0, 0, 255, 0.9)", // Blue color with some transparency
-            display: "grid",
             position: "absolute",
             width: "100%",
             height: "800px",

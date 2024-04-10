@@ -1,10 +1,10 @@
 import React from "react";
-import MasterPOSLayout from "./AllAccountLayout";
-import BusinessLayout from "./BusinessLayout";
-import SubPOSLayout from "./FinalWork/FilteredAllTransactionAccount";
-import SavingsLayout from "./SavingsLayout";
+import MasterPOSLayout from "../../../../AllAccountLayout";
+import BusinessLayout from "../../../../BusinessLayout";
+import SubPOSLayout from "../../../../FinalWork/FilteredAllTransactionAccount";
+import SavingsLayout from "../../../../SavingsLayout";
 import "./Slide.css";
-import Slider from "./Slider";
+import Slider from "../Slider/Slider";
 
 function Slide() {
   const slides = [

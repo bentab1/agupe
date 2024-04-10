@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import fetchTransactionHistory from "../../FetchedTransactionHistory";
+import fetchTransactionHistory from "../FetchedTransactionHistory";
 
 function groupTransactionsByMonth(transactions) {
   const groupedTransactions = {};
@@ -16,7 +16,7 @@ function groupTransactionsByMonth(transactions) {
   return groupedTransactions;
 }
 
-function Zcompont() {
+function AltransactionAndAllCategory() {
   const [transactionHistory, setTransactionHistory] = useState([]);
   const [groupedTransactions, setGroupedTransactions] = useState({});
   const [showAllCategoryMenu, setShowAllCategoryMenu] = useState(false);
@@ -234,4 +234,4 @@ function Zcompont() {
   );
 }
 
-export default Zcompont;
+export default AltransactionAndAllCategory;

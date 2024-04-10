@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
+import FetchTransactionHistory from "../../FetchedTransactionHistory";
 import "./AllAccountLayout.css";
-import FetchTransactionHistory from "./FetchedTransactionHistory";
 
-const MasterPOSLayout = ({ slides }) => {
+const AllAccountLayout = ({ slides }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selected, setSelected] = useState(0);
   const [startIndex, setStartIndex] = useState(null);
@@ -238,4 +238,4 @@ const MasterPOSLayout = ({ slides }) => {
   );
 };
 
-export default MasterPOSLayout;
+export default AllAccountLayout;
