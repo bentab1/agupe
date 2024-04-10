@@ -4,24 +4,20 @@ import "./Slider.css";
 const Slider = ({ slides }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [startIndex, setStartIndex] = useState(null);
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState(0); // Initialize selected with 0
   const sliderRef = useRef(null);
   const slideCount = slides.length;
 
   const nextSlide = () => {
-    if (currentIndex === slideCount - 1) {
-      setCurrentIndex(0);
-    } else {
-      setCurrentIndex(currentIndex + 1);
-    }
+    const nextIndex = (currentIndex + 1) % slideCount;
+    setCurrentIndex(nextIndex);
+    setSelected(nextIndex);
   };
 
   const prevSlide = () => {
-    if (currentIndex === 0) {
-      setCurrentIndex(slideCount - 1);
-    } else {
-      setCurrentIndex(currentIndex - 1);
-    }
+    const prevIndex = currentIndex === 0 ? slideCount - 1 : currentIndex - 1;
+    setCurrentIndex(prevIndex);
+    setSelected(prevIndex);
   };
 
   const handleTouchStart = (e) => {
@@ -45,6 +41,7 @@ const Slider = ({ slides }) => {
     setSelected(index);
     setCurrentIndex(index);
   };
+
   return (
     <div
       className="account-slider-container"
@@ -62,18 +59,18 @@ const Slider = ({ slides }) => {
             className={`account-slide ${
               selected === index ? "selected" : "unselected"
             }`}
-            key={slide.index}
+            key={index}
             onClick={() => handleSlideClick(index)}
           >
             {slide}
           </div>
         ))}
       </div>
-      <button className="  account-prev account-button" onClick={prevSlide}>
-        Prev
+      <button className="account-prev account-button" onClick={prevSlide}>
+        &lt; Prev
       </button>
-      <button className="account-next  account-button" onClick={nextSlide}>
-        Next
+      <button className="account-next account-button" onClick={nextSlide}>
+        Next &gt;
       </button>
       <div className="account-indicators">
         {slides.map((slide, index) => (
@@ -82,7 +79,7 @@ const Slider = ({ slides }) => {
             className={`account-dot ${
               index === currentIndex ? "account-active" : ""
             } ${selected === index ? "account-selected" : ""}`}
-            onClick={() => setCurrentIndex(index)}
+            onClick={() => handleSlideClick(index)}
           ></div>
         ))}
       </div>

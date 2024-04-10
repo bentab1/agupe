@@ -45,6 +45,7 @@ function UpcomingTransaction({
           ))}
         </div>
       )}
+       {error && <p>{error}</p>}
     </div>
   );
 }

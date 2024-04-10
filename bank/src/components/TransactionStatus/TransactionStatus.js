@@ -1,5 +1,7 @@
-import { React, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import fetchTransactionHistory from "../FetchedTransactionHistory";
+import POSaccountSelection from "../FinalWork/POSaccountSelection/POSaccountSelection";
+import Footer2 from "../Footer2/Footer2";
 import SearchTransactionQuery from "./SearchTransactionQuery/SearchTransactionQuery";
 import "./TransactionStatus.css";
 function TransactionStatus({
@@ -14,25 +16,38 @@ function TransactionStatus({
   handleReversedTransactionStatus,
   toggleButtonReversed,
   handleAllTransactionStatus,
-  toggleButtonAtransactions,
+  toggleButtonAlltransactions,
   transactionHistory,
   setGroupedTransactions,
   groupTransactionsByMonth,
   groupedTransactions,
   setTransactionHistory,
+  handleCategoryForTransactionStatus,
+
+  handleClosePOSOptionMenu,
+  setShowPOSOptions,
+  POSselectedStatus,
+  setPOSSelectedStatus,
+  handlePosAndTheCategoryTransaction,
+  setPOSMenu,
 }) {
   const [showTransactionStatusMenu, setShowTransactionStatusMenu] =
     useState(false);
-  const [showAllTransactionHistories, setShowAllTransactionHistories] =
-    useState(false);
+
   const [showAllCategoryMenu, setShowAllCategoryMenu] = useState(false);
   const [error, setError] = useState("");
+  const [showAllTransactionHistories, setShowAllTransactionHistories] =
+    useState(false);
+  const [selectedTransactionStatus, setSelectedTransactionStatus] =
+    useState(null);
+  const [showPOSCategoryMenu, setShowPOSCategoryMenu] = useState(false);
 
+  ///////
   function handleShowTransactionStatusMenu() {
     setShowTransactionStatusMenu(true);
   }
 
-  function toggleButtonTransactioStatus() {
+  function toggleButtonTransactioStatusMenu() {
     if (showTransactionStatusMenu === true) {
       setShowTransactionStatusMenu(false);
     }
@@ -41,9 +56,25 @@ function TransactionStatus({
   function handleShowAllCategoryMenu() {
     setShowAllCategoryMenu(true);
   }
-  function toggleButtonAllCategoryMenu() {
-    if (showAllCategoryMenu === true) setShowAllCategoryMenu(false);
+
+  function handlePOSCategoryMenu() {
+    if (POSselectedStatus !== null) {
+      setShowAllCategoryMenu(false);
+      setShowPOSCategoryMenu(true);
+    }
+    if (showPOSCategoryMenu === true) {
+      setShowAllCategoryMenu(false);
+    }
   }
+  function toggleButtonAllCategoryMenu() {
+    if (showAllCategoryMenu === true) {
+      setShowAllCategoryMenu(false);
+    }
+    if (showPOSCategoryMenu === true) {
+      setShowPOSCategoryMenu(false);
+    }
+  }
+
   useEffect(() => {
     // Fetch transaction history when the component mounts
     const fetchData = async () => {
@@ -59,20 +90,35 @@ function TransactionStatus({
   }, []); // Passing an empty dependency array ensures this effect runs only once when the component mounts
 
   const searchAllTransactionHistories = () => {
-    const transactionStatus = "completed";
     // Assuming you have transactionHistory and setGroupedTransactions defined elsewhere
     setGroupedTransactions(
       groupTransactionsByMonth(
         transactionHistory.filter((transaction) => transaction)
       )
     );
-    if (!transactionStatus) {
-      setError("No transaction found");
-      setShowAllTransactionHistories({});
-      return;
-    }
+
     setShowAllTransactionHistories(true);
   };
+
+  useEffect(() => {
+    let timer;
+    if (POSselectedStatus) {
+      timer = setTimeout(() => {
+        setPOSSelectedStatus(null);
+      }, 10000); // Reset after 10 seconds
+    }
+    return () => clearTimeout(timer);
+  }, [POSselectedStatus, setPOSSelectedStatus]);
+
+  useEffect(() => {
+    let timer;
+    if (selectedTransactionStatus) {
+      timer = setTimeout(() => {
+        setSelectedTransactionStatus(null);
+      }, 10000); // Reset after 10 seconds
+    }
+    return () => clearTimeout(timer);
+  }, [selectedTransactionStatus]);
 
   return (
     <div className="transaction-status-div">
@@ -85,35 +131,53 @@ function TransactionStatus({
         <button
           onClick={() => {
             handleAllTransactionStatus();
-            toggleButtonAtransactions();
+            toggleButtonAlltransactions();
             toggleButtonCompleted();
             toggleButtonUpcoming();
             toggleButtonFailed();
             toggleButtonPending();
             toggleButtonReversed();
-            toggleButtonTransactioStatus();
+            toggleButtonTransactioStatusMenu();
           }}
         >
           All Transactions
         </button>
         <button
           onClick={() => {
+            setPOSMenu(true);
+          }}
+        >
+          POS Transactions
+        </button>
+        <POSaccountSelection />
+        <button
+          onClick={() => {
             handleShowAllCategoryMenu();
+            handlePOSCategoryMenu();
             toggleButtonAllCategoryMenu();
           }}
         >
-          All category
+          {POSselectedStatus !== null ? "POS Category" : "All category"}
         </button>
 
         <button
           onClick={() => {
-            handleShowTransactionStatusMenu();
-            toggleButtonTransactioStatus();
+            setShowPOSOptions(true);
+            handleClosePOSOptionMenu();
           }}
         >
-          Transaction Status
+          {POSselectedStatus ? POSselectedStatus : "POS Transactions"}
         </button>
-
+        <button
+          onClick={() => {
+            handleShowTransactionStatusMenu();
+            toggleButtonTransactioStatusMenu();
+          }}
+        >
+          {selectedTransactionStatus
+            ? selectedTransactionStatus
+            : "Transaction Status"}
+        </button>
         {showTransactionStatusMenu && (
           <ul style={{ display: "flex", top: "100px", marginTop: "5px" }}>
             <li>
@@ -121,13 +185,13 @@ function TransactionStatus({
               <button
                 onClick={() => {
                   handleCompletedTransactionStatus();
-                  toggleButtonCompleted();
                   toggleButtonUpcoming();
                   toggleButtonFailed();
                   toggleButtonPending();
                   toggleButtonReversed();
-                  toggleButtonAtransactions();
-                  toggleButtonTransactioStatus();
+                  toggleButtonAlltransactions();
+                  toggleButtonTransactioStatusMenu();
+                  setSelectedTransactionStatus("Completed");
                 }}
               >
                 Completed
@@ -138,13 +202,13 @@ function TransactionStatus({
               <button
                 onClick={() => {
                   handleUpcomingTransactionStatus();
-                  toggleButtonUpcoming();
                   toggleButtonCompleted();
                   toggleButtonFailed();
                   toggleButtonPending();
                   toggleButtonReversed();
-                  toggleButtonAtransactions();
-                  toggleButtonTransactioStatus();
+                  toggleButtonAlltransactions();
+                  toggleButtonTransactioStatusMenu();
+                  setSelectedTransactionStatus("Upcoming");
                 }}
               >
                 Upcoming
@@ -155,13 +219,13 @@ function TransactionStatus({
               <button
                 onClick={() => {
                   handleFailedTransactionStatus();
-                  toggleButtonFailed();
                   toggleButtonCompleted();
                   toggleButtonUpcoming();
                   toggleButtonPending();
                   toggleButtonReversed();
-                  toggleButtonAtransactions();
-                  toggleButtonTransactioStatus();
+                  toggleButtonAlltransactions();
+                  toggleButtonTransactioStatusMenu();
+                  setSelectedTransactionStatus("Failed");
                 }}
               >
                 Failed
@@ -171,13 +235,14 @@ function TransactionStatus({
               <button
                 onClick={() => {
                   handlePendingTransactionStatus();
-                  toggleButtonPending();
                   toggleButtonCompleted();
                   toggleButtonUpcoming();
                   toggleButtonFailed();
                   toggleButtonReversed();
-                  toggleButtonAtransactions();
-                  toggleButtonTransactioStatus();
+                  toggleButtonAlltransactions();
+                  toggleButtonTransactioStatusMenu();
+
+                  setSelectedTransactionStatus("Pending");
                 }}
               >
                 Pending
@@ -187,13 +252,13 @@ function TransactionStatus({
               <button
                 onClick={() => {
                   handleReversedTransactionStatus();
-                  toggleButtonReversed();
                   toggleButtonCompleted();
                   toggleButtonUpcoming();
                   toggleButtonFailed();
                   toggleButtonPending();
-                  toggleButtonAtransactions();
-                  toggleButtonTransactioStatus();
+                  toggleButtonAlltransactions();
+                  toggleButtonTransactioStatusMenu();
+                  setSelectedTransactionStatus("Reversed");
                 }}
               >
                 Reversed
@@ -203,78 +268,194 @@ function TransactionStatus({
           </ul>
         )}
       </div>
+
       {showAllCategoryMenu && (
-        <div className="category-all-transaction-container">
-          <ul className="category-all-transaction-ul-1">
-            <li>
-              <button> All Transaction</button>
-            </li>
-            <li>
-              <button> Transfer to LPay</button>
-            </li>
-            <li>
-              <button>LPay wallet Transaction</button>
-            </li>
-            <li>
-              <button> Add Money</button>
-            </li>
-            <li>
-              <button>Other bank Deposit</button>
-            </li>
-            <li>
-              <button> Card Withdrawal</button>
-            </li>
-            <li>
-              <button>Refunds</button>
-            </li>
-            <li>
-              <button>Card Payment</button>
-            </li>
-            <li>
-              <button> QCode</button>
-            </li>
-            <li>
-              <button> Commission</button>
-            </li>
-            <li>
-              <button> Cash Back</button>
-            </li>
-          </ul>
-          <ul className="category-all-transaction-ul-2">
-            <li>
-              <button>TV</button>
-            </li>
-            <li>
-              <button>Mobile Data</button>
-            </li>
-            <li>
-              <button> Airtime</button>
-            </li>
-            <li>
-              <button>Electricity</button>
-            </li>
-            <li>
-              <button> Flight</button>
-            </li>
-            <li>
-              <button>Education</button>
-            </li>
-            <li>
-              <button>Purchases</button>
-            </li>
-            <li>
-              <button>E-Pin</button>
-            </li>
-            <li>
-              <button> Betting</button>
-            </li>
-            <li>
-              <button> Subscription</button>
-            </li>
-          </ul>
+        <div className="category-all-transaction-main-container">
+          <div className="Select-all-category">
+            <p>Select A category</p>
+            <button> All</button>
+          </div>
+          <div className="category-all-transaction-sub-container">
+            <ul className="category-all-transaction-ul-1">
+              <li>
+                <button
+                  onClick={() => {
+                    handleCategoryForTransactionStatus("Transfer To LPay");
+                    toggleButtonAllCategoryMenu();
+                  }}
+                >
+                  {" "}
+                  Transfer to LPay
+                </button>
+              </li>
+              <li>
+                <button onClick={() => {}}>LPay wallet Transaction</button>
+              </li>
+              <li>
+                <button onClick={() => {}}> Add Money</button>
+              </li>
+              <li>
+                <button onClick={() => {}}>Other bank Deposit</button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    handleCategoryForTransactionStatus("Card Withdrawal");
+                    toggleButtonAllCategoryMenu();
+                  }}
+                >
+                  {" "}
+                  Card Withdrawal
+                </button>
+              </li>
+              <li>
+                <button onClick={() => {}}>Refunds</button>
+              </li>
+              <li>
+                <button onClick={() => {}}>Card Payment</button>
+              </li>
+              <li>
+                <button onClick={() => {}}> QCode</button>
+              </li>
+              <li>
+                <button onClick={() => {}}> Commission</button>
+              </li>
+              <li>
+                <button> Cash Back</button>
+              </li>
+            </ul>
+            <ul className="category-all-transaction-ul-2">
+              <li>
+                <button
+                  onClick={() => {
+                    // setSelectedTransactionType();
+                  }}
+                >
+                  TV
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    // setSelectedTransactionType();
+                  }}
+                >
+                  Mobile Data
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    // setSelectedTransactionType();
+                  }}
+                >
+                  {" "}
+                  Airtime
+                </button>
+              </li>
+              <li>
+                <button>Electricity</button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    // setSelectedTransactionType();
+                  }}
+                >
+                  {" "}
+                  Flight
+                </button>
+              </li>
+              <li>
+                <button>Education</button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    // setSelectedTransactionType();
+                  }}
+                >
+                  Purchases
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    // setSelectedTransactionType();
+                  }}
+                >
+                  E-Pin
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    // setSelectedTransactionType();
+                  }}
+                >
+                  {" "}
+                  Betting
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    // setSelectedTransactionType();
+                  }}
+                >
+                  {" "}
+                  Subscription
+                </button>
+              </li>
+            </ul>
+          </div>
         </div>
       )}
+      <div className="POS-category-div">
+        {showPOSCategoryMenu && (
+          <div className="POS-category-show-container">
+            <ul className="POS-category-show-ul">
+              <li>
+                <button
+                  onClick={() => {
+                    handlePosAndTheCategoryTransaction("Card Withdrawal");
+                    toggleButtonAllCategoryMenu();
+                  }}
+                >
+                  {" "}
+                  Card Withdrawal
+                </button>
+              </li>
+              <li>
+                <button>Card Payment</button>
+              </li>
+              <li>
+                <button>POS Qcode</button>
+              </li>
+              <li>
+                <button>POS Transfer</button>
+              </li>
+              <li>
+                <button> LPay USSD</button>
+              </li>
+              <li>
+                <button>Bank USSD</button>
+              </li>
 
+              <li>
+                <button> Withdrawal Code</button>
+              </li>
+              <li>
+                <button>Qcode Card Transfer</button>
+              </li>
+              <li>
+                <button>LPay account Transfer</button>
+              </li>
+            </ul>
+          </div>
+        )}
+      </div>
+      {error && <p>{error}</p>}
       {showAllTransactionHistories && (
         <div className="all-transaction">
           {Object.keys(groupedTransactions).map((monthYear) => (
@@ -304,6 +485,7 @@ function TransactionStatus({
           ))}
         </div>
       )}
+      <Footer2 />
     </div>
   );
 }

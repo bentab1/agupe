@@ -4,17 +4,14 @@ import FetchTransactionHistory from "./FetchedTransactionHistory";
 
 const BusinessLayout = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState(0); // Initialize selected with 0
   const [startIndex, setStartIndex] = useState(null);
   const sliderRef = useRef(null);
   const [showBalance, setShowBalance] = useState(false);
   const [transactionHistory, setTransactionHistory] = useState([]);
-  //////
-  ///////
   const CURRENCY_SYMBOL = "₦";
-  ////
+
   useEffect(() => {
-    // Fetch transaction history when the component mounts
     const fetchData = async () => {
       const transactionData = FetchTransactionHistory();
       setTransactionHistory(transactionData);
@@ -26,12 +23,12 @@ const BusinessLayout = () => {
     setShowBalance(!showBalance);
   };
 
-  // Filter transactions for each account type
   const businessTransactions = transactionHistory.filter(
     (transaction) =>
-      transaction.customer_id === "uc12" && // Replace "your_customer_id" with the actual customer ID
+      transaction.customer_id === "uc12" &&
       transaction.accountType === "Business"
   );
+
   const getBusinessOptions = (transactions) => {
     const uniqueBusinessMap = new Map();
     transactions.forEach((transaction) => {
@@ -52,36 +49,33 @@ const BusinessLayout = () => {
           <div style={{ width: "130px", height: "80px", marginLeft: "10px" }}>
             <div style={{ marginTop: "20px" }}>
               <span style={{ fontSize: "15px", marginLeft: "10px" }}>
-                {" "}
-                Business: NAIRA{" "}
+                Business: NAIRA
               </span>
             </div>
             <div style={{ marginTop: "20px", backgroundColor: "transparent" }}>
               <span style={{ fontSize: "15px" }}>
-                {" "}
                 {showBalance && (
                   <p>
-                    {" "}
                     {CURRENCY_SYMBOL}
                     {parseFloat(balance).toLocaleString("en")}
                   </p>
                 )}
               </span>
             </div>
-            <button
+            <p
               style={{
-                borderRadius: "20px",
                 backgroundColor: showBalance ? "royalblue" : "transparent",
-                marginTop: "30px",
-                height: "40px",
-                width: "125px",
                 fontSize: "11px",
+                width: "30px",
+                paddingLeft: "25px",
+                marginTop: "10px",
+                height: "29px",
+                borderRadius: "20px",
               }}
             >
-              {" "}
               {showBalance ? "Account Number" : ""}{" "}
-              {showBalance ? accountNumber : ""}
-            </button>
+              {showBalance ? accountNumber : "xxxxxx>"}
+            </p>
           </div>
         ),
         value: accountNumber,
@@ -90,24 +84,19 @@ const BusinessLayout = () => {
     return options;
   };
 
-  // Create options for each account type
   const businessOptions = getBusinessOptions(businessTransactions);
   const slideCount = businessOptions.length;
 
   const nextSlide = () => {
-    if (currentIndex === slideCount - 1) {
-      setCurrentIndex(0);
-    } else {
-      setCurrentIndex(currentIndex + 1);
-    }
+    const nextIndex = (currentIndex + 1) % slideCount;
+    setCurrentIndex(nextIndex);
+    setSelected(nextIndex);
   };
 
   const prevSlide = () => {
-    if (currentIndex === 0) {
-      setCurrentIndex(slideCount - 1);
-    } else {
-      setCurrentIndex(currentIndex - 1);
-    }
+    const prevIndex = currentIndex === 0 ? slideCount - 1 : currentIndex - 1;
+    setCurrentIndex(prevIndex);
+    setSelected(prevIndex);
   };
 
   const handleTouchStart = (e) => {
@@ -134,19 +123,21 @@ const BusinessLayout = () => {
 
   return (
     <div
-      className="slider-container1"
+      className="slider-container-business"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={() => setStartIndex(null)}
     >
       <div
-        className="slider1"
+        className="slider-business"
         ref={sliderRef}
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {businessOptions.map((option, index) => (
           <ul
-            className={`slide1 ${selected === index ? "selected1" : ""}`}
+            className={`slide-business ${
+              selected === index ? "selected-business" : ""
+            }`}
             onClick={() => handleSlideClick(index)}
             key={index}
           >
@@ -169,19 +160,19 @@ const BusinessLayout = () => {
           </ul>
         ))}
       </div>
-      <button className="prev1 button" onClick={prevSlide}>
+      <button className="prev-business button-business" onClick={prevSlide}>
         Prev
       </button>
-      <button className="next1 button" onClick={nextSlide}>
+      <button className="next-business button-business" onClick={nextSlide}>
         Next
       </button>
-      <div className="indicators1">
+      <div className="indicators-business">
         {businessOptions.map((option, index) => (
           <div
             key={index}
-            className={`dot1 ${index === currentIndex ? "active1" : ""} ${
-              selected === index ? "selected1" : ""
-            }`}
+            className={`dot-business ${
+              index === currentIndex ? "active-business" : ""
+            } ${selected === index ? "selected-business" : ""}`}
             onClick={() => setCurrentIndex(index)}
           ></div>
         ))}

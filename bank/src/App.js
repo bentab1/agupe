@@ -9,9 +9,10 @@ import Banking from "./components/Banking/Banking";
 import Business from "./components/Business/Business";
 import BusinessAccount from "./components/BusinessAccount/BusinessAccount";
 import ContactUs from "./components/ContactUs/ContactUs";
-import Contents from "./components/Contents/Contents";
 import UnsupportedCountrySelectionMessage from "./components/CountrySelectionSelected/UnsupportedCountrySelected";
 import Features from "./components/Features/Features";
+import fetchTransactionHistory from "./components/FetchedTransactionHistory.js";
+import RecentTransaction from "./components/FinalWork/RecentTransaction.js";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import Help from "./components/Help/Help";
@@ -24,15 +25,7 @@ import Personal from "./components/Personal/Personal";
 import PersonalAccount from "./components/PersonalAccount/PersonalAccount";
 import Review from "./components/Review/Review";
 import SignUpRedirect from "./components/SignUpRedirect/SignUpRedirect";
-import AllTransactions from "./components/TransactionStatus/AllTransactions/AllTransactions";
-import CompletedTransaction from "./components/TransactionStatus/CompletedTransaction/CompletedTransaction";
-import FailedTransaction from "./components/TransactionStatus/FailedTransaction/FailedTransaction";
-import PendingTransaction from "./components/TransactionStatus/PendingTransaction/PendingTransaction";
-import ReversedTransaction from "./components/TransactionStatus/ReversedTransaction/ReversedTransaction";
-import TransactionStatus from "./components/TransactionStatus/TransactionStatus";
-import UpcomingTransaction from "./components/TransactionStatus/UpcomingTransaction/UpcominTransaction";
 import Welcome from "./components/Welcome/Welcome";
-import CategoryforAllTransaction from "./components/TransactionStatus/CategoryforAllTransaction/CategoryforAllTransaction";
 
 function groupTransactionsByMonth(transactions) {
   const groupedTransactions = {};
@@ -51,26 +44,154 @@ function groupTransactionsByMonth(transactions) {
 
 export default function App() {
   const [activeButton, setActiveButton] = useState(null);
-  const [groupedTransactions, setGroupedTransactions] = useState({});
   const [transactionHistory, setTransactionHistory] = useState([]);
-  const [showAllTransactions, setShowAllTransactions] = useState(false);
-  const [showCompletedTransactions, setShowCompletedTransactions] =
-    useState(false);
-
-  const [showUpcomingTransactions, setShowUpcomingTransactions] =
-    useState(false);
-  const [showFailedTransaction, setshowFailedTransaction] = useState(false);
-  const [showPendingTransactions, setShowPendingTransactions] = useState(false);
-  const [showReversedTransactions, setShowReversedTransactions] =
-    useState(false);
-  const [ShowCategoryForAllTransactions, setShowCategoryForAllTransactions] =
-    useState(false);
-  const [selectedTransactionType, setSelectedTransactionType] = useState(null);
-  const [showAllCategoryMenu, setShowAllCategoyMenu] = useState(false);
+  const [groupedTransactions, setGroupedTransactions] = useState({});
+  const [showTransactions, setShowTransactions] = useState(false);
+  const [options, setOptions] = useState([]);
+  const [selected, setSelected] = useState(0);
+  const [showBalance, setShowBalance] = useState(false);
   const [error, setError] = useState("");
-
+  const authenticatedCustomerId = "uc12";
+  const CURRENCY_SYMBOL = "₦";
   const handleClick = (buttonId) => {
     setActiveButton(buttonId);
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const transactionData = fetchTransactionHistory();
+
+      // Check if there are transactions for the authenticated customer's account numbers
+      const authenticatedCustomerTransactions = transactionData.filter(
+        (transaction) =>
+          transaction.customer_id === authenticatedCustomerId ||
+          (transaction.business_id === authenticatedCustomerId &&
+            (transaction.accountType === "Savings" ||
+              transaction.accountType === "Business" ||
+              transaction.accountType === "Master_POS" ||
+              transaction.accountType === "Sub_POS"))
+      );
+      setTransactionHistory(authenticatedCustomerTransactions);
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    // Filter transactions for each account type
+    const getOptions = (transactions, accountType) => {
+      const uniqueMap = new Map();
+      transactions.forEach((transaction) => {
+        const { accountNumber, serialNumber, balance } = transaction;
+        let updatedAccountType = accountType;
+
+        if (!transaction.business_id) {
+          updatedAccountType = "Savings";
+        } else if (
+          transaction.accountType === "Business" &&
+          !transaction.serialNumber
+        ) {
+          updatedAccountType = "Business";
+        } else if (
+          transaction.accountType === "Master_POS" &&
+          transaction.business_id
+        ) {
+          updatedAccountType = "Master_POS";
+        } else if (
+          transaction.accountType === "Master_POS" &&
+          transaction.serialNumber &&
+          transaction.serialNumber.startsWith("BM")
+        ) {
+          updatedAccountType = "Master_POS";
+        } else if (
+          transaction.accountType === "Sub_POS" &&
+          transaction.business_id
+        ) {
+          updatedAccountType = "Sub_POS";
+        } else if (
+          transaction.accountType === "Sub_POS" &&
+          transaction.serialNumber &&
+          transaction.serialNumber.startsWith("BMS")
+        ) {
+          updatedAccountType = "Sub_POS";
+        }
+
+        if (!uniqueMap.has(accountNumber)) {
+          uniqueMap.set(accountNumber, {
+            serialNumber,
+            balance,
+            accountType: updatedAccountType,
+          });
+        }
+      });
+
+      const options = [];
+      uniqueMap.forEach((data, accountNumber) => {
+        const { serialNumber, balance } = data;
+        options.push({
+          label: (
+            <div style={{ width: "130px", height: "80px", marginLeft: "10px" }}>
+              <div style={{ marginTop: "20px" }}>
+                <p style={{ fontSize: "14px" }}> {accountType}: NAIRA</p>
+              </div>
+              <div
+                style={{ marginTop: "10px", backgroundColor: "transparent" }}
+              >
+                <span style={{ fontSize: "15px" }}>
+                  {" "}
+                  {showBalance && (
+                    <p>
+                      {" "}
+                      {CURRENCY_SYMBOL}
+                      {parseFloat(balance).toLocaleString("en")}
+                    </p>
+                  )}
+                </span>
+              </div>
+              <p
+                style={{
+                  backgroundColor: showBalance ? "royalblue" : "transparent",
+                  fontSize: "11px",
+                  with: "30px",
+                  paddingLeft: "25px",
+                  marginTop: "10px",
+                  height: "29px",
+                  borderRadius: "20px",
+                }}
+              >
+                {" "}
+                {showBalance ? "Account Number" : ""}{" "}
+                {showBalance ? accountNumber : "xxxxxx>"}
+              </p>
+              <p style={{ fontSize: "11px", marginTop: "15px" }}>
+                {" "}
+                S/N: {showBalance ? serialNumber : ""}
+              </p>
+            </div>
+          ),
+          value: accountNumber,
+        });
+      });
+      return options;
+    };
+
+    const accountTypes = ["Savings", "Business", "Master_POS", "Sub_POS"];
+
+    const options = accountTypes.flatMap((type) =>
+      getOptions(
+        transactionHistory.filter(
+          (transaction) =>
+            transaction.customer_id === "uc12" &&
+            transaction.accountType === type
+        ),
+        type
+      )
+    );
+    setOptions(options);
+  }, [transactionHistory, showBalance]);
+
+  const handleToggleBalance = () => {
+    setShowBalance(!showBalance);
   };
 
   useEffect(() => {
@@ -85,167 +206,13 @@ export default function App() {
     };
   }, [activeButton]);
 
-  //
-  //
-
   useEffect(() => {
     const grouped = groupTransactionsByMonth(transactionHistory);
     setGroupedTransactions(grouped);
   }, [transactionHistory]);
   /////
   /////
-  const handleAllTransactionStatus = () => {
-    const transactionStatus = "completed";
-    setGroupedTransactions(
-      groupTransactionsByMonth(
-        transactionHistory.filter((transaction) => transaction)
-      )
-    );
-    if (!transactionStatus) {
-      setError("No transaction found");
-      setShowAllTransactions({});
-      return;
-    }
-    setShowAllTransactions(true);
-  };
 
-  function toggleButtonAtransactions() {
-    if (showAllTransactions === true) setShowAllTransactions(false);
-  }
-  // This lines of code below is for Completed Transaction
-  const handleCompletedTransactionStatus = () => {
-    const transactionStatus = "completed";
-    setGroupedTransactions(
-      groupTransactionsByMonth(
-        transactionHistory.filter(
-          (transaction) => transaction.status === "completed"
-        )
-      )
-    );
-    if (!transactionStatus) {
-      setError("No transaction found");
-      setShowCompletedTransactions({});
-      return;
-    }
-    setShowCompletedTransactions(true);
-  };
-
-  function toggleButtonCompleted() {
-    if (showCompletedTransactions === true) setShowCompletedTransactions(false);
-  }
-  ///////
-  ///////
-  //This lines of code below is for Upcoming Transaction
-  const handleUpcomingTransactionStatus = () => {
-    setGroupedTransactions(
-      groupTransactionsByMonth(
-        transactionHistory.filter(
-          (transaction) => transaction.status === "upcoming"
-        )
-      )
-    );
-    setShowUpcomingTransactions(true);
-  };
-
-  function toggleButtonUpcoming() {
-    if (showUpcomingTransactions === true) setShowUpcomingTransactions(false);
-  }
-  ////
-  const handleFailedTransactionStatus = () => {
-    const transactionStatus = "failed";
-    setGroupedTransactions(
-      groupTransactionsByMonth(
-        transactionHistory.filter(
-          (transaction) => transaction.status === "failed"
-        )
-      )
-    );
-    if (!transactionStatus) {
-      setError("No transaction found");
-      setshowFailedTransaction({});
-      return;
-    }
-    setshowFailedTransaction(true);
-  };
-
-  useEffect(() => {
-    const grouped = groupTransactionsByMonth(transactionHistory);
-    setGroupedTransactions(grouped);
-  }, [transactionHistory]);
-
-  function toggleButtonFailed() {
-    if (showFailedTransaction === true) setshowFailedTransaction(false);
-  }
-  //////
-  //////
-  //This lines of code below is for pending Transaction
-  const handlePendingTransactionStatus = () => {
-    const transactionStatus = "pending";
-    setGroupedTransactions(
-      groupTransactionsByMonth(
-        transactionHistory.filter(
-          (transaction) => transaction.status === "pending"
-        )
-      )
-    );
-    if (!transactionStatus) {
-      setError("No transaction found");
-      setShowPendingTransactions({});
-      return;
-    }
-    setShowPendingTransactions(true);
-  };
-
-  function toggleButtonPending() {
-    if (showPendingTransactions === true) setShowPendingTransactions(false);
-  }
-  ///////
-  //////
-  //This lines of code below is for Reversed Transaction
-  const handleReversedTransactionStatus = () => {
-    const transactionStatus = "reversed";
-    setGroupedTransactions(
-      groupTransactionsByMonth(
-        transactionHistory.filter(
-          (transaction) => transaction.status === "reversed"
-        )
-      )
-    );
-    if (!transactionStatus) {
-      setError("No transaction found");
-      setShowReversedTransactions({});
-      return;
-    }
-    setShowReversedTransactions(true);
-  };
-
-  function toggleButtonReversed() {
-    if (showReversedTransactions === true) setShowReversedTransactions(false);
-  }
-  ///////
-  ///////
-  const handleCategoryForTransactionStatus = () => {
-    const transactionType = selectedTransactionType;
-    setGroupedTransactions(
-      groupTransactionsByMonth(
-        transactionHistory.filter(
-          (transaction) => transaction.status === selectedTransactionType
-        )
-      )
-    );
-    if (!selectedTransactionType) {
-      setError("No transaction found");
-      setShowCategoryForAllTransactions({});
-      return;
-    }
-    setShowCategoryForAllTransactions(true);
-  };
-
-  function toggleButtonCategoryForAllTransaction() {
-    if (ShowCategoryForAllTransactions === true)
-      setShowCategoryForAllTransactions(false);
-  }
-  
   return (
     <div className="app">
       <Router>
@@ -258,11 +225,9 @@ export default function App() {
             <Route path="/addmoney" element={<AdMoneyMethod />} />
             <Route path="/addthrough/bank" element={<AddMoneyBankMenu />} />
           </Routes>
-
           <Routes>
             <Route path="/businessAccount" element={<BusinessAccount />} />
           </Routes>
-
           <Routes>
             <Route path="/aboutUs" element={<AboutUs />} />
             <Route path="/menu" element={<Menu />} />
@@ -279,64 +244,39 @@ export default function App() {
               element={<UnsupportedCountrySelectionMessage />}
             />
           </Routes>
-
-          <AllTransactions
-            setTransactionHistory={setTransactionHistory}
-            groupedTransactions={groupedTransactions}
-            showAllTransactions={showAllTransactions}
-          />
-          <CompletedTransaction
-            setTransactionHistory={setTransactionHistory}
-            groupedTransactions={groupedTransactions}
-            showCompletedTransactions={showCompletedTransactions}
-          />
-          <UpcomingTransaction
-            showUpcomingTransactions={showUpcomingTransactions}
-            setTransactionHistory={setTransactionHistory}
-            groupedTransactions={groupedTransactions}
-          />
-          <FailedTransaction
-            setTransactionHistory={setTransactionHistory}
-            groupedTransactions={groupedTransactions}
-            showFailedTransaction={showFailedTransaction}
-          />
-          <PendingTransaction
-            setTransactionHistory={setTransactionHistory}
-            groupedTransactions={groupedTransactions}
-            showPendingTransactions={showPendingTransactions}
-          />
-          <ReversedTransaction
-            setTransactionHistory={setTransactionHistory}
-            groupedTransactions={groupedTransactions}
-            showReversedTransactions={showReversedTransactions}
-          />
-          <TransactionStatus
-            handleCompletedTransactionStatus={handleCompletedTransactionStatus}
-            toggleButtonCompleted={toggleButtonCompleted}
-            handleUpcomingTransactionStatus={handleUpcomingTransactionStatus}
-            toggleButtonUpcoming={toggleButtonUpcoming}
-            handleFailedTransactionStatus={handleFailedTransactionStatus}
-            toggleButtonFailed={toggleButtonFailed}
-            handlePendingTransactionStatus={handlePendingTransactionStatus}
-            toggleButtonPending={toggleButtonPending}
-            handleReversedTransactionStatus={handleReversedTransactionStatus}
-            toggleButtonReversed={toggleButtonReversed}
-            handleAllTransactionStatus={handleAllTransactionStatus}
-            toggleButtonAtransactions={toggleButtonAtransactions}
+          {/* 
+          <SubPOSLayout
             transactionHistory={transactionHistory}
+            options={options}
+            selected={selected}
+            setSelected={setSelected}
+            groupedTransactions={groupedTransactions}
             setGroupedTransactions={setGroupedTransactions}
             groupTransactionsByMonth={groupTransactionsByMonth}
-            groupedTransactions={groupedTransactions}
+            showTransactions={showTransactions}
+            setShowTransactions={setShowTransactions}
+            handleToggleBalance={handleToggleBalance}
+            setShowBalance={setShowBalance}
             setTransactionHistory={setTransactionHistory}
-          />
-          <CategoryforAllTransaction
-            ShowCategoryForAllTransactions={ShowCategoryForAllTransactions}
-            groupedTransactions={groupedTransactions}
-            setTransactionHistory={setTransactionHistory}
-          />
+          /> */}
+          {/* s */}
+          {/* <Contents /> */}
           <Features />
           <Review />
-          <Contents />
+          <RecentTransaction
+            transactionHistory={transactionHistory}
+            options={options}
+            selected={selected}
+            setSelected={setSelected}
+            groupedTransactions={groupedTransactions}
+            setGroupedTransactions={setGroupedTransactions}
+            groupTransactionsByMonth={groupTransactionsByMonth}
+            showTransactions={showTransactions}
+            setShowTransactions={setShowTransactions}
+            handleToggleBalance={handleToggleBalance}
+            setShowBalance={setShowBalance}
+            setTransactionHistory={setTransactionHistory}
+          />
           <Notification />
         </div>
         <Footer />

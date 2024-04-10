@@ -28,6 +28,10 @@ function SearchTransactionQuery({
       const transactionType = transaction.TransactionType
         ? transaction.TransactionType.toLowerCase()
         : "";
+      const accountType = transaction.accountType
+        ? transaction.accountType.toLowerCase()
+        : ""; // Add accountType to the search criteria
+      // Check if the transaction date is within the past 20 years
       // Check if the transaction date is within the past 20 years
       const twentyYearsAgo = new Date();
       twentyYearsAgo.setFullYear(twentyYearsAgo.getFullYear() - 20);
@@ -39,7 +43,8 @@ function SearchTransactionQuery({
           description.includes(searchTerm) ||
           merchant.includes(searchTerm) ||
           amount.includes(searchTerm) ||
-          transactionType.includes(searchTerm))
+          transactionType.includes(searchTerm) ||
+          accountType.includes(searchTerm))
       );
     });
     const grouped = groupTransactionsByMonth(filtered);

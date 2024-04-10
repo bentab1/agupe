@@ -1,0 +1,85 @@
+.slider-container-masterPos {
+  position: relative;
+  overflow: hidden;
+  width: 150px;
+  height: 180px;
+  margin-left: 18px;
+  top: 21px;
+  border-radius: 25px;
+}
+
+.slider-masterPos {
+  display: flex;
+}
+
+.slide-masterPos {
+  background-color: rgb(226, 210, 211);
+  flex: 0 0 100%;
+  width: 150px;
+  height: 180px;
+}
+/* 
+.selected1 {
+  background-color: #fff;
+} */
+/* 
+.button-masterPos {
+  position: absolute;
+  top: 150px;
+  transform: translateY(-50%);
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+} */
+
+.button-masterPos {
+  position: absolute;
+  top: 164px;
+  transform: translateY(-50%);
+  padding: 10px;
+  background-color: #002;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.prev-masterPos {
+  left: 0;
+  border-top-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+
+.next-masterPos {
+  right: 0;
+  border-top-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+.indicators-masterPos {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.dot-masterPos {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+  display: inline-block;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.dot-masterPos.active-masterPos {
+  background-color: yellow;
+}
+
+.dot-masterPos.selected-masterPos {
+  background-color: red;
+}

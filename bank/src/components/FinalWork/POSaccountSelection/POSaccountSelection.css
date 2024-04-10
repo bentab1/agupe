@@ -1,0 +1,21 @@
+.POS-option-div {
+  position: absolute;
+  z-index: 5;
+  top: 100px;
+  left: 100px;
+}
+
+.POS-option-menu {
+  position: absolute;
+  background-color: aqua;
+  z-index: 5;
+  left: 30px;
+}
+
+.POS-selection-ul {
+  display: flex;
+  position: absolute;
+  width: 400px;
+  z-index: 99;
+  text-decoration-line: none;
+}

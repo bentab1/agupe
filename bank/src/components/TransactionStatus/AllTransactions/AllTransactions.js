@@ -25,6 +25,7 @@ function AllTransactions({
   ///////
   return (
     <div>
+      {error && <p>{error}</p>}
       <div style={{ backgroundColor: "blue" }}>
         {showAllTransactions && (
           <div className="all-transaction">

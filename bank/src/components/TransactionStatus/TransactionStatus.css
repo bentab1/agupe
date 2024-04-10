@@ -1,20 +1,54 @@
 .transaction-status-div {
-  background-color: white;
-  height: 500px;
+  background-color: blue;
+  left: 0;
+  right: 0;
   width: 100%;
   z-index: 5;
-  top: 120px;
+  top: 0px;
+  bottom: 0;
+  position: absolute;
 }
-
-.category-all-transaction-container {
+.category-all-transaction-main-container {
+  position: absolute;
+  width: 450px;
+  height: 500px;
+  z-index: 3;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: brown;
+}
+.category-all-transaction-sub-container {
   display: flex;
-  width: 400px;
-  background-color: aqua;
+  width: 600px;
+  height: 500px;
+  background-color: chartreuse;
+  position: absolute;
 }
 
 .category-all-transaction-ul-1 {
   display: grid;
+  background-color: brown;
+  position: relative;
 }
 .category-all-transaction-ul-2 {
   display: grid;
+  margin-left: 20px;
+  position: relative;
+  background-color: blueviolet;
+}
+
+.POS-category-show-container {
+  position: absolute;
+  z-index: 20;
+  background-color: black;
+  top: 180px;
+  left: 200px;
+  height: 00px;
+  width: 100%;
+}
+
+.POS-category-show-ul {
+  position: absolute;
+  z-index: 20;
+  display: flex;
 }

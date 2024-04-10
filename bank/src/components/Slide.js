@@ -1,10 +1,10 @@
 import React from "react";
+import MasterPOSLayout from "./AllAccountLayout";
 import BusinessLayout from "./BusinessLayout";
-import MasterPOSLayout from "./MasterPOSLayout";
+import SubPOSLayout from "./FinalWork/SubPOSLayout";
 import SavingsLayout from "./SavingsLayout";
 import "./Slide.css";
 import Slider from "./Slider";
-import SubPOSLayout from "./SubPOSLayout";
 
 function Slide() {
   const slides = [
@@ -26,16 +26,15 @@ function Slide() {
     <div className="sliders" style={{ marginLeft: "120px" }}>
       <div
         style={{
-          width: "350px",
-          height: "380px",
-          marginTop: "50px",
+          marginTop: "40px",
+          width: "230px",
+          height: "280px",
           paddingTop: "15px",
-          paddingLeft: "5px",
+          paddingRight: "5px",
           backgroundColor: "white",
           borderRadius: "25px",
         }}
       >
-        <h4 style={{ marginLeft: "100px" }}>Account Balance</h4>
         <Slider slides={slides} />
       </div>
     </div>

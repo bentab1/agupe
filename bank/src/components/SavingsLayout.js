@@ -4,15 +4,13 @@ import "./SavingsLayout.css";
 
 const SavingsLayout = ({ slides }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState(0); // Initialize selected with 0
   const [startIndex, setStartIndex] = useState(null);
   const sliderRef = useRef(null);
   const [showBalance, setShowBalance] = useState(false);
   const [transactionHistory, setTransactionHistory] = useState([]);
-  //////
-  ///////
   const CURRENCY_SYMBOL = "₦";
-  ////
+
   useEffect(() => {
     // Fetch transaction history when the component mounts
     const fetchData = async () => {
@@ -71,21 +69,21 @@ const SavingsLayout = ({ slides }) => {
                 )}
               </span>
             </div>
-            <button
+            <p
               style={{
+                backgroundColor: showBalance ? "royalblue" : "transparent",
+                fontSize: "11px",
+                with: "30px",
+                paddingLeft: "25px",
+                marginTop: "10px",
+                height: "29px",
                 borderRadius: "20px",
-
-                fontSize: "12px",
-                marginTop: "30px",
-                height: "40px",
-                width: "130px",
-                marginLeft: "10px",
               }}
             >
               {" "}
               {showBalance ? "Account Number" : ""}{" "}
-              {showBalance ? accountNumber : ""}
-            </button>
+              {showBalance ? accountNumber : "xxxxxx>"}
+            </p>
           </div>
         ),
         value: accountNumber,
@@ -98,19 +96,15 @@ const SavingsLayout = ({ slides }) => {
   const slideCount = savingsOptions.length;
 
   const nextSlide = () => {
-    if (currentIndex === slideCount - 1) {
-      setCurrentIndex(0);
-    } else {
-      setCurrentIndex(currentIndex + 1);
-    }
+    const nextIndex = (currentIndex + 1) % slideCount;
+    setCurrentIndex(nextIndex);
+    setSelected(nextIndex);
   };
 
   const prevSlide = () => {
-    if (currentIndex === 0) {
-      setCurrentIndex(slideCount - 1);
-    } else {
-      setCurrentIndex(currentIndex - 1);
-    }
+    const prevIndex = currentIndex === 0 ? slideCount - 1 : currentIndex - 1;
+    setCurrentIndex(prevIndex);
+    setSelected(prevIndex);
   };
 
   const handleTouchStart = (e) => {
@@ -148,14 +142,14 @@ const SavingsLayout = ({ slides }) => {
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {savingsOptions.map((option, index) => (
-          <ul
+          <div
             className={`slide-saving ${
               selected === index ? "selected-saving" : ""
             }`}
             onClick={() => handleSlideClick(index)}
             key={option.index}
           >
-            <li key={option.value}>
+            <div key={option.value}>
               <input
                 style={{
                   marginTop: "9px",
@@ -170,8 +164,8 @@ const SavingsLayout = ({ slides }) => {
                 {showBalance ? "Hide Balance" : "Show Balance"}
               </span>
               {option.label}
-            </li>
-          </ul>
+            </div>
+          </div>
         ))}
       </div>
       <button className="prev-saving button-saving" onClick={prevSlide}>
@@ -187,7 +181,7 @@ const SavingsLayout = ({ slides }) => {
             className={`dot-saving ${
               index === currentIndex ? "active-saving" : ""
             } ${selected === index ? "selected-saving" : ""}`}
-            onClick={() => setCurrentIndex(index)}
+            onClick={() => handleSlideClick(index)}
           ></div>
         ))}
       </div>

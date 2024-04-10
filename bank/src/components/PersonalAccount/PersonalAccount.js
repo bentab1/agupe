@@ -7,7 +7,7 @@ import LogOutPage from "../LogOut/LogOutPage";
 import "./personalAccount.css";
 function personalAccount() {
   function handleTransactionHistry() {
-    window.location.href = "/AllTransactiionSearch";
+    window.location.href = "/subposlayout/transactions";
   }
   return (
     <div

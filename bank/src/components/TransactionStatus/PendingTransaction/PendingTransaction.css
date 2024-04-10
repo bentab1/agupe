@@ -1,9 +1,0 @@
-.transaction-pending-container {
-  top: 255px;
-  width: 100%;
-  z-index: 20;
-  height: 500px;
-  overflow-y: scroll;
-  position: absolute;
-  background-color: white;
-}

@@ -1,0 +1,75 @@
+.slider-container-subPos {
+  position: absolute;
+  overflow: hidden;
+  width: 350px;
+  height: 180px;
+  z-index: 15;
+  margin-left: 300px;
+  margin-top: 21px;
+  border-radius: 25px;
+}
+
+.slider-subPos {
+  display: flex;
+}
+
+.slide-subPos {
+  background-color: wheat;
+  flex: 0 0 100%;
+  width: 150px;
+  height: 180px;
+  z-index: 10;
+}
+
+.selected-subPos {
+  background-color: rgb(184, 201, 233);
+}
+
+.button-subPos {
+  position: absolute;
+  top: 164px;
+  transform: translateY(-50%);
+  padding: 10px;
+  background-color: #002;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.prev-subPos {
+  left: 0;
+  border-top-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+
+.next-subPos {
+  right: 0;
+  border-top-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+.indicators-subPos {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.dot-subPos {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+  display: inline-block;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.dot-subPos.active-subPos {
+  background-color: #007bff;
+}
+
+.dot-subPos.selected-subPos {
+  background-color: red;
+}

@@ -21,6 +21,7 @@ function CompletedTransaction({
   ///////
   return (
     <div>
+      {error && <p>{error}</p>}
       <div style={{ backgroundColor: "blue" }}>
         {showCompletedTransactions && (
           <div className="completed-transaction">
