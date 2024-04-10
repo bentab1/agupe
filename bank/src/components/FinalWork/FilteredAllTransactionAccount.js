@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import "./SubPOSLayout.css";
+import "./FilteredAllTransactionAccount.css";
 
-const SubPOSLayout = ({
+const FilteredAllTransactionAccount = ({
   transactionHistory,
   options,
   selected,
@@ -264,4 +264,4 @@ const SubPOSLayout = ({
   );
 };
 
-export default SubPOSLayout;
+export default FilteredAllTransactionAccount;
