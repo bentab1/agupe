@@ -1,0 +1,76 @@
+.slider-container-subPos1 {
+  position: relative;
+  overflow: hidden;
+  width: 330px;
+  height: 350px;
+  margin-left: 18px;
+  top: 21px;
+  backface-visibility: hidden;
+  border-radius: 25px;
+  background-color: white;
+}
+
+.slider1-subPos1 {
+  display: flex;
+}
+
+.slide1-subPos1 {
+  background-color: wheat;
+  flex: 0 0 100%;
+  width: 150px;
+  height: 180px;
+  z-index: 10;
+}
+
+.selected1-subPos1 {
+  background-color: rgb(184, 201, 233);
+}
+
+.button1-subPos1 {
+  position: absolute;
+  top: 204px;
+  transform: translateY(-50%);
+  padding: 10px;
+  background-color: #002;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.prev-subPos1 {
+  left: 0;
+  border-top-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+
+.next-subPos1 {
+  right: 0;
+  border-top-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+.indicators1-subPos1 {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.dot1-subPos1 {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+  display: inline-block;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.dot1-subPos1.active-subPos1 {
+  background-color: #007bff;
+}
+
+.dot1-subPos1.selected1-subPos1 {
+  background-color: red;
+}

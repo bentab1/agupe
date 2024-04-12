@@ -10,7 +10,7 @@ const FetchSubPOSAccountHistory = () => {
       transactionPIn: "2345",
       business_id: "1234abcd",
       customer_id: "uc12",
-      accountNumber: "7032280605",
+      accountNumber: "6666666666",
       balance: "12345",
       //One customer can own one master_POS and as any as sub_POS
       //user can operate it in any Device but must be authenticated before use.
@@ -37,7 +37,7 @@ const FetchSubPOSAccountHistory = () => {
       transactionPIn: "2345",
       business_id: "1234abcd",
       customer_id: "uc12",
-      accountNumber: "8832280605",
+      accountNumber: "5555555555",
       balance: "12345",
       //One customer can own one master_POS and as any as sub_POS
       //user can operate it in any Device but must be authenticated before use.
@@ -64,7 +64,7 @@ const FetchSubPOSAccountHistory = () => {
       transactionPIn: "2345",
       business_id: "1234abcd",
       customer_id: "uc12",
-      accountNumber: "6666666666",
+      accountNumber: "6666666667",
       balance: "12345",
       //One customer can own one master_POS and as any as sub_POS
       //user can operate it in any Device but must be authenticated before use.

@@ -1,12 +1,13 @@
 .slider-container-subPos {
-  position: absolute;
+  position: relative;
   overflow: hidden;
-  width: 350px;
-  height: 180px;
-  z-index: 15;
-  margin-left: 300px;
-  margin-top: 21px;
+  width: 400px;
+  height: 350px;
+  margin-left: 18px;
+  top: 21px;
+  backface-visibility: hidden;
   border-radius: 25px;
+  background-color: white;
 }
 
 .slider-subPos {
@@ -14,20 +15,24 @@
 }
 
 .slide-subPos {
-  background-color: wheat;
+  background-color: black;
   flex: 0 0 100%;
-  width: 150px;
+  width: 350px;
   height: 180px;
   z-index: 10;
 }
 
 .selected-subPos {
-  background-color: rgb(184, 201, 233);
+  background-color: white;
+  flex: 0 0 100%;
+  height: 290px;
+  margin-top: 20px;
 }
 
 .button-subPos {
   position: absolute;
-  top: 164px;
+  top: 330px;
+  margin-left: 10px;
   transform: translateY(-50%);
   padding: 10px;
   background-color: #002;
@@ -38,7 +43,7 @@
 }
 
 .prev-subPos {
-  left: 0;
+  left: 20;
   border-top-right-radius: 25px;
   border-bottom-left-radius: 25px;
 }
@@ -57,12 +62,14 @@
 }
 
 .dot-subPos {
-  width: 10px;
-  height: 10px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background-color: #ccc;
   display: inline-block;
   margin: 0 5px;
+
+  transition: background-color 0.3s ease;
   cursor: pointer;
 }
 
@@ -72,4 +79,19 @@
 
 .dot-subPos.selected-subPos {
   background-color: red;
+}
+
+.input-checkbox-showBalance {
+  margin-top: 15px;
+  margin-left: 15px;
+  z-index: 3;
+  position: absolute;
+}
+
+.span-showBalance-showBalance {
+  margin-top: 15px;
+  margin-left: 30px;
+  z-index: 3;
+  font-size: 12px;
+  position: absolute;
 }

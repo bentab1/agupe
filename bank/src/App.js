@@ -19,7 +19,7 @@ import {
   default as FetchSubPOSAccountHistory,
 } from "./components/FetchSubPOSAccountHistory.js";
 import fetchTransactionHistory from "./components/FetchedTransactionHistory.js";
-import Filtered from "./components/FinalWork/Filtered/Filtered.js";
+import Filtered from "./components/FinalWork/MainAccounts/MainAccounts.js";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import Help from "./components/Help/Help";
@@ -34,6 +34,7 @@ import PersonalAccount from "./components/PersonalAccount/PersonalAccount";
 import Review from "./components/Review/Review";
 import SignUpRedirect from "./components/SignUpRedirect/SignUpRedirect";
 import Welcome from "./components/Welcome/Welcome";
+import SubPOSFiltered from "./components/FinalWork/SubPOSFiltered/SubPOSFiltered.js";
 
 function groupTransactionsByMonth(transactions) {
   const groupedTransactions = {};
@@ -63,6 +64,7 @@ export default function App() {
   const [groupedTransactions, setGroupedTransactions] = useState({});
   const [showTransactions, setShowTransactions] = useState(false);
   const [options, setOptions] = useState([]);
+  const [options2, setOptions2] = useState([]);
   const [selected, setSelected] = useState(0);
   const [showBalance, setShowBalance] = useState(false);
   const [error, setError] = useState("");
@@ -76,22 +78,22 @@ export default function App() {
     const fetchData = async () => {
       try {
         // Fetch transaction history for the authenticated customer
-        const transactionData = await fetchTransactionHistory();
+        const transactionData = fetchTransactionHistory();
 
         // Fetch customer data for the authenticated customer
-        const customerData = await fetchFetchCustomerHistory();
+        const customerData = fetchFetchCustomerHistory();
 
         // Fetch savings account history for the authenticated customer
-        const savingsAccountData = await FetchSavingsAccountHistory();
+        const savingsAccountData = FetchSavingsAccountHistory();
 
         // Fetch business account history for the authenticated customer
-        const businessAccountData = await FetchBusinessAccountHistory();
+        const businessAccountData = FetchBusinessAccountHistory();
 
         // Fetch Master POS account history for the authenticated customer
-        const masterPOSAccountData = await FetchMasterPOSAcoountHistory();
+        const masterPOSAccountData = FetchMasterPOSAcoountHistory();
 
         // Fetch Sub POS account history for the authenticated customer
-        const subPOSAccountData = await FetchSubPOSAccountHistory();
+        const subPOSAccountData = FetchSubPOSAccountHistory();
 
         const authenticatedTransactionData = transactionData.filter(
           (data) => data.customer_id === authenticatedCustomerId
@@ -188,26 +190,175 @@ export default function App() {
           account.master_POS_id
         ) {
           updatedAccountType = "Master_POS";
-        } else if (
-          account.accountType === "Sub_POS" &&
-          account.business_id &&
-          account.sub_POS_id
-        ) {
-          updatedAccountType = "Sub_POS";
         }
 
-        if (!uniqueMap.has(accountType)) {
-          uniqueMap.set(accountType, {
-            balance,
-            accountNumber,
-            accountType: updatedAccountType,
-          });
+        if (
+          accountType === "Savings" ||
+          accountType === "Business" ||
+          accountType === "Master_POS"
+        ) {
+          // Only map unique Sub_POS accounts based on their account numbers
+          if (!uniqueMap.has(accountType)) {
+            uniqueMap.set(accountType, {
+              balance,
+              accountNumber,
+              accountType: updatedAccountType,
+            });
+          }
         }
       });
       const options = [];
       uniqueMap.forEach((data, accountType) => {
-        const { balance, accountNumber } = data;
+        const { balance } = data;
         options.push({
+          label: (
+            <div
+              className="Label-option-push-container"
+              style={{
+                backgroundColor:
+                  accountType === "Business"
+                    ? "wheat"
+                    : accountType === "Savings"
+                    ? "lightblue"
+                    : accountType === "Master_POS"
+                    ? "lightgray"
+                    : "lightgray",
+              }}
+            >
+              <p className="naira-paragraph-option"> {accountType}: NAIRA</p>
+
+              {showBalance ? (
+                <p className="Label-business-option-balance">
+                  {" "}
+                  {CURRENCY_SYMBOL}
+                  {parseFloat(balance).toLocaleString("en")}
+                </p>
+              ) : (
+                <p className="labe-showbanle-option-x"> {"xxxxxx>"}</p>
+              )}
+
+              {accountType === "Business" ? (
+                <div className="accountType-business-show-option">
+                  <div className="business-label-div">
+                    <button className="button-label-business-show"></button>{" "}
+                    <p className="label-text-option"> Add Money</p>
+                  </div>
+                  <div className="business-label-div">
+                    <button className="button-label-business-show"></button>
+                    <p className="label-text-option">Sub POS</p>{" "}
+                  </div>
+                  <div className="business-label-div">
+                    <button className="button-label-business-show"></button>
+                    <p className="label-text-option">Details</p>
+                  </div>
+                  <div className="business-label-div">
+                    <button className="button-label-business-show"></button>
+                    <p className="label-text-option">More</p>
+                  </div>
+                </div>
+              ) : (
+                ""
+              )}
+              {accountType === "Savings" ? (
+                <div className="accountType-savings-show-option">
+                  <div className="savings-label-div">
+                    <button className="button-label-savings-show"></button>{" "}
+                    <p className="label-savings-text-option"> Add Money</p>
+                  </div>
+                  <div className="savings-label-div">
+                    <button className="button-label-savings-show"></button>
+                    <p className="label-savings-text-option">Details</p>
+                  </div>
+                  <div className="savings-label-div">
+                    <button className="button-label-savings-show"></button>
+                    <p className="label-savings-text-option">More</p>
+                  </div>
+                </div>
+              ) : (
+                ""
+              )}
+              {accountType === "Master_POS" ? (
+                <div className="accountType-master-show-option">
+                  <div className="master-label-div">
+                    <button className="button-label-master-show"></button>{" "}
+                    <p className="label-master-text-option"> Add Money</p>
+                  </div>
+                  <div className="master-label-div">
+                    <button className="button-label-business-show"></button>
+                    <p className="label-master-text-option">Details</p>
+                  </div>
+                  <div className="master-label-div">
+                    <button className="button-label-master-show"></button>
+                    <p className="label-master-text-option">More</p>
+                  </div>
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
+          ),
+          value: accountType,
+        });
+      });
+      return options;
+    };
+
+    const options = uniqueAccountTypes.flatMap((type) =>
+      getOptions(allAccounts.filter((account) => account.accountType === type))
+    );
+    setOptions(options);
+  }, [uniqueAccountTypes, allAccounts, showBalance]);
+
+  const handleToggleBalance = () => {
+    setShowBalance(!showBalance);
+  };
+
+  ////
+  //This useEffect set timeout for all the navBar buttonclick and hover animation
+  useEffect(() => {
+    let timeoutId;
+
+    const resetActiveButton = () => {
+      setActiveButton(null);
+    };
+    timeoutId = setTimeout(resetActiveButton, 10000); // Set timeout for 10 seconds
+    return () => {
+      clearTimeout(timeoutId); // Clear timeout on component unmount or when activeButton changes
+    };
+  }, [activeButton]);
+
+  useEffect(() => {
+    const grouped = groupTransactionsByMonth(transactionHistory);
+    setGroupedTransactions(grouped);
+  }, [transactionHistory]);
+  /////
+  /////
+
+  //from Here , subPOS was mapped
+  useEffect(() => {
+    const getOptions2 = (accounts) => {
+      const uniqueMap = new Map();
+      accounts.forEach((account) => {
+        const { accountType, balance, accountNumber } = account;
+        let updatedAccountType = accountType;
+
+        // Ensure that only Sub_POS accounts are considered
+        if (accountType === "Sub_POS") {
+          // Only map unique Sub_POS accounts based on their account numbers
+          if (!uniqueMap.has(accountNumber)) {
+            uniqueMap.set(accountNumber, {
+              balance,
+              accountNumber,
+              accountType: updatedAccountType,
+            });
+          }
+        }
+      });
+      const options2 = [];
+      uniqueMap.forEach((data, accountNumber) => {
+        // Change forEach to account for accountNumber
+        const { balance, accountType } = data;
+        options2.push({
           label: (
             <div style={{ width: "130px", height: "80px", marginLeft: "10px" }}>
               <div style={{ marginTop: "20px" }}>
@@ -244,41 +395,20 @@ export default function App() {
               </p>
             </div>
           ),
-          value: accountType,
+          value: accountNumber, // Set the value to accountNumber
         });
       });
-      return options;
+      return options2;
     };
 
-    const options = uniqueAccountTypes.flatMap((type) =>
-      getOptions(allAccounts.filter((account) => account.accountType === type))
+    const options2 = uniqueAccountTypes.flatMap((type) =>
+      getOptions2(allAccounts.filter((account) => account.accountType === type))
     );
-    console.log(options.accountNumber);
-    setOptions(options);
+
+    // Set options2 in the state
+    setOptions2(options2);
+    console.log(options2);
   }, [uniqueAccountTypes, allAccounts, showBalance]);
-
-  const handleToggleBalance = () => {
-    setShowBalance(!showBalance);
-  };
-
-  useEffect(() => {
-    let timeoutId;
-
-    const resetActiveButton = () => {
-      setActiveButton(null);
-    };
-    timeoutId = setTimeout(resetActiveButton, 10000); // Set timeout for 10 seconds
-    return () => {
-      clearTimeout(timeoutId); // Clear timeout on component unmount or when activeButton changes
-    };
-  }, [activeButton]);
-
-  useEffect(() => {
-    const grouped = groupTransactionsByMonth(transactionHistory);
-    setGroupedTransactions(grouped);
-  }, [transactionHistory]);
-  /////
-  /////
 
   return (
     <div className="app">
@@ -311,6 +441,25 @@ export default function App() {
               element={<UnsupportedCountrySelectionMessage />}
             />
           </Routes>
+          <Routes>
+            <Route
+              path="/subPOS/account"
+              element={
+                <SubPOSFiltered
+                  options2={options2}
+                  transactionHistory={transactionHistory}
+                  groupTransactionsByMonth={groupTransactionsByMonth}
+                  setShowTransactions={setShowTransactions}
+                  setGroupedTransactions={setGroupedTransactions}
+                  groupedTransactions={groupedTransactions}
+                  showTransactions={showTransactions}
+                  showBalance={showBalance}
+                  handleToggleBalance={handleToggleBalance}
+                  setTransactionHistory={setTransactionHistory}
+                />
+              }
+            />
+          </Routes>
 
           <Filtered
             options={options}
@@ -326,7 +475,7 @@ export default function App() {
             handleToggleBalance={handleToggleBalance}
             setTransactionHistory={setTransactionHistory}
           />
-          {/* s */}
+
           {/* <Contents /> */}
           <Features />
           <Review />

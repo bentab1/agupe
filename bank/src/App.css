@@ -13,3 +13,133 @@
   margin: 5px;
   padding: 0px;
 }
+
+.Label-option-push-container {
+  display: grid;
+  width: 360px;
+  height: 250px;
+  margin-right: 5px;
+  border-radius: 30px;
+  padding-top: 50px;
+  padding-left: 5px;
+}
+
+.naira-paragraph-option {
+  font-size-adjust: 14px;
+  margin-left: 110px;
+}
+
+/* savingsAccountype*/
+/* savingsAccountype*/
+/* savingsAccountype*/
+
+.accountType-savings-show-option {
+  display: flex;
+  position: relative;
+  z-index: 4;
+  padding-left: 7px;
+  gap: 70px;
+}
+
+.savings-label-div {
+  display: grid;
+  background-color: transparent;
+  gap: 0px;
+}
+
+.button-label-savings-show {
+  height: 35px;
+  width: 40px;
+  background-color: white;
+  border-radius: 25px;
+}
+
+.label-savings-text-option {
+  font-size: 11px;
+  padding-left: 10px;
+  margin-left: 2px;
+}
+
+.Label-savings-option {
+  margin-left: 100px;
+}
+
+.Label-savings-option-balance {
+  margin-left: 135px;
+}
+/* BusinessAccountType */
+/* BusinessAccountType */
+/* BusinessAccountType */
+
+.accountType-business-show-option {
+  display: flex;
+  position: relative;
+  z-index: 4;
+  padding-left: 7px;
+  gap: 30px;
+}
+
+.business-label-div {
+  display: grid;
+  background-color: transparent;
+  gap: 0px;
+}
+
+.button-label-business-show {
+  height: 35px;
+  width: 40px;
+  background-color: white;
+  border-radius: 25px;
+}
+
+.label-text-option {
+  font-size: 11px;
+  padding-left: 10px;
+}
+
+.Label-business-option {
+  margin-left: 100px;
+}
+
+.labe-showbanle-option-x {
+  padding-left: 135px;
+}
+
+.Label-business-option-balance {
+  margin-left: 135px;
+}
+
+.accountType-master-show-option {
+  display: flex;
+  position: relative;
+  z-index: 4;
+  padding-left: 7px;
+  gap: 70px;
+}
+
+.master-label-div {
+  display: grid;
+  background-color: transparent;
+  gap: 0px;
+}
+
+.button-label-master-show {
+  height: 35px;
+  width: 40px;
+  background-color: white;
+  border-radius: 25px;
+}
+
+.label-master-text-option {
+  font-size: 11px;
+  padding-left: 10px;
+  margin-left: 2px;
+}
+
+.Label-master-option {
+  margin-left: 100px;
+}
+
+.Label-master-option-balance {
+  margin-left: 135px;
+}

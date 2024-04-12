@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import "./Filtered.css";
+import "./MainAccounts.css";
 
-const Filtered = ({
+const MainAccounts = ({
   options,
   selected,
   transactionHistory,
@@ -18,7 +18,6 @@ const Filtered = ({
   const [startIndex, setStartIndex] = useState(null);
   const sliderRef = useRef(null);
   const [error, setError] = useState("");
-  const CURRENCY_SYMBOL = "₦";
 
   const renderTransactionsForSelectedSlide = useCallback(() => {
     const selectedOption = options[selected];
@@ -34,19 +33,26 @@ const Filtered = ({
       const filteredTransactions = transactionHistory.filter(
         (transaction) => transaction.accountType === accountType
       );
-      console.log(accountType);
-      groupTransactionsByMonth(filteredTransactions);
 
       if (filteredTransactions.length === 0) {
         setError(`No transactions found for account type ${accountType}.`);
         setShowTransactions(false);
+        // Clear grouped transactions when there are no transactions
+        setGroupedTransactions([]);
       } else {
         setError("");
         setShowTransactions(true);
-        setGroupedTransactions(groupTransactionsByMonth(filteredTransactions)); // Assuming you want to update groupedTransactions here
+        setGroupedTransactions(groupTransactionsByMonth(filteredTransactions));
       }
     }
-  }, [renderTransactionsForSelectedSlide, selected]);
+  }, [
+    renderTransactionsForSelectedSlide,
+    transactionHistory,
+    groupTransactionsByMonth,
+    setShowTransactions,
+    setGroupedTransactions,
+    selected,
+  ]);
 
   const slideCount = options.length;
 
@@ -88,21 +94,16 @@ const Filtered = ({
       {showTransactions && (
         <div
           style={{
-            backgroundColor: "rgba(0, 0, 255, 0.9)", // Blue color with some transparency
+            backgroundColor: "rgba(0, 0, 255, 0.9)",
             position: "absolute",
             width: "100%",
             height: "800px",
-            top: "130px",
+            top: "150px",
             zIndex: "12",
-
-            // Adjust top position as needed
-            // left: "50%", // Center horizontally
-            // transform: "translateX(-50%)", // Center horizontally
-            // padding: "20px", // Add padding for spacing
-            // borderRadius: "10px", // Add rounded corners
-            // boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)", // Add shadow for depth
+            marginLeft: "600px",
           }}
         >
+          {error && <p>{error}</p>}
           <div className="completed-transaction">
             {Object.keys(groupedTransactions).map((monthYear) => (
               <div key={monthYear}>
@@ -113,33 +114,28 @@ const Filtered = ({
                     <li
                       key={transaction.id}
                       style={{
-                        backgroundColor: "#f0f0f0", // Light gray background
-                        marginBottom: "10px", // Apply 10px margin bottom
-                        padding: "10px", // Apply 10px padding
+                        backgroundColor: "#f0f0f0",
+                        marginBottom: "10px",
+                        padding: "10px",
                         borderRadius: "5px",
-                        width: "100%", // Full width
+                        width: "100%",
                       }}
                     >
                       <p>
                         <strong>Type:</strong> {transaction.TransactionType}
-                      </p>{" "}
-                      {/* Bold text */}
+                      </p>
                       <p>
                         <strong>Date:</strong> {transaction.date}
-                      </p>{" "}
-                      {/* Bold text */}
+                      </p>
                       <p>
                         <strong>Description:</strong> {transaction.description}
-                      </p>{" "}
-                      {/* Bold text */}
+                      </p>
                       <p>
                         <strong>Amount:</strong> {transaction.amount}
-                      </p>{" "}
-                      {/* Bold text */}
+                      </p>
                       <p>
                         <strong>Balance:</strong> {transaction.balance}
-                      </p>{" "}
-                      {/* Bold text */}
+                      </p>
                     </li>
                   ))}
                 </ul>
@@ -184,12 +180,12 @@ const Filtered = ({
                 onClick={() => console.log(option.value)}
               >
                 <input
-                  style={{ marginTop: "9px", marginLeft: "15px" }}
+                  className="input-checkbox-showBalance"
                   type="checkbox"
                   checked={showBalance}
                   onChange={handleToggleBalance}
                 />{" "}
-                <span style={{ fontSize: "12px" }}>
+                <span className="span-showBalance-showBalance">
                   {showBalance ? "Hide Balance" : "Show Balance"}
                 </span>
                 {option.label}
@@ -214,10 +210,8 @@ const Filtered = ({
             ></div>
           ))}
         </div>
-
-        {error && <p>{error}</p>}
       </div>
     </div>
   );
 };
-export default Filtered;
+export default MainAccounts;
