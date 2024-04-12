@@ -357,10 +357,29 @@ export default function App() {
       const options2 = [];
       uniqueMap.forEach((data, accountNumber) => {
         // Change forEach to account for accountNumber
+        // Function to generate a unique background color based on the account number
+        const getBackgroundColor = (accountNumber) => {
+          // You can use any method to generate a unique color based on the account number
+          const hashCode = (s) => {
+            return s.split("").reduce((a, b) => {
+              a = (a << 5) - a + b.charCodeAt(0);
+              return a & a;
+            }, 0);
+          };
+          const color = hashCode(accountNumber).toString(16).slice(0, 6);
+          return `#${color}`;
+        };
         const { balance, accountType } = data;
         options2.push({
           label: (
-            <div style={{ width: "130px", height: "80px", marginLeft: "10px" }}>
+            <div
+              style={{
+                width: "130px",
+                height: "80px",
+                marginLeft: "10px",
+                backgroundColor: getBackgroundColor(accountNumber), // Dynamically set background color
+              }}
+            >
               <div style={{ marginTop: "20px" }}>
                 <p style={{ fontSize: "14px" }}> {accountType}: NAIRA</p>
               </div>
@@ -380,9 +399,11 @@ export default function App() {
               </div>
               <p
                 style={{
-                  backgroundColor: showBalance ? "royalblue" : "transparent",
+                  backgroundColor: showBalance
+                    ? getBackgroundColor(accountNumber)
+                    : "transparent",
                   fontSize: "11px",
-                  with: "30px",
+                  width: "30px",
                   paddingLeft: "25px",
                   marginTop: "10px",
                   height: "29px",
