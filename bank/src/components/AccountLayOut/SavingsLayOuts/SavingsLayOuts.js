@@ -1,22 +1,34 @@
 import React, { useEffect, useRef, useState } from "react";
-import FetchTransactionHistory from "./FetchedTransactionHistory";
-import "./MasterPOSLayout.css";
+import FetchTransactionHistory from "../../FetchedTransactionHistory";
+import "./SavingsLayOuts.css";
 
-const MasterPOSLayout = ({ slides }) => {
+const SavingsLayOuts = ({ slides }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [selected, setSelected] = useState(0); // Initialize selected with 0
+  const [selected, setSelected] = useState(0);
   const [startIndex, setStartIndex] = useState(null);
   const sliderRef = useRef(null);
   const [showBalance, setShowBalance] = useState(false);
   const [transactionHistory, setTransactionHistory] = useState([]);
   const CURRENCY_SYMBOL = "₦";
+  const authenticatedCustomerId = "uc12";
 
   useEffect(() => {
-    // Fetch transaction history when the component mounts
     const fetchData = async () => {
       const transactionData = FetchTransactionHistory();
-      setTransactionHistory(transactionData);
+
+      // Check if there are transactions for the authenticated customer's account numbers
+      const authenticatedCustomerTransactions = transactionData.filter(
+        (transaction) =>
+          transaction.customer_id === authenticatedCustomerId ||
+          (transaction.business_id === authenticatedCustomerId &&
+            (transaction.accountType === "Savings" ||
+              transaction.accountType === "Business" ||
+              transaction.accountType === "Master_POS" ||
+              transaction.accountType === "Sub_POS"))
+      );
+      setTransactionHistory(authenticatedCustomerTransactions);
     };
+
     fetchData();
   }, []);
 
@@ -24,34 +36,67 @@ const MasterPOSLayout = ({ slides }) => {
     setShowBalance(!showBalance);
   };
 
-  // Filter transactions for each account type
-  const masterPOSTransactions = transactionHistory.filter(
-    (transaction) =>
-      transaction.customer_id === "uc12" && // Replace "your_customer_id" with the actual customer ID
-      transaction.accountType === "Master_POS" &&
-      transaction.business_id === "ubmc123"
-  );
-
-  const getMasterPOSOptions = (transactions) => {
-    const uniqueMasterPOSMap = new Map();
+  const getOptions = (transactions, accountType) => {
+    const uniqueMap = new Map();
     transactions.forEach((transaction) => {
       const { accountNumber, serialNumber, balance } = transaction;
-      if (
-        transaction.accountType === "Master_POS" &&
-        !uniqueMasterPOSMap.has(accountNumber)
+      let updatedAccountType = accountType;
+
+      if (!transaction.business_id) {
+        updatedAccountType = "Savings";
+      } else if (
+        transaction.accountType === "Business" &&
+        !transaction.serialNumber
       ) {
-        uniqueMasterPOSMap.set(accountNumber, { serialNumber, balance });
+        updatedAccountType = "Business";
+      } else if (
+        transaction.accountType === "Master_POS" &&
+        transaction.business_id
+      ) {
+        updatedAccountType = "Master_POS";
+      } else if (
+        transaction.accountType === "Master_POS" &&
+        transaction.serialNumber &&
+        transaction.serialNumber.startsWith("BM")
+      ) {
+        updatedAccountType = "Master_POS";
+      } else if (
+        transaction.accountType === "Sub_POS" &&
+        transaction.business_id
+      ) {
+        updatedAccountType = "Sub_POS";
+      } else if (
+        transaction.accountType === "Sub_POS" &&
+        transaction.serialNumber &&
+        transaction.serialNumber.startsWith("BMS")
+      ) {
+        updatedAccountType = "Sub_POS";
+      }
+
+      if (!uniqueMap.has(accountNumber)) {
+        uniqueMap.set(accountNumber, {
+          serialNumber,
+          balance,
+          accountType: updatedAccountType,
+        });
       }
     });
 
     const options = [];
-    uniqueMasterPOSMap.forEach((data, accountNumber) => {
+    uniqueMap.forEach((data, accountNumber) => {
       const { serialNumber, balance } = data;
       options.push({
         label: (
-          <div style={{ width: "130px", height: "80px", marginLeft: "10px" }}>
+          <div
+            style={{
+              width: "130px",
+              height: "80px",
+              marginLeft: "10px",
+              backgroundColor: "green",
+            }}
+          >
             <div style={{ marginTop: "20px" }}>
-              <p style={{ fontSize: "14px" }}> Master-POS: NAIRA</p>
+              <p style={{ fontSize: "14px" }}> {accountType}: NAIRA</p>
             </div>
             <div style={{ marginTop: "10px", backgroundColor: "transparent" }}>
               <span style={{ fontSize: "15px" }}>
@@ -92,10 +137,19 @@ const MasterPOSLayout = ({ slides }) => {
     return options;
   };
 
-  // Create options for each account type
-  const masterPOSOptions = getMasterPOSOptions(masterPOSTransactions);
+  const accountTypes = ["Savings"];
 
-  const slideCount = masterPOSOptions.length;
+  const options = accountTypes.flatMap((type) =>
+    getOptions(
+      transactionHistory.filter(
+        (transaction) =>
+          transaction.customer_id === "uc12" && transaction.accountType === type
+      ),
+      type
+    )
+  );
+
+  const slideCount = options.length;
 
   const nextSlide = () => {
     const nextIndex = (currentIndex + 1) % slideCount;
@@ -143,15 +197,15 @@ const MasterPOSLayout = ({ slides }) => {
         ref={sliderRef}
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
-        {masterPOSOptions.map((option, index) => (
-          <ul
+        {options.map((option, index) => (
+          <div
             className={`slide-masterPos ${
-              selected === index ? "selected-masterPos" : ""
-            }`}
+              selected === index ? "selected-masterPos flip-in" : ""
+            } ${selected === index ? "active" : ""}`}
             onClick={() => handleSlideClick(index)}
             key={option.index}
           >
-            <li key={option.value}>
+            <div key={option.value}>
               <input
                 style={{
                   marginTop: "9px",
@@ -166,8 +220,8 @@ const MasterPOSLayout = ({ slides }) => {
                 {showBalance ? "Hide Balance" : "Show Balance"}
               </span>
               {option.label}
-            </li>
-          </ul>
+            </div>
+          </div>
         ))}
       </div>
       <button className="prev-masterPos button-masterPos" onClick={prevSlide}>
@@ -177,7 +231,7 @@ const MasterPOSLayout = ({ slides }) => {
         Next
       </button>
       <div className="indicators-masterPos">
-        {masterPOSOptions.map((option, index) => (
+        {options.map((option, index) => (
           <div
             key={option.index}
             className={`dot-masterPos ${
@@ -191,4 +245,4 @@ const MasterPOSLayout = ({ slides }) => {
   );
 };
 
-export default MasterPOSLayout;
+export default SavingsLayOuts;

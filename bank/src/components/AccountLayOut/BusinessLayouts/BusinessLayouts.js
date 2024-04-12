@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import FetchTransactionHistory from "../../FetchedTransactionHistory";
-import "./AllAccountLayout.css";
+import "./BusinessLayouts.css";
 
-const AllAccountLayout = ({ slides }) => {
+const BusinessLayouts = ({ slides }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selected, setSelected] = useState(0);
   const [startIndex, setStartIndex] = useState(null);
@@ -137,7 +137,7 @@ const AllAccountLayout = ({ slides }) => {
     return options;
   };
 
-  const accountTypes = ["Savings", "Business", "Master_POS", "Sub_POS"];
+  const accountTypes = ["Business"];
 
   const options = accountTypes.flatMap((type) =>
     getOptions(
@@ -200,12 +200,12 @@ const AllAccountLayout = ({ slides }) => {
         {options.map((option, index) => (
           <div
             className={`slide-masterPos ${
-              selected === index ? "selected-masterPos" : ""
-            }`}
+              selected === index ? "selected-masterPos flip-in" : ""
+            } ${selected === index ? "active" : ""}`}
             onClick={() => handleSlideClick(index)}
             key={option.index}
           >
-            <li key={option.value}>
+            <div key={option.value}>
               <input
                 style={{
                   marginTop: "9px",
@@ -220,7 +220,7 @@ const AllAccountLayout = ({ slides }) => {
                 {showBalance ? "Hide Balance" : "Show Balance"}
               </span>
               {option.label}
-            </li>
+            </div>
           </div>
         ))}
       </div>
@@ -245,4 +245,4 @@ const AllAccountLayout = ({ slides }) => {
   );
 };
 
-export default AllAccountLayout;
+export default BusinessLayouts;

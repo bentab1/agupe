@@ -2,13 +2,14 @@ import React, { useEffect, useRef, useState } from "react";
 import FetchTransactionHistory from "../../FetchedTransactionHistory";
 import "./AllAccountLayout.css";
 
-const AllAccountLayout = ({ slides }) => {
+const AllAccountLayOutcopy = ({ slides }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selected, setSelected] = useState(0);
   const [startIndex, setStartIndex] = useState(null);
   const sliderRef = useRef(null);
   const [showBalance, setShowBalance] = useState(false);
   const [transactionHistory, setTransactionHistory] = useState([]);
+  const [showDiv, setShowDive] = useState(false);
   const CURRENCY_SYMBOL = "₦";
   const authenticatedCustomerId = "uc12";
 
@@ -89,46 +90,83 @@ const AllAccountLayout = ({ slides }) => {
         label: (
           <div
             style={{
-              width: "130px",
-              height: "80px",
+              borderRadius: "25px",
+              width: "300px",
+              height: "250px",
               marginLeft: "10px",
-              backgroundColor: "green",
+              paddingTop: "80px",
+              backgroundColor:
+                accountType === "Business"
+                  ? "wheat"
+                  : accountType === "Savings"
+                  ? "lightblue"
+                  : accountType === "Master_POS"
+                  ? "lightblue"
+                  : "lightgray",
+              // Define the background color for other account types here
             }}
           >
-            <div style={{ marginTop: "20px" }}>
-              <p style={{ fontSize: "14px" }}> {accountType}: NAIRA</p>
-            </div>
-            <div style={{ marginTop: "10px", backgroundColor: "transparent" }}>
-              <span style={{ fontSize: "15px" }}>
+            <p style={{ fontSize: "14px", marginLeft: "80px" }}>
+              {" "}
+              {accountType}: NAIRA
+            </p>
+
+            <p
+              style={{
+                marginTop: "10px",
+                backgroundColor: "transparent",
+                marginLeft: "100px",
+              }}
+            >
+              <span style={{ fontSize: "18px" }}>
                 {" "}
-                {showBalance && (
+                {showBalance ? (
                   <p>
                     {" "}
                     {CURRENCY_SYMBOL}
                     {parseFloat(balance).toLocaleString("en")}
                   </p>
+                ) : (
+                  "XXXXXX>"
                 )}
               </span>
-            </div>
-            <p
-              style={{
-                backgroundColor: showBalance ? "royalblue" : "transparent",
-                fontSize: "11px",
-                with: "30px",
-                paddingLeft: "25px",
-                marginTop: "10px",
-                height: "29px",
-                borderRadius: "20px",
-              }}
-            >
-              {" "}
-              {showBalance ? "Account Number" : ""}{" "}
-              {showBalance ? accountNumber : "xxxxxx>"}
             </p>
-            <p style={{ fontSize: "11px", marginTop: "15px" }}>
-              {" "}
-              S/N: {showBalance ? serialNumber : ""}
-            </p>
+
+            {accountType === "Business" ? (
+              <div
+                style={{
+                  display: "flex",
+                  position: "relative",
+                  zIndex: "4",
+                  marginTop: "80px",
+                  gap: "10px",
+                  paddingLeft: "20px",
+                }}
+              >
+                <button>Add Money</button> <button>Sub POS</button>{" "}
+                <button>Details</button>
+              </div>
+            ) : (
+              ""
+            )}
+
+            {accountType === "Savings" ? (
+              <div
+                style={{
+                  display: "flex",
+                  position: "relative",
+                  zIndex: "4",
+                  marginTop: "80px",
+                  gap: "10px",
+                  paddingLeft: "20px",
+                }}
+              >
+                <button>Add Money</button> <button>Transfer</button>{" "}
+                <button>Details</button> <button>More......</button>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         ),
         value: accountNumber,
@@ -137,7 +175,7 @@ const AllAccountLayout = ({ slides }) => {
     return options;
   };
 
-  const accountTypes = ["Savings", "Business", "Master_POS", "Sub_POS"];
+  const accountTypes = ["Savings", "Business", "Master POS"];
 
   const options = accountTypes.flatMap((type) =>
     getOptions(
@@ -202,10 +240,12 @@ const AllAccountLayout = ({ slides }) => {
             className={`slide-masterPos ${
               selected === index ? "selected-masterPos" : ""
             }`}
-            onClick={() => handleSlideClick(index)}
+            onClick={() => {
+              handleSlideClick(index);
+            }}
             key={option.index}
           >
-            <li key={option.value}>
+            <div key={option.value} style={{}}>
               <input
                 style={{
                   marginTop: "9px",
@@ -220,7 +260,8 @@ const AllAccountLayout = ({ slides }) => {
                 {showBalance ? "Hide Balance" : "Show Balance"}
               </span>
               {option.label}
-            </li>
+            </div>
+            <div></div>
           </div>
         ))}
       </div>
@@ -245,4 +286,8 @@ const AllAccountLayout = ({ slides }) => {
   );
 };
 
-export default AllAccountLayout;
+export default AllAccountLayOutcopy;
+
+<div>
+  <span>Add Money</span> <span>Sub POS</span> <span>Details</span>
+</div>;

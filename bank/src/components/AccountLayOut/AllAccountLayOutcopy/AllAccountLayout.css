@@ -1,12 +1,13 @@
 .slider-container-masterPos {
   position: relative;
   overflow: hidden;
-  width: 150px;
-  height: 180px;
+  width: 330px;
+  height: 350px;
   margin-left: 18px;
   top: 21px;
   backface-visibility: hidden;
   border-radius: 25px;
+  background-color: white;
 }
 
 .slider-masterPos {
@@ -14,10 +15,10 @@
 }
 
 .slide-masterPos {
-  background-color: rgb(226, 210, 211);
+  background-color: white;
   flex: 0 0 100%;
-  width: 150px;
-  height: 180px;
+  height: 300px;
+  margin-top: 20px;
 }
 /* 
 .selected1 {
@@ -38,7 +39,7 @@
 
 .button-masterPos {
   position: absolute;
-  top: 164px;
+  top: 280px;
   transform: translateY(-50%);
   padding: 10px;
   background-color: #002;
@@ -56,6 +57,7 @@
 
 .next-masterPos {
   right: 0;
+
   border-top-left-radius: 25px;
   border-bottom-right-radius: 25px;
 }

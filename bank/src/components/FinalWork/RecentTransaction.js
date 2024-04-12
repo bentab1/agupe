@@ -24,14 +24,13 @@ const RecentTransaction = ({
   const renderTransactionsForSelectedSlide = useCallback(() => {
     const selectedOption = options[selected];
     if (!selectedOption) return null;
-    const { value: accountNumber } = selectedOption;
+    const { value: accountType } = selectedOption;
     console.log("Selected Option:", selectedOption);
-    console.log("Account Number:", accountNumber);
+    console.log("Account Number:", accountType);
 
     // Make sure accountNumber is defined within the scope
-    return accountNumber;
+    return accountType;
   }, [options, selected]);
-
   ///////
 
   useEffect(() => {
@@ -62,11 +61,11 @@ const RecentTransaction = ({
   ////////
   //
   useEffect(() => {
-    const accountNumber = renderTransactionsForSelectedSlide();
+    const accountType = renderTransactionsForSelectedSlide();
 
     // Filter transactionHistory with the selected account number
     const filteredTransactions = transactionHistory.filter(
-      (transaction) => transaction.accountNumber === accountNumber
+      (transaction) => transaction.accountNumber === accountType
     );
 
     // Sort the transactions by date in descending order

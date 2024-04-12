@@ -1,24 +1,21 @@
 import React from "react";
-import MasterPOSLayout from "../../../../AllAccountLayout";
-import BusinessLayout from "../../../../BusinessLayout";
-import SubPOSLayout from "../../../../FinalWork/FilteredAllTransactionAccount";
-import SavingsLayout from "../../../../SavingsLayout";
-import "./Slide.css";
+
+import BusinessLayouts from "../../../../AccountLayOut/BusinessLayouts/BusinessLayouts";
+import MasterPOSLayOuts from "../../../../AccountLayOut/MasterPOSLayOuts/MasterPOSLayOuts";
+import SavingsLayOuts from "../../../../AccountLayOut/SavingsLayOuts/SavingsLayOuts";
 import Slider from "../Slider/Slider";
+import "./Slide.css";
 
 function Slide() {
   const slides = [
     <div className="slide-first">
-      <SavingsLayout />
+      <SavingsLayOuts />
     </div>,
     <div className="slide-second">
-      <BusinessLayout />
+      <BusinessLayouts />
     </div>,
     <div className="slide-third">
-      <MasterPOSLayout />
-    </div>,
-    <div className="slide-fourth">
-      <SubPOSLayout />
+      <MasterPOSLayOuts />
     </div>,
   ];
 

@@ -11,8 +11,15 @@ import BusinessAccount from "./components/BusinessAccount/BusinessAccount";
 import ContactUs from "./components/ContactUs/ContactUs";
 import UnsupportedCountrySelectionMessage from "./components/CountrySelectionSelected/UnsupportedCountrySelected";
 import Features from "./components/Features/Features";
+import fetchFetchCustomerHistory from "./components/FetchCustomerHistory.js";
+import FetchMasterPOSAcoountHistory from "./components/FetchMasterPOSAcoountHistory.js";
+import FetchSavingsAccountHistory from "./components/FetchSavingsAccountHistory.js";
+import {
+  default as FetchBusinessAccountHistory,
+  default as FetchSubPOSAccountHistory,
+} from "./components/FetchSubPOSAccountHistory.js";
 import fetchTransactionHistory from "./components/FetchedTransactionHistory.js";
-import RecentTransaction from "./components/FinalWork/RecentTransaction.js";
+import Filtered from "./components/FinalWork/Filtered/Filtered.js";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import Help from "./components/Help/Help";
@@ -21,6 +28,7 @@ import LoginPage from "./components/Login/LoginPage";
 import Menu from "./components/Menu/Menu";
 import NavBar from "./components/NavBar/NavBar";
 import Notification from "./components/Notification/Notification";
+import PageNotFound from "./components/PageNotFound.js";
 import Personal from "./components/Personal/Personal";
 import PersonalAccount from "./components/PersonalAccount/PersonalAccount";
 import Review from "./components/Review/Review";
@@ -45,6 +53,13 @@ function groupTransactionsByMonth(transactions) {
 export default function App() {
   const [activeButton, setActiveButton] = useState(null);
   const [transactionHistory, setTransactionHistory] = useState([]);
+  const [customerHistory, setCustomerHistory] = useState([]);
+  const [savingsAccountHistory, setSavingsAccountHistory] = useState([]);
+  const [businessAccountHistory, setBusinessAccountHistory] = useState([]);
+  const [masterPOSAccountHistory, setMasterPOSAccountHistory] = useState([]);
+  const [subPOSAccountHistory, setSubPOSAccountHistory] = useState([]);
+  const [uniqueAccountTypes, setUniqueAccountTypes] = useState([]);
+  const [allAccounts, setAllAccounts] = useState([]);
   const [groupedTransactions, setGroupedTransactions] = useState({});
   const [showTransactions, setShowTransactions] = useState(false);
   const [options, setOptions] = useState([]);
@@ -59,75 +74,139 @@ export default function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const transactionData = fetchTransactionHistory();
+      try {
+        // Fetch transaction history for the authenticated customer
+        const transactionData = await fetchTransactionHistory();
 
-      // Check if there are transactions for the authenticated customer's account numbers
-      const authenticatedCustomerTransactions = transactionData.filter(
-        (transaction) =>
-          transaction.customer_id === authenticatedCustomerId ||
-          (transaction.business_id === authenticatedCustomerId &&
-            (transaction.accountType === "Savings" ||
-              transaction.accountType === "Business" ||
-              transaction.accountType === "Master_POS" ||
-              transaction.accountType === "Sub_POS"))
-      );
-      setTransactionHistory(authenticatedCustomerTransactions);
+        // Fetch customer data for the authenticated customer
+        const customerData = await fetchFetchCustomerHistory();
+
+        // Fetch savings account history for the authenticated customer
+        const savingsAccountData = await FetchSavingsAccountHistory();
+
+        // Fetch business account history for the authenticated customer
+        const businessAccountData = await FetchBusinessAccountHistory();
+
+        // Fetch Master POS account history for the authenticated customer
+        const masterPOSAccountData = await FetchMasterPOSAcoountHistory();
+
+        // Fetch Sub POS account history for the authenticated customer
+        const subPOSAccountData = await FetchSubPOSAccountHistory();
+
+        const authenticatedTransactionData = transactionData.filter(
+          (data) => data.customer_id === authenticatedCustomerId
+        );
+
+        // Filter each data array to include only entries relevant to the authenticated customer
+        const authenticatedCustomerData = customerData.filter(
+          (data) => data.customer_id === authenticatedCustomerId
+        );
+
+        const authenticatedSavingsAccountData = savingsAccountData.filter(
+          (savingsdata) => savingsdata.customer_id === authenticatedCustomerId
+        );
+
+        const authenticatedCustomerBusinessAccountData =
+          businessAccountData.filter(
+            (data) => data.customer_id === authenticatedCustomerId
+          );
+
+        const authenticatedCustomerMasterPOSAccountData =
+          masterPOSAccountData.filter(
+            (data) => data.customer_id === authenticatedCustomerId
+          );
+
+        const authenticatedCustomerSubPOSAccountData = subPOSAccountData.filter(
+          (data) => data.customer_id === authenticatedCustomerId
+        );
+
+        // Merge all authenticated customer account histories into one array
+        const allAccounts = [
+          ...authenticatedSavingsAccountData.map((account) => ({
+            accountType: "Savings",
+            accountNumber: account.accountNumber,
+            balance: account.balance,
+          })),
+          ...authenticatedCustomerBusinessAccountData.map((account) => ({
+            accountType: "Business",
+            accountNumber: account.accountNumber,
+            balance: account.balance,
+          })),
+          ...authenticatedCustomerMasterPOSAccountData.map((account) => ({
+            accountType: "Master_POS",
+            accountNumber: account.accountNumber,
+            balance: account.balance,
+          })),
+          ...authenticatedCustomerSubPOSAccountData.map((account) => ({
+            accountType: "Sub_POS",
+            accountNumber: account.accountNumber,
+            balance: account.balance,
+          })),
+        ];
+
+        // Convert the Set back to an array
+        const uniqueAccountTypes = Array.from(
+          new Set(allAccounts.map((account) => account.accountType))
+        );
+
+        // Set transaction history for the authenticated customer
+        setTransactionHistory(authenticatedTransactionData);
+        setUniqueAccountTypes(uniqueAccountTypes);
+        setAllAccounts(allAccounts);
+        // Set each account history individually for the authenticated customer
+        setCustomerHistory(authenticatedCustomerData);
+        setSavingsAccountHistory(authenticatedSavingsAccountData);
+        setBusinessAccountHistory(authenticatedCustomerBusinessAccountData);
+        setMasterPOSAccountHistory(authenticatedCustomerMasterPOSAccountData);
+        setSubPOSAccountHistory(authenticatedCustomerSubPOSAccountData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
 
     fetchData();
   }, []);
-
   useEffect(() => {
-    // Filter transactions for each account type
-    const getOptions = (transactions, accountType) => {
+    // Filter accounts for each account type
+    const getOptions = (accounts) => {
       const uniqueMap = new Map();
-      transactions.forEach((transaction) => {
-        const { accountNumber, serialNumber, balance } = transaction;
+      accounts.forEach((account) => {
+        const { accountType, balance, accountNumber } = account; // Corrected line
         let updatedAccountType = accountType;
 
-        if (!transaction.business_id) {
+        if (account.customer_id && !account.business_id) {
           updatedAccountType = "Savings";
         } else if (
-          transaction.accountType === "Business" &&
-          !transaction.serialNumber
+          account.accountType === "Business" &&
+          account.customer_id &&
+          (!account.master_POS_id || !account.sub_POS_id)
         ) {
           updatedAccountType = "Business";
         } else if (
-          transaction.accountType === "Master_POS" &&
-          transaction.business_id
+          account.accountType === "Master_POS" &&
+          account.business_id &&
+          account.master_POS_id
         ) {
           updatedAccountType = "Master_POS";
         } else if (
-          transaction.accountType === "Master_POS" &&
-          transaction.serialNumber &&
-          transaction.serialNumber.startsWith("BM")
-        ) {
-          updatedAccountType = "Master_POS";
-        } else if (
-          transaction.accountType === "Sub_POS" &&
-          transaction.business_id
-        ) {
-          updatedAccountType = "Sub_POS";
-        } else if (
-          transaction.accountType === "Sub_POS" &&
-          transaction.serialNumber &&
-          transaction.serialNumber.startsWith("BMS")
+          account.accountType === "Sub_POS" &&
+          account.business_id &&
+          account.sub_POS_id
         ) {
           updatedAccountType = "Sub_POS";
         }
 
-        if (!uniqueMap.has(accountNumber)) {
-          uniqueMap.set(accountNumber, {
-            serialNumber,
+        if (!uniqueMap.has(accountType)) {
+          uniqueMap.set(accountType, {
             balance,
+            accountNumber,
             accountType: updatedAccountType,
           });
         }
       });
-
       const options = [];
-      uniqueMap.forEach((data, accountNumber) => {
-        const { serialNumber, balance } = data;
+      uniqueMap.forEach((data, accountType) => {
+        const { balance, accountNumber } = data;
         options.push({
           label: (
             <div style={{ width: "130px", height: "80px", marginLeft: "10px" }}>
@@ -163,32 +242,20 @@ export default function App() {
                 {showBalance ? "Account Number" : ""}{" "}
                 {showBalance ? accountNumber : "xxxxxx>"}
               </p>
-              <p style={{ fontSize: "11px", marginTop: "15px" }}>
-                {" "}
-                S/N: {showBalance ? serialNumber : ""}
-              </p>
             </div>
           ),
-          value: accountNumber,
+          value: accountType,
         });
       });
       return options;
     };
 
-    const accountTypes = ["Savings", "Business", "Master_POS", "Sub_POS"];
-
-    const options = accountTypes.flatMap((type) =>
-      getOptions(
-        transactionHistory.filter(
-          (transaction) =>
-            transaction.customer_id === "uc12" &&
-            transaction.accountType === type
-        ),
-        type
-      )
+    const options = uniqueAccountTypes.flatMap((type) =>
+      getOptions(allAccounts.filter((account) => account.accountType === type))
     );
+    console.log(options.accountNumber);
     setOptions(options);
-  }, [transactionHistory, showBalance]);
+  }, [uniqueAccountTypes, allAccounts, showBalance]);
 
   const handleToggleBalance = () => {
     setShowBalance(!showBalance);
@@ -245,39 +312,29 @@ export default function App() {
             />
           </Routes>
 
-          {/* <FilteredAllTransactionAccount
-            transactionHistory={transactionHistory}
+          <Filtered
             options={options}
             selected={selected}
-            setSelected={setSelected}
-            groupedTransactions={groupedTransactions}
-            setGroupedTransactions={setGroupedTransactions}
+            transactionHistory={transactionHistory}
             groupTransactionsByMonth={groupTransactionsByMonth}
-            showTransactions={showTransactions}
             setShowTransactions={setShowTransactions}
+            setGroupedTransactions={setGroupedTransactions}
+            groupedTransactions={groupedTransactions}
+            setSelected={setSelected}
+            showTransactions={showTransactions}
+            showBalance={showBalance}
             handleToggleBalance={handleToggleBalance}
-            setShowBalance={setShowBalance}
             setTransactionHistory={setTransactionHistory}
-          /> */}
+          />
           {/* s */}
           {/* <Contents /> */}
           <Features />
           <Review />
-          <RecentTransaction
-            transactionHistory={transactionHistory}
-            options={options}
-            selected={selected}
-            setSelected={setSelected}
-            groupedTransactions={groupedTransactions}
-            setGroupedTransactions={setGroupedTransactions}
-            groupTransactionsByMonth={groupTransactionsByMonth}
-            showTransactions={showTransactions}
-            setShowTransactions={setShowTransactions}
-            handleToggleBalance={handleToggleBalance}
-            setShowBalance={setShowBalance}
-            setTransactionHistory={setTransactionHistory}
-          />
+          {/* <RecentTransaction
+           
+          /> */}
           <Notification />
+          <PageNotFound transactionHistory={transactionHistory} />
         </div>
         <Footer />
         <Welcome />

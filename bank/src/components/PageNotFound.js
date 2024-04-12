@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
-function PageNotFound() {
+function PageNotFound({ transactionHistory }) {
   return (
-    <div style={{justifyContent:'center'}}>
-        <h2>Page not found</h2>
+    <div style={{ justifyContent: "center" }}>
+      <h2>Page not found</h2>
     </div>
-  )
+  );
 }
 
-export default PageNotFound
+export default PageNotFound;

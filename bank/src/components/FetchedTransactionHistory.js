@@ -26,6 +26,18 @@ const fetchTransactionHistory = () => {
       status: "upcoming",
     },
     {
+      id: 2,
+      customer_id: "uc13",
+      accountType: "Savings",
+      TransactionType: "Card Withdrawal",
+      accountNumber: "4444444445",
+      date: "2024-03-30",
+      description: "Deposit",
+      amount: 1000.0,
+      balance: 9000.0,
+      status: "upcoming",
+    },
+    {
       id: 3,
       customer_id: "uc12",
       accountType: "Savings",
@@ -37,6 +49,7 @@ const fetchTransactionHistory = () => {
       balance: 8800.0,
       status: "pending",
     },
+
     {
       id: 4,
       customer_id: "uc12",
@@ -78,10 +91,10 @@ const fetchTransactionHistory = () => {
     {
       id: 7,
       customer_id: "uc12",
-      accountType: "Master_POS",
+      accountType: "Master POS",
       serialNumber: "1232",
       TransactionType: "CardRefund",
-      accountNumber: "6666666666",
+      accountNumber: "5555555555",
       date: "2024-03-05",
       description: "Utility Bill Payment",
       amount: -150.0,

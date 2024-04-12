@@ -1,93 +1,52 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import "./FilteredAllTransactionAccount.css";
+import "./Filtered.css";
 
-const FilteredAllTransactionAccount = ({
-  transactionHistory,
+const Filtered = ({
   options,
   selected,
-  setSelected,
-  setGroupedTransactions,
+  transactionHistory,
   groupTransactionsByMonth,
-  groupedTransactions,
-  showTransactions,
   setShowTransactions,
-  handleToggleBalance,
+  setGroupedTransactions,
+  groupedTransactions,
+  setSelected,
+  showTransactions,
   showBalance,
-  setTransactionHistory,
+  handleToggleBalance,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [startIndex, setStartIndex] = useState(null);
   const sliderRef = useRef(null);
   const [error, setError] = useState("");
-  const [showPOSTransactions, setShowPOSTransactions] = useState(false);
   const CURRENCY_SYMBOL = "₦";
-  const authenticatedCustomerId = "uc12";
+
   const renderTransactionsForSelectedSlide = useCallback(() => {
     const selectedOption = options[selected];
     if (!selectedOption) return null;
-    const { value: accountNumber } = selectedOption;
-    console.log("Selected Option:", selectedOption);
-    console.log("Account Number:", accountNumber);
+    const { value: accountType } = selectedOption;
 
-    // Make sure accountNumber is defined within the scope
-    return accountNumber;
+    // Make sure accountType is defined within the scope
+    return accountType;
   }, [options, selected]);
-
-  ///////
-
   useEffect(() => {
-    const fetchData = async () => {
-      // const transactionData = fetchTransactionHistory();
-
-      // Check if there are transactions for the authenticated customer's account numbers
-      const authenticatedCustomerTransactions = transactionHistory.filter(
-        (transaction) =>
-          transaction.customer_id === authenticatedCustomerId &&
-          (transaction.accountType === "Savings" ||
-            transaction.accountType === "Business" ||
-            transaction.accountType === "Master_POS" ||
-            transaction.accountType === "Sub_POS")
-      );
-
-      if (authenticatedCustomerTransactions.length === 0) {
-        setError("You do not have any transactions.");
-        setShowPOSTransactions(false);
-      } else {
-        setTransactionHistory(authenticatedCustomerTransactions);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  ////////
-  //
-  useEffect(() => {
-    const accountNumber = renderTransactionsForSelectedSlide(); // Call the function to get the account number
-
-    // Make sure accountNumber is defined before filtering transactions
-    if (accountNumber !== null) {
-      // Filter transactionHistory with the selected account number
+    const accountType = renderTransactionsForSelectedSlide();
+    if (accountType !== null) {
       const filteredTransactions = transactionHistory.filter(
-        (transaction) => transaction.accountNumber === accountNumber
+        (transaction) => transaction.accountType === accountType
       );
-      console.log("Filtered Transactions:", filteredTransactions);
-      // Group the filtered transactions by month
-      const groupedTransactions =
-        groupTransactionsByMonth(filteredTransactions);
+      console.log(accountType);
+      groupTransactionsByMonth(filteredTransactions);
 
       if (filteredTransactions.length === 0) {
-        setError("No transactions found for the selected account number.");
+        setError(`No transactions found for account type ${accountType}.`);
+        setShowTransactions(false);
       } else {
-        setError(""); // Reset error message if transactions are found
+        setError("");
+        setShowTransactions(true);
+        setGroupedTransactions(groupTransactionsByMonth(filteredTransactions)); // Assuming you want to update groupedTransactions here
       }
-
-      setGroupedTransactions(groupedTransactions);
-      setShowTransactions(true);
-    } else {
-      setShowTransactions(false); // Hide transactions if no account number is selected
     }
-  }, [transactionHistory, renderTransactionsForSelectedSlide]);
+  }, [renderTransactionsForSelectedSlide, selected]);
 
   const slideCount = options.length;
 
@@ -124,14 +83,12 @@ const FilteredAllTransactionAccount = ({
     setCurrentIndex(index);
     setSelected(index);
   };
-
   return (
     <div>
       {showTransactions && (
         <div
           style={{
             backgroundColor: "rgba(0, 0, 255, 0.9)", // Blue color with some transparency
-            display: "grid",
             position: "absolute",
             width: "100%",
             height: "800px",
@@ -263,5 +220,4 @@ const FilteredAllTransactionAccount = ({
     </div>
   );
 };
-
-export default FilteredAllTransactionAccount;
+export default Filtered;
