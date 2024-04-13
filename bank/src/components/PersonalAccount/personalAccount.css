@@ -1,12 +1,12 @@
 .personalprofile {
   overflow-x: hidden;
-  max-height: calc(98vh);
+  height: 100%;
   overflow-y: scroll;
   width: 1360px;
-  top: 0px;
-  bottom: 0px;
-  z-index: 1;
+  top: 0;
+  bottom: 0;
   position: absolute;
+  z-index: 5;
 }
 .profile-section {
   font-size: 13px;

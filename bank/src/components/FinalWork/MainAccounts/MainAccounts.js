@@ -90,62 +90,117 @@ const MainAccounts = ({
     setSelected(index);
   };
   return (
-    <div>
+    <div
+      style={{
+        backgroundColor: "transparent",
+        height: "400px",
+        width: "900px",
+      }}
+    >
       {showTransactions && (
         <div
           style={{
-            backgroundColor: "rgba(0, 0, 255, 0.9)",
-            position: "absolute",
-            width: "100%",
-            height: "800px",
-            top: "150px",
-            zIndex: "12",
-            marginLeft: "600px",
+            backgroundColor: "white",
+            position: "relative",
+            width: "400px",
+            height: "160px",
+            top: "240px",
+            borderRadius: "25px",
+            marginLeft: "459px",
+            paddingTop: "5px",
+            paddingLeft: "5px",
           }}
         >
           {error && <p>{error}</p>}
-          <div className="completed-transaction">
-            {Object.keys(groupedTransactions).map((monthYear) => (
-              <div key={monthYear}>
-                <h3 style={{ color: "#fff" }}>{monthYear}</h3>{" "}
-                {/* White text color */}
-                <ul style={{ listStyle: "none", padding: 0 }}>
-                  {groupedTransactions[monthYear].map((transaction) => (
-                    <li
-                      key={transaction.id}
+          <div
+            className="completed-transaction"
+            style={{
+              paddingLeft: "10px",
+              paddingTop: "10px",
+              display: "flex",
+              gap: "5px",
+              width: "350px",
+              backgroundColor: "transparent",
+            }}
+          >
+            {Object.keys(groupedTransactions).map(
+              (monthYear, index) =>
+                index === 0 && (
+                  <div key={monthYear}>
+                    <h3 style={{ color: "royalblue", marginLeft: "10px" }}>
+                      {monthYear}
+                    </h3>
+                    {/* White text color */}
+                    <div
                       style={{
-                        backgroundColor: "#f0f0f0",
-                        marginBottom: "10px",
-                        padding: "10px",
-                        borderRadius: "5px",
-                        width: "100%",
+                        listStyle: "none",
+                        padding: 0,
+                        display: "flex",
+                        gap: "5px",
                       }}
                     >
-                      <p>
-                        <strong>Type:</strong> {transaction.TransactionType}
-                      </p>
-                      <p>
-                        <strong>Date:</strong> {transaction.date}
-                      </p>
-                      <p>
-                        <strong>Description:</strong> {transaction.description}
-                      </p>
-                      <p>
-                        <strong>Amount:</strong> {transaction.amount}
-                      </p>
-                      <p>
-                        <strong>Balance:</strong> {transaction.balance}
-                      </p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+                      {groupedTransactions[monthYear].map(
+                        (transaction, index) =>
+                          index < 2 && (
+                            <div
+                              key={transaction.id}
+                              style={{
+                                padding: "10px",
+                                height: "65px",
+                                backgroundColor: "whitesmoke",
+                                borderRadius: "20px",
+                                width: "150px",
+                              }}
+                            >
+                              <p className="transaction-parag">
+                                <strong>Date:</strong> {transaction.date}
+                              </p>
+                              <p className="transaction-parag">
+                                {transaction.TransactionType}
+                              </p>
+                              <p className="transaction-parag">
+                                <strong>Amount:</strong> {transaction.amount}
+                              </p>
+                            </div>
+                          )
+                      )}
+                    </div>
+                  </div>
+                )
+            )}
           </div>
+
+          <button
+            style={{
+              width: "80px",
+              marginTop: "8px",
+              fontSize: "11px",
+              height: "35px",
+              marginLeft: "50px",
+              borderRadius: "25px",
+              backgroundColor: "white",
+              color: "royalblue",
+            }}
+          >
+            See All
+          </button>
+          <button
+            className="text"
+            style={{
+              width: "170px",
+              borderRadius: "25px",
+              height: "35px",
+              fontSize: "11px",
+              color: "royalblue",
+            }}
+          >
+            Filter Transactions
+          </button>
         </div>
       )}
+
       <div
-        style={{ top: "0px", bottom: "0px" }}
+        style={{ top: "-100px", bottom: "0px" }}
         className="slider-container-subPos"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}

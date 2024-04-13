@@ -18,13 +18,13 @@ function Contents() {
   }, []);
 
   return (
-    <div className="slider-container">
+    <div className="slider3-container3">
       <div
-        className="slider"
+        className="slider3"
         style={{ transform: `translateX(${-currentIndex * 100}%)` }}
       >
         <div
-          className="slide"
+          className="slide3"
           style={{ backgroundColor: "rgba(100, 251, 171, 1)" }}
         >
           <img
@@ -53,7 +53,7 @@ function Contents() {
             }}
           />
         </div>
-        <div className="slide" style={{ backgroundColor: "red" }}>
+        <div className="slide3" style={{ backgroundColor: "red" }}>
           <img
             src={image5}
             alt="banker"
@@ -65,7 +65,7 @@ function Contents() {
             }}
           />
         </div>
-        <div className="slide" style={{ backgroundColor: "black" }}>
+        <div className="slide3" style={{ backgroundColor: "black" }}>
           <img
             src={image1}
             alt="banker"
@@ -77,7 +77,7 @@ function Contents() {
             }}
           />
         </div>
-        <div className="slide" style={{ backgroundColor: "orange" }}>
+        <div className="slide3" style={{ backgroundColor: "orange" }}>
           <img
             src={image3}
             alt="banker"
@@ -89,7 +89,7 @@ function Contents() {
             }}
           />
         </div>
-        <div className="slide" style={{ backgroundColor: "white" }}>
+        <div className="slide3" style={{ backgroundColor: "white" }}>
           <img
             src={image4}
             alt="banker"
@@ -107,11 +107,11 @@ function Contents() {
         className="ind"
         style={{ height: "20px", backgroundColor: "rgba(246, 216, 216, 0.92)" }}
       >
-        <div className="indicator">
+        <div className="indicator3">
           {[...Array(6)].map((_, i) => (
             <div
               key={i}
-              className="indicator-dot"
+              className="indicator-dot3"
               style={{ backgroundColor: i === currentIndex ? "red" : "gray" }}
             ></div>
           ))}

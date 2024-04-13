@@ -38,7 +38,7 @@ const FetchSubPOSAccountHistory = () => {
       business_id: "1234abcd",
       customer_id: "uc12",
       accountNumber: "5555555555",
-      balance: "12345",
+      balance: "10124",
       //One customer can own one master_POS and as any as sub_POS
       //user can operate it in any Device but must be authenticated before use.
       //there will be option for use to change the operationType
@@ -65,7 +65,7 @@ const FetchSubPOSAccountHistory = () => {
       business_id: "1234abcd",
       customer_id: "uc12",
       accountNumber: "6666666667",
-      balance: "12345",
+      balance: "44490",
       //One customer can own one master_POS and as any as sub_POS
       //user can operate it in any Device but must be authenticated before use.
       //there will be option for use to change the operationType

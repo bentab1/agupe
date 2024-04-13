@@ -9,6 +9,7 @@ import Banking from "./components/Banking/Banking";
 import Business from "./components/Business/Business";
 import BusinessAccount from "./components/BusinessAccount/BusinessAccount";
 import ContactUs from "./components/ContactUs/ContactUs";
+import Contents from "./components/Contents/Contents.js";
 import UnsupportedCountrySelectionMessage from "./components/CountrySelectionSelected/UnsupportedCountrySelected";
 import Features from "./components/Features/Features";
 import fetchFetchCustomerHistory from "./components/FetchCustomerHistory.js";
@@ -19,22 +20,19 @@ import {
   default as FetchSubPOSAccountHistory,
 } from "./components/FetchSubPOSAccountHistory.js";
 import fetchTransactionHistory from "./components/FetchedTransactionHistory.js";
-import Filtered from "./components/FinalWork/MainAccounts/MainAccounts.js";
-import Footer from "./components/Footer/Footer";
+import SubPOSFiltered from "./components/FinalWork/SubPOSFiltered/SubPOSFiltered.js";
 import Header from "./components/Header/Header";
 import Help from "./components/Help/Help";
+import Layout from "./components/Layout.js";
 import LiveChat from "./components/LiveChat/LiveChat";
 import LoginPage from "./components/Login/LoginPage";
 import Menu from "./components/Menu/Menu";
 import NavBar from "./components/NavBar/NavBar";
 import Notification from "./components/Notification/Notification";
-import PageNotFound from "./components/PageNotFound.js";
 import Personal from "./components/Personal/Personal";
 import PersonalAccount from "./components/PersonalAccount/PersonalAccount";
-import Review from "./components/Review/Review";
 import SignUpRedirect from "./components/SignUpRedirect/SignUpRedirect";
 import Welcome from "./components/Welcome/Welcome";
-import SubPOSFiltered from "./components/FinalWork/SubPOSFiltered/SubPOSFiltered.js";
 
 function groupTransactionsByMonth(transactions) {
   const groupedTransactions = {};
@@ -51,6 +49,64 @@ function groupTransactionsByMonth(transactions) {
   return groupedTransactions;
 }
 
+function groupTransactionsByDay(transactions) {
+  const groupedTransactions = {};
+  transactions.forEach((transaction) => {
+    const date = new Date(transaction.date);
+    const dayKey = date.toISOString().split("T")[0]; // Extracting day in "YYYY-MM-DD" format
+    if (!groupedTransactions[dayKey]) {
+      groupedTransactions[dayKey] = [];
+    }
+    groupedTransactions[dayKey].push(transaction);
+  });
+  return groupedTransactions;
+}
+
+function groupTransactionsByWeek(transactions) {
+  const groupedTransactions = {};
+  transactions.forEach((transaction) => {
+    const date = new Date(transaction.date);
+    const weekStart = new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate() - date.getDay()
+    );
+    const weekEnd = new Date(
+      weekStart.getFullYear(),
+      weekStart.getMonth(),
+      weekStart.getDate() + 6
+    );
+    const weekKey = `${weekStart.toISOString().split("T")[0]} to ${
+      weekEnd.toISOString().split("T")[0]
+    }`;
+    if (!groupedTransactions[weekKey]) {
+      groupedTransactions[weekKey] = [];
+    }
+    groupedTransactions[weekKey].push(transaction);
+  });
+  return groupedTransactions;
+}
+
+// Combined function to group transactions by month, day, and week
+function groupTransactionsByALL(transactions) {
+  const byMonth = groupTransactionsByMonth(transactions);
+  const byDay = groupTransactionsByDay(transactions);
+  const byWeek = groupTransactionsByWeek(transactions);
+
+  // Generate a unique key for the combined groups
+  const monthYearDayWeek =
+    Object.keys(byMonth).join("-") +
+    Object.keys(byDay).join("-") +
+    Object.keys(byWeek).join("-");
+
+  return {
+    byMonth,
+    byDay,
+    byWeek,
+    key: monthYearDayWeek, // Add the combined key to the result object
+  };
+}
+
 export default function App() {
   const [activeButton, setActiveButton] = useState(null);
   const [transactionHistory, setTransactionHistory] = useState([]);
@@ -62,6 +118,7 @@ export default function App() {
   const [uniqueAccountTypes, setUniqueAccountTypes] = useState([]);
   const [allAccounts, setAllAccounts] = useState([]);
   const [groupedTransactions, setGroupedTransactions] = useState({});
+  const [groupedTransactionsByAWD, setGroupedTransactionsByAWD] = useState({});
   const [showTransactions, setShowTransactions] = useState(false);
   const [options, setOptions] = useState([]);
   const [options2, setOptions2] = useState([]);
@@ -168,6 +225,40 @@ export default function App() {
 
     fetchData();
   }, []);
+
+  function Accounts() {
+    return (
+      <div>
+        <div>
+          <div>
+            <div>
+              <p>Savings</p>
+              <p>{CURRENCY_SYMBOL}</p>
+              <p>Balance:</p>
+              <p>Account Number:</p>
+            </div>
+            <div>
+              {" "}
+              <p>Savings</p>
+              <p>{CURRENCY_SYMBOL}</p>
+              <p>Balance:</p>
+              <p>Account Number: </p>
+            </div>
+            <div>
+              {" "}
+              <p>Savings</p>
+              <p>{CURRENCY_SYMBOL}</p>
+              <p>Balance: </p>
+              <p>Account Number:</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  function handleSubPOSdetails() {
+    window.location.href = "/subPOS/account";
+  }
   useEffect(() => {
     // Filter accounts for each account type
     const getOptions = (accounts) => {
@@ -243,9 +334,25 @@ export default function App() {
                     <button className="button-label-business-show"></button>{" "}
                     <p className="label-text-option"> Add Money</p>
                   </div>
-                  <div className="business-label-div">
-                    <button className="button-label-business-show"></button>
-                    <p className="label-text-option">Sub POS</p>{" "}
+                  <div
+                    className="business-label-div"
+                    onClick={() => {
+                      handleSubPOSdetails();
+                    }}
+                    onTouchMove={() => {
+                      handleSubPOSdetails();
+                    }}
+                  >
+                    <button
+                      className="button-label-business-show"
+                      onClick={() => {
+                        handleSubPOSdetails();
+                      }}
+                      onTouchMove={() => {
+                        handleSubPOSdetails();
+                      }}
+                    ></button>
+                    <p className="label-text-option">Sub POS</p>
                   </div>
                   <div className="business-label-div">
                     <button className="button-label-business-show"></button>
@@ -284,7 +391,7 @@ export default function App() {
                     <p className="label-master-text-option"> Add Money</p>
                   </div>
                   <div className="master-label-div">
-                    <button className="button-label-business-show"></button>
+                    <button className="button-label-master-show"></button>
                     <p className="label-master-text-option">Details</p>
                   </div>
                   <div className="master-label-div">
@@ -330,11 +437,13 @@ export default function App() {
   useEffect(() => {
     const grouped = groupTransactionsByMonth(transactionHistory);
     setGroupedTransactions(grouped);
+    const groupedByAll = groupTransactionsByDay(transactionHistory);
+    setGroupedTransactionsByAWD(groupedByAll);
   }, [transactionHistory]);
   /////
   /////
 
-  //from Here , subPOS was mapped
+  //from Here , subPOS accountType was mapped
   useEffect(() => {
     const getOptions2 = (accounts) => {
       const uniqueMap = new Map();
@@ -358,61 +467,54 @@ export default function App() {
       uniqueMap.forEach((data, accountNumber) => {
         // Change forEach to account for accountNumber
         // Function to generate a unique background color based on the account number
+        const predefinedColors = ["lightblue", "lightgray", "wheat"];
+
         const getBackgroundColor = (accountNumber) => {
-          // You can use any method to generate a unique color based on the account number
-          const hashCode = (s) => {
-            return s.split("").reduce((a, b) => {
-              a = (a << 5) - a + b.charCodeAt(0);
-              return a & a;
-            }, 0);
-          };
-          const color = hashCode(accountNumber).toString(16).slice(0, 6);
-          return `#${color}`;
+          // Use the hashCode function or any other method to generate a unique index based on the account number
+          const index = Math.abs(
+            hashCode(accountNumber) % predefinedColors.length
+          );
+          return predefinedColors[index];
+        };
+
+        // Your existing hashCode function remains unchanged
+        const hashCode = (s) => {
+          return s.split("").reduce((a, b) => {
+            a = (a << 5) - a + b.charCodeAt(0);
+            return a & a;
+          }, 0);
         };
         const { balance, accountType } = data;
         options2.push({
           label: (
             <div
+              className="Label-option2-subpos-push-container"
               style={{
-                width: "130px",
-                height: "80px",
-                marginLeft: "10px",
                 backgroundColor: getBackgroundColor(accountNumber), // Dynamically set background color
               }}
             >
-              <div style={{ marginTop: "20px" }}>
-                <p style={{ fontSize: "14px" }}> {accountType}: NAIRA</p>
-              </div>
-              <div
-                style={{ marginTop: "10px", backgroundColor: "transparent" }}
-              >
-                <span style={{ fontSize: "15px" }}>
+              <p style={{ fontSize: "14px", marginLeft: "120px" }}>
+                {" "}
+                {accountType}: NAIRA
+              </p>
+
+              {showBalance ? (
+                <p className="Label-business-option-balance">
                   {" "}
-                  {showBalance && (
-                    <p>
-                      {" "}
-                      {CURRENCY_SYMBOL}
-                      {parseFloat(balance).toLocaleString("en")}
-                    </p>
-                  )}
-                </span>
-              </div>
-              <p
-                style={{
-                  backgroundColor: showBalance
-                    ? getBackgroundColor(accountNumber)
-                    : "transparent",
-                  fontSize: "11px",
-                  width: "30px",
-                  paddingLeft: "25px",
-                  marginTop: "10px",
-                  height: "29px",
-                  borderRadius: "20px",
-                }}
-              >
+                  {CURRENCY_SYMBOL}
+                  {parseFloat(balance).toLocaleString("en")}
+                </p>
+              ) : (
+                <p className="labe-showbanle-option-x"> {"xxxxxx>"}</p>
+              )}
+              <p style={{ fontSize: "12px", marginLeft: "95px" }}>
                 {" "}
                 {showBalance ? "Account Number" : ""}{" "}
-                {showBalance ? accountNumber : "xxxxxx>"}
+                {showBalance ? (
+                  accountNumber
+                ) : (
+                  <p style={{ marginLeft: "40px" }}>{"xxxxxx>"}</p>
+                )}
               </p>
             </div>
           ),
@@ -439,7 +541,25 @@ export default function App() {
         <div className="content-container">
           <Routes>
             <Route path="/account/login" element={<LoginPage />} />
-            <Route path="/personalAccount" element={<PersonalAccount />} />
+            <Route
+              path="/personalAccount"
+              element={
+                <PersonalAccount
+                  options={options}
+                  selected={selected}
+                  transactionHistory={transactionHistory}
+                  groupTransactionsByMonth={groupTransactionsByMonth}
+                  setShowTransactions={setShowTransactions}
+                  setGroupedTransactions={setGroupedTransactions}
+                  groupedTransactions={groupedTransactions}
+                  setSelected={setSelected}
+                  showTransactions={showTransactions}
+                  showBalance={showBalance}
+                  handleToggleBalance={handleToggleBalance}
+                  setTransactionHistory={setTransactionHistory}
+                />
+              }
+            />
             <Route path="/addmoney" element={<AdMoneyMethod />} />
             <Route path="/addthrough/bank" element={<AddMoneyBankMenu />} />
           </Routes>
@@ -471,42 +591,23 @@ export default function App() {
                   transactionHistory={transactionHistory}
                   groupTransactionsByMonth={groupTransactionsByMonth}
                   setShowTransactions={setShowTransactions}
-                  setGroupedTransactions={setGroupedTransactions}
+                  setGroupedTransactionsByAWD={setGroupedTransactionsByAWD}
                   groupedTransactions={groupedTransactions}
+                  setGroupedTransactions={setGroupedTransactions}
                   showTransactions={showTransactions}
                   showBalance={showBalance}
                   handleToggleBalance={handleToggleBalance}
-                  setTransactionHistory={setTransactionHistory}
+                  setTransactionHistory1={setTransactionHistory}
                 />
               }
             />
           </Routes>
-
-          <Filtered
-            options={options}
-            selected={selected}
-            transactionHistory={transactionHistory}
-            groupTransactionsByMonth={groupTransactionsByMonth}
-            setShowTransactions={setShowTransactions}
-            setGroupedTransactions={setGroupedTransactions}
-            groupedTransactions={groupedTransactions}
-            setSelected={setSelected}
-            showTransactions={showTransactions}
-            showBalance={showBalance}
-            handleToggleBalance={handleToggleBalance}
-            setTransactionHistory={setTransactionHistory}
-          />
-
-          {/* <Contents /> */}
-          <Features />
-          <Review />
-          {/* <RecentTransaction
-           
-          /> */}
-          <Notification />
-          <PageNotFound transactionHistory={transactionHistory} />
+          <Layout>
+            <Contents />
+            <Features />
+            <Notification />
+          </Layout>
         </div>
-        <Footer />
         <Welcome />
       </Router>
     </div>

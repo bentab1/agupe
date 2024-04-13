@@ -1,42 +1,39 @@
-body {
+/* body {
   margin: 0;
   overflow: hidden;
-}
+} */
 
-.slider-container {
-  position: relative;
+.slider3-container3 {
+  position: center;
   height: 420px;
-  
 }
 
-.slider {
+.slider3 {
   display: flex;
   transition: transform 0.5s ease-in-out;
 }
 
-.slide {
+.slide3 {
   flex: 0 0 100%;
   height: 420px;
 }
 
-
-.indicator {
+.indicator3 {
   position: relative;
   left: 50%;
   transform: translateX(-50%);
   height: 20px;
   display: flex;
   margin-left: 28.2%;
-   /* Add margin-top to create space between sliding div and indicators */
+  /* Add margin-top to create space between sliding div and indicators */
 }
 
-.indicator-dot {
+.indicator3-dot3 {
   width: 20px;
   height: 2px;
-  
+
   margin-left: 5px;
   margin-right: 5px;
   margin-top: 10px;
   margin-bottom: 10px;
-  
 }

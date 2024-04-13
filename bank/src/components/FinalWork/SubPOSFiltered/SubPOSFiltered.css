@@ -1,34 +1,38 @@
 .slider-container-subPos1 {
   position: relative;
   overflow: hidden;
-  width: 330px;
-  height: 350px;
-  margin-left: 18px;
-  top: 21px;
+  width: 400px;
+  height: 170px;
+  left: 90px;
+  top: -30;
   backface-visibility: hidden;
   border-radius: 25px;
   background-color: white;
 }
 
-.slider1-subPos1 {
+.slider-subPos {
   display: flex;
 }
 
-.slide1-subPos1 {
-  background-color: wheat;
+.slide-subPos {
+  background-color: transparent;
   flex: 0 0 100%;
-  width: 150px;
+  width: 350px;
   height: 180px;
   z-index: 10;
 }
 
-.selected1-subPos1 {
-  background-color: rgb(184, 201, 233);
+.selected-subPos {
+  background-color: black;
+  flex: 0 0 100%;
+  height: 290px;
+  margin-top: 20px;
 }
 
-.button1-subPos1 {
+.button-subPos1 {
   position: absolute;
-  top: 204px;
+  top: 150px;
+  margin-left: 10px;
   transform: translateY(-50%);
   padding: 10px;
   background-color: #002;
@@ -38,39 +42,84 @@
   font-size: 10px;
 }
 
-.prev-subPos1 {
-  left: 0;
+.prev-subPos {
+  left: 20;
   border-top-right-radius: 25px;
   border-bottom-left-radius: 25px;
 }
 
-.next-subPos1 {
+.next-subPos {
   right: 0;
   border-top-left-radius: 25px;
   border-bottom-right-radius: 25px;
 }
 
-.indicators1-subPos1 {
+.indicators-subPos {
   position: absolute;
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
 }
 
-.dot1-subPos1 {
-  width: 10px;
-  height: 10px;
+.dot-subPos {
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background-color: #ccc;
   display: inline-block;
   margin: 0 5px;
+
+  transition: background-color 0.3s ease;
   cursor: pointer;
 }
 
-.dot1-subPos1.active-subPos1 {
+.dot-subPos.active-subPos {
   background-color: #007bff;
 }
 
-.dot1-subPos1.selected1-subPos1 {
+.dot-subPos.selected-subPos {
   background-color: red;
+}
+
+.input-checkbox-showBalance {
+  margin-top: 15px;
+  margin-left: 15px;
+  z-index: 3;
+  position: absolute;
+}
+
+.span-showBalance-showBalance {
+  margin-top: 15px;
+  margin-left: 30px;
+  z-index: 3;
+  font-size: 12px;
+  position: absolute;
+}
+
+.transaction-parag {
+  font-size: 12px;
+}
+
+.subPOS-account {
+  position: "absolute";
+  display: flex;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  padding: 0;
+  z-index: 20;
+}
+
+.subpos-show-account {
+  position: absolute;
+  overflow-y: scroll;
+  right: 0;
+  left: 0;
+  height: 500px;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+  width: 100%;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 100;
 }

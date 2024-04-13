@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import "./SubPOSFiltered.css";
 
 const SubPOSFiltered = ({
+  options2,
   transactionHistory,
   groupTransactionsByMonth,
   setShowTransactions,
@@ -10,7 +11,6 @@ const SubPOSFiltered = ({
   showTransactions,
   showBalance,
   handleToggleBalance,
-  options2,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [startIndex, setStartIndex] = useState(null);
@@ -43,6 +43,7 @@ const SubPOSFiltered = ({
         setShowTransactions(true);
         setGroupedTransactions(groupTransactionsByMonth(filteredTransactions));
       }
+      console.log(filteredTransactions);
     }
   }, [
     renderTransactionsForSelectedSlide,
@@ -89,124 +90,195 @@ const SubPOSFiltered = ({
     setSelected(index);
   };
   return (
-    <div>
-      {showTransactions && (
-        <div
+    <div
+      style={{
+        backgroundColor: "whitesmoke",
+        height: "100%",
+        position: "absolute",
+        top: "0",
+        button: "-50",
+        left: "0",
+        right: "0",
+        zIndex: "20",
+      }}
+    >
+      <div
+        style={{
+          backgroundColor: "wheat",
+          height: "750px",
+          width: "600px",
+          display: "grid",
+          marginLeft: "400px",
+          marginTop: "30px",
+          gap: "0",
+          borderRadius: "25px",
+        }}
+      >
+        <button
           style={{
-            backgroundColor: "rgba(0, 0, 255, 0.9)",
-            position: "absolute",
-            width: "100%",
-            height: "800px",
-            top: "300px",
-            zIndex: "12",
+            width: "45px",
+            backgroundColor: "transparent",
+            height: "30px",
+            marginBottom: "30px",
+            color: "black",
+            fontSize: "20px",
+            cursor: "pointer",
           }}
         >
-          {error && <p>{error}</p>}
-          <div className="completed-transaction">
-            {Object.keys(groupedTransactions).map((monthYear) => (
-              <div key={monthYear}>
-                <h3 style={{ color: "#fff" }}>{monthYear}</h3>{" "}
-                <ul style={{ listStyle: "none", padding: 0 }}>
-                  {groupedTransactions[monthYear].map((transaction) => (
-                    <li
-                      key={transaction.id}
-                      style={{
-                        backgroundColor: "#f0f0f0",
-                        marginBottom: "10px",
-                        padding: "10px",
-                        borderRadius: "5px",
-                        width: "100%",
-                      }}
-                    >
-                      <p>
-                        <strong>Type:</strong> {transaction.TransactionType}
-                      </p>
-                      <p>
-                        <strong>Date:</strong> {transaction.date}
-                      </p>
-                      <p>
-                        <strong>Description:</strong> {transaction.description}
-                      </p>
-                      <p>
-                        <strong>Amount:</strong> {transaction.amount}
-                      </p>
-                      <p>
-                        <strong>Balance:</strong> {transaction.balance}
-                      </p>
-                    </li>
-                  ))}
-                </ul>
+          &larr;
+        </button>
+        <h2
+          style={{
+            marginLeft: "70px",
+            marginTop: "10px",
+            marginBottom: "30px",
+            color: "royalblue",
+          }}
+        >
+          YOUR SUB POS ACCOUNTS
+        </h2>
+        <div
+          className="slider-container-subPos1"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={() => setStartIndex(null)}
+          onClick={setShowTransactions(true)}
+        >
+          <div
+            className="slider-subPos"
+            ref={sliderRef}
+            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+          >
+            {options2.map((option, index) => (
+              <div
+                className={`slide-subPos ${
+                  selected === index ? "selected1-subPos" : ""
+                }`}
+                onClick={() => {
+                  renderTransactionsForSelectedSlide();
+                  handleSlideClick(index);
+                }}
+                key={option.index}
+              >
+                <div
+                  key={option.value}
+                  style={{
+                    height: "100%",
+                    with: "100%",
+                    position: "absolute",
+                    cursor: "pointer",
+                    marginLeft: "20px",
+                  }}
+                  onClick={() => console.log(option.value)}
+                >
+                  <input
+                    style={{ marginTop: "9px", marginLeft: "15px" }}
+                    type="checkbox"
+                    checked={showBalance}
+                    onChange={handleToggleBalance}
+                  />{" "}
+                  <span style={{ fontSize: "12px" }}>
+                    {showBalance ? "Hide Balance" : "Show Balance"}
+                  </span>
+                  {option.label}
+                </div>
               </div>
             ))}
           </div>
-        </div>
-      )}
-      <div
-        style={{ top: "0px", bottom: "0px" }}
-        className="slider-1container-1subPos"
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={() => setStartIndex(null)}
-        onClick={setShowTransactions(true)}
-      >
-        <div
-          className="slider1-subPos1"
-          ref={sliderRef}
-          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-        >
-          {options2.map((option, index) => (
-            <div
-              className={`slide1-subPos1 ${
-                selected === index ? "selected1-subPos1" : ""
-              }`}
-              onClick={() => {
-                renderTransactionsForSelectedSlide();
-                handleSlideClick(index);
-              }}
-              key={option.index}
-            >
+          <button className="prev-subPos button-subPos1" onClick={prevSlide}>
+            &lt;
+          </button>
+          <button className="next-subPos button-subPos1" onClick={nextSlide}>
+            &gt;
+          </button>
+          <div className="indicators-subPos">
+            {options2.map((option, index) => (
               <div
-                key={option.value}
-                style={{
-                  height: "100%",
-                  with: "100%",
-                  position: "absolute",
-                  cursor: "pointer",
-                  marginLeft: "20px",
-                }}
-                onClick={() => console.log(option.value)}
-              >
-                <input
-                  style={{ marginTop: "9px", marginLeft: "15px" }}
-                  type="checkbox"
-                  checked={showBalance}
-                  onChange={handleToggleBalance}
-                />{" "}
-                <span style={{ fontSize: "12px" }}>
-                  {showBalance ? "Hide Balance" : "Show Balance"}
-                </span>
-                {option.label}
-              </div>
-            </div>
-          ))}
+                key={option.index}
+                className={`dot-subPos ${
+                  index === currentIndex ? "active-subPos" : ""
+                } ${selected === index ? "selected-subPos" : ""}`}
+                onClick={() => handleSlideClick(index)}
+              ></div>
+            ))}
+          </div>
         </div>
-        <button className="prev-subPos1 button1-subPos1" onClick={prevSlide}>
-          &lt;
-        </button>
-        <button className="next-subPos1 button1-subPos1" onClick={nextSlide}>
-          &gt;
-        </button>
-        <div className="indicators1-subPos1">
-          {options2.map((option, index) => (
+
+        {showTransactions && (
+          <div
+            style={{
+              backgroundColor: "white",
+              position: "relative",
+              width: "400px",
+              height: "300px",
+              top: "0px",
+              borderRadius: "25px",
+              marginLeft: "90px",
+              paddingLeft: "5px",
+            }}
+          >
+            {error && <p>{error}</p>}
             <div
-              key={option.index}
-              className={`dot1-subPos1 ${
-                index === currentIndex ? "active-subPos1" : ""
-              } ${selected === index ? "selected1-subPos1" : ""}`}
-              onClick={() => handleSlideClick(index)}
-            ></div>
-          ))}
-        </div>
+              className="completed-transaction"
+              style={{
+                paddingLeft: "10px",
+                display: "flex",
+                paddingTop: "10px",
+                gap: "5px",
+                width: "350px",
+                height: "300px",
+
+                backgroundColor: "transparent",
+              }}
+            >
+              {Object.keys(groupedTransactions).map(
+                (monthYear, index) =>
+                  index === 0 && (
+                    <div key={monthYear}>
+                      <h3 style={{ color: "royalblue" }}>{monthYear}</h3>
+                      {/* White text color */}
+                      <div
+                        style={{
+                          listStyle: "none",
+                          padding: 0,
+                          width: "350px",
+                          display: "grid",
+                          gap: "5px",
+                          maxHeight: "250px", // Set a max height for the container
+                          overflowY: "auto", // Enable vertical scrolling
+                        }}
+                      >
+                        {groupedTransactions[monthYear].map(
+                          (transaction, index) => (
+                            <div
+                              key={transaction.id}
+                              style={{
+                                padding: "10px",
+                                height: "65px",
+                                backgroundColor: "whitesmoke",
+                                borderRadius: "20px",
+                                width: "150px",
+                              }}
+                            >
+                              <p className="transaction-parag">
+                                <strong>Date:</strong> {transaction.date}
+                              </p>
+                              <p className="transaction-parag">
+                                {transaction.TransactionType}
+                              </p>
+                              <p className="transaction-parag">
+                                <strong>Amount:</strong> {transaction.amount}
+                              </p>
+                            </div>
+                          )
+                        )}
+                      </div>
+                    </div>
+                  )
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

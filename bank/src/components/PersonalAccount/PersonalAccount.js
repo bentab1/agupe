@@ -1,17 +1,33 @@
 // PersonalProfile.jsx
 import React from "react";
-import { NavLink } from "react-router-dom";
 import Myimage from "../Assets/Myimage.png";
 import NigeriaFlag from "../Assets/NigeriaFlag.jpg";
+import MainAccounts from "../FinalWork/MainAccounts/MainAccounts";
 import LogOutPage from "../LogOut/LogOutPage";
 import "./personalAccount.css";
-function personalAccount() {
+function personalAccount({
+  options,
+  selected,
+  transactionHistory,
+  groupTransactionsByMonth,
+  setShowTransactions,
+  setGroupedTransactions,
+  groupedTransactions,
+  setSelected,
+  showTransactions,
+  showBalance,
+  handleToggleBalance,
+  setTransactionHistory,
+}) {
   function handleTransactionHistry() {
     window.location.href = "/subposlayout/transactions";
   }
   return (
     <div
-      style={{ display: "flex", backgroundColor: "rgb(250, 244, 244)" }}
+      style={{
+        display: "flex",
+        backgroundColor: "rgb(250, 244, 244)",
+      }}
       className="personalprofile"
     >
       <div
@@ -42,13 +58,6 @@ function personalAccount() {
             />
           </div>
         </div>
-
-        <div>
-          <NavLink to="/addmoney">
-            <button className="profile-section">Add Money</button>
-          </NavLink>
-        </div>
-
         <div>
           <button className="profile-section">Add payment Method</button>
         </div>
@@ -123,27 +132,38 @@ function personalAccount() {
           <div
             style={{
               display: "grid",
-              backgroundColor: "white",
-              height: "350px",
+              backgroundColor: "transparent",
+              height: "480px",
               borderRadius: "30px",
               marginLeft: "50px",
-              marginTop: "50px",
-              width: "300px",
+              marginTop: "0px",
+              width: "430px",
+              gap: "0",
             }}
           >
             <div className="accountdisplay">
-              <button
-                className="text"
-                style={{
-                  marginTop: "20px",
-                  borderRadius: "30px",
-                  marginLeft: "75px",
-                }}
-              >
-                Account Balance
-              </button>
+              <MainAccounts
+                options={options}
+                selected={selected}
+                transactionHistory={transactionHistory}
+                groupTransactionsByMonth={groupTransactionsByMonth}
+                setShowTransactions={setShowTransactions}
+                setGroupedTransactions={setGroupedTransactions}
+                groupedTransactions={groupedTransactions}
+                setSelected={setSelected}
+                showTransactions={showTransactions}
+                showBalance={showBalance}
+                handleToggleBalance={handleToggleBalance}
+                setTransactionHistory={setTransactionHistory}
+              />
             </div>
-            <div style={{ display: "grid" }}>
+            <div
+              style={{
+                display: "flex",
+                marginTop: "0px",
+                paddingLeft: "40px",
+              }}
+            >
               <div
                 className="TransaferOrpaybils"
                 style={{ display: "flex", justifyContent: "center" }}
@@ -172,21 +192,38 @@ function personalAccount() {
           <div
             style={{
               display: "flex",
-              flexDirection: "column",
-              marginLeft: "40px",
-              marginTop: "150px",
+              marginLeft: "25px",
+              marginTop: "70px",
               backgroundColor: "white",
-              height: "150px",
-              width: "500px",
-              marginBottom: "80px",
+              height: "120px",
+              width: "390px",
+              marginBottom: "8px",
               borderRadius: "30px",
+              paddingTop: "50px",
             }}
           >
             <button
               className="text"
-              style={{ marginTop: "60px", marginLeft: "170px" }}
+              style={{
+                width: "170px",
+                borderRadius: "25px",
+                height: "40px",
+                fontSize: "11px",
+              }}
             >
               Recent Transactions
+            </button>
+
+            <button
+              className="text"
+              style={{
+                width: "170px",
+                borderRadius: "25px",
+                height: "40px",
+                fontSize: "11px",
+              }}
+            >
+              Search Transactions
             </button>
           </div>
         </div>
