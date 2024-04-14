@@ -89,16 +89,20 @@ const SubPOSFiltered = ({
     setCurrentIndex(index);
     setSelected(index);
   };
+  function handleClosePOSAccount() {
+    window.location.href = "/personalAccount";
+  }
   return (
     <div
       style={{
         backgroundColor: "whitesmoke",
         height: "100%",
+        width: "1370px",
         position: "absolute",
         top: "0",
-        button: "-50",
         left: "0",
         right: "0",
+        overflowX: "hidden",
         zIndex: "20",
       }}
     >
@@ -115,6 +119,9 @@ const SubPOSFiltered = ({
         }}
       >
         <button
+          onClick={() => {
+            handleClosePOSAccount();
+          }}
           style={{
             width: "45px",
             backgroundColor: "transparent",

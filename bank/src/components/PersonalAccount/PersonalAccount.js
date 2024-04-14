@@ -1,11 +1,14 @@
 // PersonalProfile.jsx
-import React from "react";
-import Myimage from "../Assets/Myimage.png";
+import { React, useState } from "react";
+import { BiMenu } from "react-icons/bi";
+import { MdNotificationAdd } from "react-icons/md";
+import MyProfileImage from "../Assets/MyProfileImage.jpg";
 import NigeriaFlag from "../Assets/NigeriaFlag.jpg";
 import MainAccounts from "../FinalWork/MainAccounts/MainAccounts";
 import LogOutPage from "../LogOut/LogOutPage";
 import "./personalAccount.css";
-function personalAccount({
+
+function PersonalAccount({
   options,
   selected,
   transactionHistory,
@@ -19,6 +22,11 @@ function personalAccount({
   handleToggleBalance,
   setTransactionHistory,
 }) {
+  const [showProfile, setShowProfile] = useState(false);
+  function handleCloseProfile() {
+    if (showProfile === true) setShowProfile(false);
+  }
+
   function handleTransactionHistry() {
     window.location.href = "/subposlayout/transactions";
   }
@@ -38,24 +46,128 @@ function personalAccount({
           overflowY: "scroll",
           overflowX: "hidden",
           marginTop: "20px",
+
           backgroundColor: "rgb(250, 244, 244)",
         }}
       >
-        <div style={{ display: "flex" }}>
+        <div style={{ display: "flex", borderRadius: "25px" }}>
+          <button
+            style={{
+              width: "40px",
+              left: "0",
+              height: "30px",
+              backgroundColor: "transparent",
+              color: "black",
+              fontSize: "25px",
+            }}
+            onClick={() => {
+              setShowProfile(true);
+              handleCloseProfile();
+            }}
+          >
+            <BiMenu />
+          </button>
+          <img
+            src={NigeriaFlag}
+            alt="Country flag"
+            style={{
+              width: "45px",
+              marginLeft: "80px",
+              height: "30px",
+              marginTop: "15px",
+            }}
+          />
           <div>
-            <img
-              className="image"
-              src={Myimage}
-              alt=" logo"
-              style={{ marginTop: "20px" }}
-            />
-          </div>
-          <div style={{ marginTop: "20px", marginLeft: "40px" }}>
-            <img
-              src={NigeriaFlag}
-              alt="Country flag"
-              style={{ width: "50px" }}
-            />
+            {showProfile && (
+              <div
+                style={{
+                  left: "0",
+                  paddingLeft: "20px",
+                  width: "250px",
+                  height: "555px",
+                  borderRadius: "25px",
+                  position: "absolute",
+                  backgroundColor: "white",
+                }}
+              >
+                <div
+                  style={{
+                    width: "30px",
+                    height: "30px",
+                    backgroundColor: "white",
+                    color: "black",
+                    fontSize: "20px",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    setShowProfile(true);
+                    handleCloseProfile();
+                  }}
+                >
+                  &larr;
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "30px",
+                    marginTop: "20px",
+                    marginBottom: "20px",
+                    backgroundColor: "transparent",
+                  }}
+                >
+                  <img
+                    src={NigeriaFlag}
+                    alt="Country flag"
+                    style={{
+                      width: "55px",
+                      height: "80px",
+                      marginLeft: "10px",
+                    }}
+                  />
+                  <img
+                    className="image"
+                    src={MyProfileImage}
+                    alt=" logo"
+                    style={{
+                      marginTop: "0px",
+                      width: "80px",
+                      height: "80px",
+                      borderRadius: "40px",
+                    }}
+                  />
+                </div>
+                <p style={{ marginLeft: "20px", marginBottom: "5px" }}>
+                  Mirabel Mikel
+                </p>
+                <button
+                  style={{
+                    borderRadius: "20px",
+                    backgroundColor: "rgb(215, 247, 236)",
+                    color: "black",
+                    fontSize: "12px",
+                  }}
+                >
+                  {" "}
+                  Show user details
+                </button>
+
+                <ul style={{ marginTop: "20px", display: "grid", gap: "15px" }}>
+                  <li className="profile-ul-li">LPay Wallet</li>
+                  <li className="profile-ul-li">Change/Reset PIN</li>
+                  <li className="profile-ul-li">Change Password</li>
+                  <li className="profile-ul-li">Biometric Login</li>
+                  <li className="profile-ul-li"> Auto login on app start</li>
+                  <li className="profile-ul-li">Biometric payments</li>
+                  <li className="profile-ul-li">Transacrtion Limit</li>
+                  <li className="profile-ul-li">Theme</li>
+                  <li className="profile-ul-li">Video intro</li>
+                </ul>
+
+                <div style={{ marginTop: "20px" }}>
+                  <button className="profile-section">Settings</button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
         <div>
@@ -63,19 +175,18 @@ function personalAccount({
         </div>
 
         <div>
-          <button className="profile-section">Card</button>
+          <button className="profile-section">Create Cards</button>
         </div>
 
         <div>
-          <button className="profile-section">Beneficiary</button>
+          <button className="profile-section">Add Beneficiary</button>
         </div>
 
+        <div>
+          <button className="profile-section">Upgrade Account</button>
+        </div>
         <div>
           <button className="profile-section">Subscription</button>
-        </div>
-
-        <div>
-          <button className="profile-section">Settings</button>
         </div>
 
         <div>
@@ -98,32 +209,43 @@ function personalAccount({
             marginTop: "40px",
             marginLeft: "50px",
             backgroundColor: "rgb(215, 247, 236)",
-            width: "930px",
+            width: "860px",
             padding: "30px",
             borderRadius: "30px",
           }}
         >
           <div className="welcome_greetting">
-            <p className="text_pro">Welcome</p>
+            <button className="text_pro">Welcome Mirabel Mikel </button>
           </div>
 
           <div
             className="profilegallery"
-            style={{ display: "flex", marginLeft: "290px" }}
+            style={{
+              display: "flex",
+              gap: "80px",
+              marginLeft: "100px",
+              paddingLeft: "20px",
+            }}
           >
-            <div>
+            <div style={{ width: "50px" }}>
               <button className="text_pro">Notification</button>
             </div>
 
-            <div>
-              <button className="text_pro">pics</button>
-            </div>
-
-            <div style={{ display: "grid" }}>
-              <button className="text_pro">
-                <p>Benjamin </p>
-                <p>Benjamin@gmail.com </p>
-              </button>
+            <span style={{ fontSize: "30px" }}>
+              <MdNotificationAdd />
+            </span>
+          </div>
+          <div>
+            <div style={{ marginLeft: "130px" }}>
+              <p>Live Chat</p>
+              <i
+                className="fas fa-comment"
+                style={{
+                  fontSize: "25px",
+                  color: "blueviolet",
+                  marginLeft: "4px",
+                }}
+              />
             </div>
           </div>
         </div>
@@ -168,6 +290,9 @@ function personalAccount({
                 className="TransaferOrpaybils"
                 style={{ display: "flex", justifyContent: "center" }}
               >
+                <div>
+                  <button className="text">LPay Wallet</button>
+                </div>
                 <div className="Transfer">
                   <button className="text">Transfer</button>
                 </div>
@@ -208,7 +333,7 @@ function personalAccount({
                 width: "170px",
                 borderRadius: "25px",
                 height: "40px",
-                fontSize: "11px",
+                fontSize: "12px",
               }}
             >
               Recent Transactions
@@ -220,7 +345,7 @@ function personalAccount({
                 width: "170px",
                 borderRadius: "25px",
                 height: "40px",
-                fontSize: "11px",
+                fontSize: "12px",
               }}
             >
               Search Transactions
@@ -242,9 +367,6 @@ function personalAccount({
           <div>
             <button className="text">Account</button>
           </div>
-          <div>
-            <button className="text">AgupePay</button>
-          </div>
 
           <div>
             <button className="text">Generate Statement</button>
@@ -258,12 +380,15 @@ function personalAccount({
               }}
             >
               {" "}
-              Transaction History
+              Transaction Histories
             </button>
           </div>
 
           <div>
             <button className="text">Find ATM nearby</button>
+          </div>
+          <div>
+            <button className="text">Need Help</button>
           </div>
 
           <div>
@@ -275,4 +400,4 @@ function personalAccount({
   );
 }
 
-export default personalAccount;
+export default PersonalAccount;

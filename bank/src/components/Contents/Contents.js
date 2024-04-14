@@ -111,7 +111,7 @@ function Contents() {
           {[...Array(6)].map((_, i) => (
             <div
               key={i}
-              className="indicator-dot3"
+              className="indicator3-dot3"
               style={{ backgroundColor: i === currentIndex ? "red" : "gray" }}
             ></div>
           ))}

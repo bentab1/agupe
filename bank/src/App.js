@@ -603,7 +603,7 @@ export default function App() {
             />
           </Routes>
           <Layout>
-            <Contents />
+            s
             <Features />
             <Notification />
           </Layout>
