@@ -130,7 +130,7 @@ export default function App() {
   const handleClick = (buttonId) => {
     setActiveButton(buttonId);
   };
-
+////
   useEffect(() => {
     const fetchData = async () => {
       try {
